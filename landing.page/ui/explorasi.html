@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eksplorasi Senyawa Kimia</title>
+    <link rel="stylesheet" href="../css/explorasi.css" />
+    <script src="../js/explorasi.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="../../index.html" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Kembali
+      </a>
+      <div class="logo">ChemisTry Lab</div>
+    </header>
+
+    <section class="hero-page">
+      <div class="hero-content-lab">
+        <div class="icon-placeholder">
+          <i class="fas fa-flask"></i>
+        </div>
+        <h1>Eksplorasi Senyawa Kimia</h1>
+        <p>
+          Pelajari berbagai senyawa kimia dan temukan reaksi baru dengan
+          menggabungkan dua senyawa.
+        </p>
+      </div>
+    </section>
+
+    <section class="section reactor-section">
+      <div class="reactor-container">
+        <h2>Reaktor Senyawa</h2>
+        <div class="reactor-boxes">
+          <div class="compound-box">
+            <p>Pilih senyawa pertama</p>
+          </div>
+          <div class="plus-icon">+</div>
+          <div class="compound-box">
+            <p>Pilih senyawa kedua</p>
+          </div>
+        </div>
+        <div class="reactor-actions">
+          <button class="btn btn-gabung">
+            <i class="fas fa-magic"></i> Gabungkan Senyawa
+          </button>
+          <button class="btn btn-reset">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section library-section">
+      <div class="library-container">
+        <h3>Perpustakaan Senyawa</h3>
+        <p class="library-subtitle">
+          Klik pada senyawa untuk memilihnya (maksimal 2 senyawa)
+        </p>
+
+        <div class="compound-grid">
+          <div class="compound-card water">
+            <div class="formula-circle">H₂O</div>
+            <h4>Air</h4>
+            <p class="formula-text">H₂O</p>
+            <p class="description">
+              Senyawa penting untuk kehidupan, terdiri dari hidrogen dan oksigen
+            </p>
+          </div>
+
+          <div class="compound-card salt">
+            <div class="formula-circle">NaCl</div>
+            <h4>Garam Dapur</h4>
+            <p class="formula-text">NaCl</p>
+            <p class="description">
+              Natrium klorida, digunakan sebagai bumbu masakan
+            </p>
+          </div>
+
+          <div class="compound-card co2">
+            <div class="formula-circle">CO₂</div>
+            <h4>Karbon Dioksida</h4>
+            <p class="formula-text">CO₂</p>
+            <p class="description">
+              Gas yang dihasilkan dari respirasi dan pembakaran
+            </p>
+          </div>
+
+          <div class="compound-card sulfat">
+            <div class="formula-circle">H₂SO₄</div>
+            <h4>Asam Sulfat</h4>
+            <p class="formula-text">H₂SO₄</p>
+            <p class="description">Asam kuat yang digunakan dalam industri</p>
+          </div>
+
+          <div class="compound-card oksigen">
+            <div class="formula-circle">O₂</div>
+            <h4>Oksigen</h4>
+            <p class="formula-text">O₂</p>
+            <p class="description">Gas penting untuk respirasi makhluk hidup</p>
+          </div>
+
+          <div class="compound-card metana">
+            <div class="formula-circle">CH₄</div>
+            <h4>Metana</h4>
+            <p class="formula-text">CH₄</p>
+            <p class="description">
+              Gas alam yang digunakan sebagai bahan bakar
+            </p>
+          </div>
+
+          <div class="compound-card amonia">
+            <div class="formula-circle">NH₃</div>
+            <h4>Amonia</h4>
+            <p class="formula-text">NH₃</p>
+            <p class="description">Senyawa nitrogen dengan bau menyengat</p>
+          </div>
+
+          <div class="compound-card glukosa">
+            <div class="formula-circle">C₆H</div>
+            <h4>Glukosa</h4>
+            <p class="formula-text">C₆H₁₂O₆</p>
+            <p class="description">
+              Gula sederhana yang merupakan sumber energi utama
+            </p>
+          </div>
+
+          <div class="compound-card kalsium">
+            <div class="formula-circle">CaO</div>
+            <h4>Kalsium Oksida</h4>
+            <p class="formula-text">CaO</p>
+            <p class="description">
+              Kapur tohor yang digunakan dalam konstruksi
+            </p>
+          </div>
+
+          <div class="compound-card etanol">
+            <div class="formula-circle">C₂H</div>
+            <h4>Etanol</h4>
+            <p class="formula-text">C₂H₆OH</p>
+            <p class="description">
+              Alkohol yang terdapat dalam minuman beralkohol
+            </p>
+          </div>
+
+          <div class="compound-card besi">
+            <div class="formula-circle">Fe₂</div>
+            <h4>Besi Oksida</h4>
+            <p class="formula-text">Fe₂O₃</p>
+            <p class="description">Karat yang terbentuk dari besi</p>
+          </div>
+
+          <div class="compound-card hcl-2">
+            <div class="formula-circle">HCl</div>
+            <h4>Asam Klorida</h4>
+            <p class="formula-text">HCl</p>
+            <p class="description">Asam kuat yang terdapat dalam lambung</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-lab">
+      <p>
+        Eksplorasi Senyawa Kimia - Belajar kimia dengan cara yang interaktif
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+/* --- Variabel Warna --- */
+:root {
+  --dark-bg: #000000; /* Latar Belakang Gelap */
+  --form-bg: #0d0d0d; /* Latar Belakang Form sedikit lebih terang dari body */
+  --text-light: #ffffff; /* Teks Putih */
+  --accent-blue: #00bfff; /* Biru Neon/Aksen */
+  --accent-shadow: 0 0 10px rgba(0, 191, 255, 0.6); /* Bayangan Biru */
+  --input-border: #333333; /* Border Input */
+}
+
+/* --- Pengaturan Dasar dan Body --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* --- Container Form --- */
+.register-container {
+  background-color: var(--form-bg);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--accent-shadow); /* Memberi efek cahaya biru */
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  border: 1px solid var(--accent-blue); /* Border tipis biru */
+}
+
+.register-title {
+  color: var(--accent-blue);
+  font-size: 2em;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.register-subtitle {
+  color: #aaa;
+  margin-bottom: 25px;
+  font-size: 0.9em;
+}
+
+/* --- Input Group --- */
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #1a1a1a;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text-light);
+  font-size: 1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 5px rgba(0, 191, 255, 0.5); /* Efek fokus biru neon */
+  outline: none;
+}
+
+/* --- Checkbox Group --- */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  font-size: 0.9em;
+}
+
+.checkbox-group a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.checkbox-group a:hover {
+  text-decoration: underline;
+}
+
+/* --- Tombol REGISTER Utama --- */
+.register-button {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--accent-blue);
+  color: var(--dark-bg); /* Teks gelap di tombol terang */
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4); /* Bayangan tombol */
+}
+
+.register-button:hover {
+  background-color: #4dc3ff; /* Biru sedikit lebih terang saat hover */
+  transform: translateY(-2px);
+}
+
+/* --- Tombol Kembali/Back --- */
+.back-link {
+  margin-top: 20px;
+}
+
+.back-button {
+  display: inline-block;
+  color: var(--accent-blue);
+  background-color: transparent;
+  border: 1px solid var(--accent-blue);
+  padding: 10px 25px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9em;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+  background-color: var(--accent-blue);
+  color: var(
+    --dark-bg
+  ); /* Teks menjadi gelap saat latar belakang menjadi biru neon */
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+}
+
+/* --- Link Masuk (Login) --- */
+.login-link {
+  margin-top: 25px;
+  color: #999;
+  font-size: 0.9em;
+}
+
+.login-link a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsif Dasar --- */
+@media (max-width: 500px) {
+  .register-container {
+    padding: 30px 20px;
+  }
+
+  .register-title {
+    font-size: 1.8em;
+  }
+}
