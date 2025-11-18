@@ -1,0 +1,421 @@
+/* File: explorasi.css */
+
+/* ======================================================= */
+/* 1. VARIABEL DASAR DAN RESET */
+/* ======================================================= */
+:root {
+  --color-background-dark: #0a0a1f; /* Biru tua sangat gelap */
+  --color-primary-accent: #00aeef; /* Biru neon terang */
+  --color-text-light: #f0f0f0;
+  --color-text-gray: #b0b0b0;
+  --color-card-dark: #1e1e3f; /* Latar belakang kartu/kotak */
+  --shadow-neon: 0 0 10px rgba(0, 174, 239, 0.6);
+  --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--color-background-dark);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Playfair Display", serif;
+  color: var(--color-primary-accent);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary-accent);
+}
+
+/* ======================================================= */
+/* 2. HEADER DAN NAVIGASI */
+/* ======================================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background-color: rgba(0, 0, 0, 0.3); /* Transparan gelap */
+  box-shadow: var(--shadow-soft);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary-accent);
+  text-shadow: 0 0 5px var(--color-primary-accent);
+}
+
+.btn-back {
+  color: var(--color-text-light);
+  background-color: var(--color-card-dark);
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border: 1px solid var(--color-card-dark);
+}
+
+.btn-back:hover {
+  background-color: var(--color-primary-accent);
+  color: var(--color-background-dark);
+  box-shadow: var(--shadow-neon);
+}
+
+.btn-back i {
+  margin-right: 8px;
+}
+
+/* ======================================================= */
+/* 3. HERO SECTION */
+/* ======================================================= */
+.hero-page {
+  padding-top: 100px; /* Offset dari fixed header */
+  padding-bottom: 50px;
+  background: linear-gradient(
+    180deg,
+    var(--color-background-dark) 0%,
+    #151540 100%
+  );
+  text-align: center;
+}
+
+.hero-content-lab {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.icon-placeholder i {
+  font-size: 4rem;
+  color: var(--color-primary-accent);
+  margin-bottom: 15px;
+  text-shadow: var(--shadow-neon);
+}
+
+.hero-content-lab h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-content-lab p {
+  color: var(--color-text-gray);
+  font-size: 1.1rem;
+}
+
+/* ======================================================= */
+/* 4. REACTOR SECTION (REAKTOR SENYAWA) */
+/* ======================================================= */
+.reactor-section {
+  padding: 40px 5%;
+  background-color: var(--color-background-dark);
+}
+
+.reactor-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: var(--color-card-dark);
+  border-radius: 10px;
+  box-shadow: var(--shadow-neon);
+  text-align: center;
+}
+
+.reactor-container h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--color-primary-accent);
+}
+
+.reactor-boxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.compound-box {
+  width: 200px;
+  height: 150px;
+  background-color: rgba(40, 40, 80, 0.5);
+  border: 2px dashed var(--color-text-gray);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-gray);
+  font-size: 1rem;
+  padding: 10px;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.compound-box.selected {
+  border-color: var(--color-primary-accent);
+  background-color: rgba(0, 174, 239, 0.1);
+}
+
+.plus-icon {
+  font-size: 2rem;
+  color: var(--color-primary-accent);
+  font-weight: bold;
+}
+
+.reactor-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn-gabung {
+  background-color: var(--color-primary-accent);
+  color: var(--color-background-dark);
+}
+
+.btn-gabung:hover {
+  box-shadow: var(--shadow-neon);
+  transform: translateY(-2px);
+}
+
+.btn-reset {
+  background-color: var(--color-text-gray);
+  color: var(--color-background-dark);
+}
+
+.btn-reset:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.btn i {
+  margin-right: 10px;
+}
+
+/* ======================================================= */
+/* 5. LIBRARY SECTION (PERPUSTAKAAN SENYAWA) */
+/* ======================================================= */
+.library-section {
+  padding: 50px 5%;
+}
+
+.library-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.library-container h3 {
+  font-size: 2.5rem;
+  color: var(--color-text-light);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.library-subtitle {
+  text-align: center;
+  color: var(--color-text-gray);
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.compound-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.compound-card {
+  background-color: var(--color-card-dark);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+.compound-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-neon);
+  border-color: var(--color-primary-accent);
+}
+
+.compound-card.selected-compound {
+  border-color: var(--color-primary-accent);
+  box-shadow: var(--shadow-neon);
+  background-color: rgba(0, 174, 239, 0.1);
+}
+
+.formula-circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin: 0 auto 15px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-background-dark);
+  background-color: var(--color-text-light);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Styling warna spesifik untuk senyawa (sesuaikan dengan warna yang Anda inginkan) */
+.water .formula-circle {
+  background-color: #3498db;
+}
+.salt .formula-circle {
+  background-color: #f1c40f;
+}
+.co2 .formula-circle {
+  background-color: #7f8c8d;
+}
+.sulfat .formula-circle {
+  background-color: #e67e22;
+}
+.oksigen .formula-circle {
+  background-color: #1abc9c;
+}
+.metana .formula-circle {
+  background-color: #2ecc71;
+}
+.amonia .formula-circle {
+  background-color: #9b59b6;
+}
+.glukosa .formula-circle {
+  background-color: #e74c3c;
+}
+.kalsium .formula-circle {
+  background-color: #bdc3c7;
+}
+.etanol .formula-circle {
+  background-color: #34495e;
+}
+.besi .formula-circle {
+  background-color: #c0392b;
+}
+.hcl-2 .formula-circle {
+  background-color: #2980b9;
+}
+
+/* Senyawa Tambahan */
+.NaOH .formula-circle {
+  background-color: #e67e22;
+} /* Oranye */
+.c6h6 .formula-circle {
+  background-color: #f39c12;
+} /* Kuning Tua */
+.ch3cooh .formula-circle {
+  background-color: #27ae60;
+} /* Hijau */
+.kcl .formula-circle {
+  background-color: #8e44ad;
+} /* Ungu */
+.no .formula-circle {
+  background-color: #3498db;
+} /* Biru */
+.hf .formula-circle {
+  background-color: #e74c3c;
+} /* Merah */
+.mgcl2 .formula-circle {
+  background-color: #7f8c8d;
+} /* Abu-abu */
+.n2o .formula-circle {
+  background-color: #1abc9c;
+} /* Hijau Muda */
+.cuso4 .formula-circle {
+  background-color: #2980b9;
+} /* Biru Tua */
+.nano3 .formula-circle {
+  background-color: #c0392b;
+} /* Merah Bata */
+.c2h4 .formula-circle {
+  background-color: #9b59b6;
+} /* Ungu Pucat */
+.kmnO4 .formula-circle {
+  background-color: #5d3580;
+} /* Ungu Gelap */
+
+.compound-card h4 {
+  color: var(--color-text-light);
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.compound-card .formula-text {
+  color: var(--color-primary-accent);
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.compound-card .description {
+  color: var(--color-text-gray);
+  font-size: 0.9rem;
+}
+
+/* ======================================================= */
+/* 6. FOOTER */
+/* ======================================================= */
+.footer-lab {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px 5%;
+  text-align: center;
+  color: var(--color-text-gray);
+  border-top: 1px solid rgba(0, 174, 239, 0.2);
+  font-size: 0.9rem;
+}
+
+/* ======================================================= */
+/* 7. MEDIA QUERIES (Responsif) */
+/* ======================================================= */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 4%;
+  }
+
+  .hero-content-lab h1 {
+    font-size: 2.2rem;
+  }
+
+  .reactor-boxes {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .compound-box {
+    width: 100%;
+    height: 100px;
+  }
+
+  .reactor-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

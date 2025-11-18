@@ -1,0 +1,393 @@
+/* ============================================================
+   1. Base & Variables
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --color-dark-bg: #000000;
+  --color-darker-bg: #0a0a0a;
+  --color-text-light: #ffffff;
+  --color-text-secondary: #aaaaaa;
+  --color-accent-blue-neon: #00bfff;
+  --color-accent-blue-mid: #4a90e2;
+  --color-card-bg: #111111;
+
+  /* Fonts */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Roboto", sans-serif;
+}
+
+body {
+  background: radial-gradient(
+      circle at 10% 50%,
+      rgba(0, 0, 139, 0.2) 0%,
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 90%, rgba(0, 0, 139, 0.1) 0%, transparent 50%),
+    var(--color-dark-bg);
+  color: var(--color-text-light);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   2. Buttons & Typography
+   ============================================================ */
+
+.btn {
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Start Button */
+.btn-start {
+  padding: 20px 20px;
+  margin-left: 10px;
+  border: 2px solid var(--color-accent-blue-neon);
+  background: transparent;
+  color: white;
+}
+
+.btn-start:hover {
+  background: var(--color-accent-blue-neon);
+  color: var(--color-dark-bg);
+}
+
+/* Generate Button */
+.btn-generate {
+  padding: 20px 20px;
+  background: var(--color-accent-blue-neon);
+  border: 2px solid var(--color-accent-blue-neon);
+  color: var(--color-dark-bg);
+}
+
+.btn-generate:hover {
+  background: var(--color-accent-blue-mid);
+  border-color: var(--color-accent-blue-mid);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-accent-blue-neon);
+  border: 2px solid var(--color-accent-blue-neon);
+}
+
+.btn-ghost:hover {
+  background: rgba(0, 191, 255, 0.1);
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.1em;
+  color: var(--color-text-secondary);
+  margin-bottom: 30px;
+}
+
+/* ============================================================
+   3. Navbar
+   ============================================================ */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.navbar nav ul li {
+  margin: 0 25px;
+}
+
+.navbar nav ul li a {
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar nav ul li a:hover {
+  color: var(--color-accent-blue-neon);
+}
+
+.actions {
+  display: flex;
+}
+
+/* Register Button */
+.btn-register {
+  padding: 8px 18px;
+  margin-left: 10px;
+  border: 2px solid var(--color-accent-blue-neon);
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: 0.3s;
+  background: var(--color-accent-blue-neon);
+  color: var(--color-dark-bg);
+}
+
+.btn-register:hover {
+  background: var(--color-accent-blue-mid);
+  color: var(--color-text-light);
+}
+
+/* Login Button */
+.btn-login {
+  padding: 8px 18px;
+  margin-left: 10px;
+  border: 2px solid var(--color-accent-blue-neon);
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background: var(--color-accent-blue-neon);
+  color: var(--color-dark-bg);
+}
+
+/* ============================================================
+   4. Hero Section
+   ============================================================ */
+
+.hero {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px;
+  min-height: 80vh;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-content {
+  flex: 1;
+  padding-right: 50px;
+}
+
+.hero-image {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 50px rgba(0, 191, 255, 0.3);
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: brightness(0.95) contrast(1.1);
+}
+
+.quote {
+  font-family: var(--font-heading);
+  font-size: 70px;
+  line-height: 1.15;
+  font-weight: 700;
+  margin-bottom: 40px;
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--color-accent-blue-neon),
+    var(--color-accent-blue-mid)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* ============================================================
+   5. Sections
+   ============================================================ */
+
+.section {
+  padding: 80px 0;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  text-align: center;
+}
+
+.section-container h2 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+/* ============================================================
+   6. Explore Section
+   ============================================================ */
+
+.explore-section {
+  background: var(--color-darker-bg);
+}
+
+.card-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.card {
+  background: var(--color-card-bg);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 1;
+  max-width: 350px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent-blue-mid);
+  box-shadow: 0 10px 20px rgba(0, 191, 255, 0.1);
+}
+
+.card h3 {
+  color: var(--color-accent-blue-neon);
+  margin-bottom: 15px;
+}
+
+/* ============================================================
+   7. About Section
+   ============================================================ */
+
+.about-section {
+  background: var(--color-dark-bg);
+}
+
+.split-content {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  text-align: left;
+}
+
+.text-content {
+  flex: 1;
+}
+
+.text-content p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.image-content {
+  flex: 1;
+  min-height: 350px;
+}
+
+.placeholder-image {
+  width: 100%;
+  height: 100%;
+  background: var(--color-card-bg);
+  border-radius: 8px;
+  box-shadow: inset 0 0 10px rgba(0, 191, 255, 0.1);
+  border: 1px solid var(--color-accent-blue-mid);
+}
+
+/* ============================================================
+   8. Footer
+   ============================================================ */
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--color-darker-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--color-text-secondary);
+  font-size: 0.9em;
+}
+
+/* ============================================================
+   9. Responsive
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .hero,
+  .split-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    padding-right: 0;
+    padding-bottom: 40px;
+  }
+
+  .quote {
+    font-size: 50px;
+  }
+
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar nav {
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar nav ul {
+    justify-content: center;
+  }
+
+  .actions {
+    order: 2;
+  }
+}

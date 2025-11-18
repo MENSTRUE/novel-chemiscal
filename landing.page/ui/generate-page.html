@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHEMISTRY GENERATE</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/generate-page.css" />
+  </head>
+
+  <body>
+    <div class="app-wrapper">
+      <!-- SIDEBAR -->
+      <div class="sidebar-container">
+        <div class="new-chat-section">
+          <a href="#" class="btn-new-chat">
+            <i class="fas fa-plus"></i> New Chat
+          </a>
+        </div>
+
+        <div class="search-section">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Cari Riwayat Chat..." />
+          </div>
+        </div>
+
+        <div class="history-section">
+          <h3 class="history-title">Riwayat</h3>
+          <ul class="chat-history-list"></ul>
+
+          <button class="btn-clear-history">
+            <i class="fas fa-trash-alt"></i> Hapus Riwayat
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="main-content">
+        <h1 class="form-title">Chemistry Generate</h1>
+
+        <form class="form-layout">
+          <!-- Kebutuhan Dasar Produk -->
+          <div class="form-section-title">Kebutuhan Dasar Produk</div>
+          <div class="input-row main-header">
+            <input
+              type="text"
+              class="input-field primary-field"
+              placeholder="Jenis produk (Pelarut, Surfaktan, Kosmetik, dll.)"
+              required
+            />
+            <input
+              type="text"
+              class="input-field primary-field"
+              placeholder="Tujuan / Fungsi Produk (Tahan panas, Tidak beracun, dll.)"
+              required
+            />
+          </div>
+
+          <!-- Target Parameter Teknis -->
+          <div class="form-section-title">Target Parameter Teknis</div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Titik Didih"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Satuan (e.g., 180°C)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Viskositas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Satuan (e.g., 50 cP)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="pH"
+              readonly
+            />
+            <input
+              type="number"
+              class="input-field property-field-value"
+              placeholder="Nilai Target (1–14)"
+              min="1"
+              max="14"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Densitas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Satuan (e.g., 0.9 g/cm³)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Polaritas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Tipe (Polar, Non-polar, atau Dinyatakan)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Biodegradabilitas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Target (cepat/lambat/%)"
+            />
+          </div>
+
+          <!-- Keterbatasan & Preferensi -->
+          <div class="form-section-title">
+            Keterbatasan & Preferensi Logistik
+          </div>
+
+          <div class="input-row property-group wide-input">
+            <input
+              type="text"
+              class="input-field wide-field"
+              placeholder="Bahan baku yang tersedia di pabrik (untuk efisiensi biaya)"
+            />
+          </div>
+
+          <div class="input-row property-group wide-input">
+            <input
+              type="text"
+              class="input-field wide-field"
+              placeholder="Regulasi atau batasan keamanan (e.g., Tidak boleh mengandung Xylene, Sesuai BPOM)"
+            />
+          </div>
+
+          <div class="input-row property-group wide-input">
+            <input
+              type="text"
+              class="input-field wide-field"
+              placeholder="Preferensi Industri (e.g., Berbasis bio / Berbasis minyak bumi)"
+            />
+          </div>
+
+          <!-- Notes -->
+          <div class="bottom-input-area">
+            <textarea
+              class="textarea-placeholder"
+              placeholder="Tambahkan deskripsi, instruksi khusus, atau kriteria lainnya..."
+            ></textarea>
+          </div>
+
+          <!-- Buttons -->
+          <div class="generate-button-wrapper">
+            <a href="../../index.html" class="btn-back">
+              <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            <button type="submit" class="btn-generate">GENERATE</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

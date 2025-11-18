@@ -1,0 +1,199 @@
+/*
+ * Tema: Dark Theme Form Login (Hitam & Biru Neon)
+ * File: login.css
+ */
+
+/* --- Variables --- */
+:root {
+  --color-dark-bg: #0a0a1f;
+  --color-card-bg: #1a1a30;
+  --color-text-light: #e0e0e0;
+  --color-text-secondary: #aaaaaa;
+  --color-accent-blue-neon: #00bfff;
+  --color-accent-blue-mid: #4a90e2;
+  --color-error-red: #ff4d4d;
+}
+
+/* --- Base Layout --- */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--color-dark-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* --- Container --- */
+.login-container {
+  background-color: #11112e;
+  padding: 40px 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0, 191, 255, 0.2);
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Title --- */
+.form-title {
+  color: var(--color-accent-blue-neon);
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 3px rgba(0, 191, 255, 0.4);
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 191, 255, 0.1);
+  display: inline-block;
+}
+
+/* --- Input Fields --- */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  color: var(--color-text-light);
+  background-color: var(--color-card-bg);
+  border: 1px solid #333;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.input-field::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.input-field:focus {
+  border-color: var(--color-accent-blue-neon);
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
+}
+
+/* --- Options (Remember Me & Forgot Password) --- */
+.options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 0.9em;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-text-secondary);
+  border-radius: 3px;
+  margin-right: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.remember-me input[type="checkbox"]:checked {
+  background-color: var(--color-accent-blue-neon);
+  border-color: var(--color-accent-blue-neon);
+}
+
+.remember-me input[type="checkbox"]:checked::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 10px;
+  color: var(--color-dark-bg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.forgot-password {
+  color: var(--color-accent-blue-neon);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: var(--color-accent-blue-mid);
+  text-decoration: underline;
+}
+
+/* --- Buttons --- */
+.button-group {
+  margin-bottom: 15px;
+}
+
+.button-group-back {
+  margin-top: 25px;
+  text-align: center;
+}
+
+/* Login Button (100% width) */
+.btn-login {
+  width: 100%;
+  padding: 12px 25px;
+  background-color: var(--color-accent-blue-neon);
+  border: 2px solid var(--color-accent-blue-neon);
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--color-dark-bg);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-login:hover {
+  background-color: var(--color-accent-blue-mid);
+  border-color: var(--color-accent-blue-mid);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+}
+
+/* Back Button (100% width) */
+.btn-back {
+  width: 100%;
+  padding: 10px 25px;
+  background-color: transparent;
+  border: 2px solid var(--color-text-light);
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  color: var(--color-text-light);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-back:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-accent-blue-neon);
+  color: var(--color-accent-blue-neon);
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+  .login-container {
+    padding: 30px 25px;
+    margin: 20px;
+  }
+}

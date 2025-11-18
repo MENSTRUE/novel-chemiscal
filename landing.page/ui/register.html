@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - ChemisTry</title>
+    <link rel="stylesheet" href="../css/register.css" />
+  </head>
+  <body>
+    <div class="register-container">
+      <h1 class="register-title">DAFTAR AKUN BARU</h1>
+      <form class="register-form">
+        <div class="input-group">
+          <label for="username">Nama Pengguna (Username)</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+
+        <div class="input-group">
+          <label for="email">Alamat Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Kata Sandi (Password)</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <div class="input-group">
+          <label for="confirm-password">Konfirmasi Kata Sandi</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            required
+          />
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms"
+            >Saya setuju dengan <a href="#">Syarat & Ketentuan</a></label
+          >
+        </div>
+
+        <button type="submit" class="register-button">REGISTER</button>
+      </form>
+
+      <div class="back-link">
+        <a href="javascript:history.back()" class="back-button">← Kembali</a>
+      </div>
+
+      <p class="login-link">Sudah punya akun? <a href="#">Masuk di sini</a></p>
+    </div>
+  </body>
+</html>
