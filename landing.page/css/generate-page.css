@@ -1,0 +1,412 @@
+/*
+ * File: generate-page.css
+ * Tema: Gelap, Modern — Sidebar + Konten (ChatGPT Style)
+ */
+
+/* ============================================================
+   ROOT VARIABLES
+   ============================================================ */
+:root {
+  --color-bg-dark: #0a0a0a;
+  --color-sidebar-bg: #1e1f26;
+  --color-panel-bg: #1a1a1a;
+
+  --color-text-light: #e0e0e0;
+  --color-text-secondary: #aaaaaa;
+
+  --color-accent-blue: #00bfff;
+
+  --color-border-dark: #333;
+  --color-input-field: #2a2a33;
+  --color-shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   GLOBAL BODY
+   ============================================================ */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar-container {
+  width: 250px;
+  padding: 15px;
+
+  background-color: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-border-dark);
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* --- New Chat Button --- */
+.btn-new-chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px;
+  margin-bottom: 20px;
+
+  background-color: transparent;
+  border: 1px solid var(--color-accent-blue);
+  border-radius: 8px;
+
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-weight: bold;
+
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-new-chat:hover {
+  background-color: rgba(0, 191, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+/* --- Search Bar --- */
+.search-box {
+  display: flex;
+  align-items: center;
+
+  padding: 8px 10px;
+  margin-bottom: 20px;
+
+  background-color: var(--color-input-field);
+  border-radius: 5px;
+  border: 1px solid transparent;
+
+  transition: border-color 0.2s;
+}
+
+.search-box:focus-within {
+  border-color: var(--color-accent-blue);
+}
+
+.search-box i {
+  color: var(--color-text-secondary);
+  margin-right: 8px;
+}
+
+.search-box input {
+  flex-grow: 1;
+
+  background: none;
+  border: none;
+  outline: none;
+
+  color: var(--color-text-light);
+  font-size: 0.9em;
+}
+
+.search-box input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* --- History Section --- */
+.history-title {
+  padding-left: 5px;
+  margin: 0 0 10px;
+
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.chat-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 5px;
+
+  font-size: 0.9em;
+  color: var(--color-text-light);
+
+  cursor: pointer;
+  border-radius: 5px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition: background-color 0.2s;
+}
+
+.chat-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chat-item.active {
+  background-color: rgba(0, 191, 255, 0.1);
+  color: var(--color-accent-blue);
+  font-weight: 500;
+}
+
+.chat-item i {
+  color: var(--color-accent-blue);
+}
+
+/* --- Clear History Button --- */
+.btn-clear-history {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 5px;
+  margin-top: auto;
+
+  background: none;
+  border: none;
+
+  color: var(--color-text-secondary);
+  font-size: 0.9em;
+
+  border-top: 1px solid var(--color-border-dark);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-clear-history:hover {
+  color: var(--color-accent-blue);
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.form-title {
+  margin-bottom: 30px;
+
+  text-align: center;
+  font-size: 2em;
+  color: var(--color-accent-blue);
+
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+}
+
+/* ============================================================
+   FORM CONTAINER
+   ============================================================ */
+.form-layout {
+  max-width: 800px;
+  margin: 0 auto;
+
+  padding: 30px;
+  border-radius: 12px;
+
+  background-color: var(--color-panel-bg);
+  box-shadow: 0 5px 20px var(--color-shadow-dark),
+    0 0 10px rgba(0, 191, 255, 0.1);
+}
+
+/* ============================================================
+   INPUT FIELDS
+   ============================================================ */
+.input-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.input-field {
+  padding: 12px;
+
+  background-color: var(--color-input-field);
+  color: var(--color-text-light);
+
+  border: 1px solid var(--color-border-dark);
+  border-radius: 6px;
+
+  font-size: 1em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.primary-field {
+  flex: 1;
+}
+
+/* --- Property Group --- */
+.property-group {
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.property-field-label {
+  flex: 2;
+
+  background-color: var(--color-sidebar-bg);
+  color: var(--color-accent-blue);
+  font-weight: bold;
+}
+
+.property-field-value {
+  flex: 3;
+}
+
+/* --- Textarea --- */
+.bottom-input-area {
+  margin-bottom: 25px;
+}
+
+.textarea-placeholder {
+  width: 100%;
+  min-height: 100px;
+
+  padding: 12px;
+  resize: vertical;
+
+  background-color: var(--color-input-field);
+  color: var(--color-text-light);
+
+  border: 1px solid var(--color-border-dark);
+  border-radius: 6px;
+
+  font-size: 1em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.textarea-placeholder:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
+}
+
+.textarea-placeholder::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.generate-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 15px;
+}
+
+.btn-generate {
+  padding: 12px 25px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: var(--color-accent-blue);
+  color: var(--color-bg-dark);
+
+  font-size: 1.1em;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-generate:hover {
+  background-color: #33ccff;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 15px;
+
+  background: transparent;
+  border: 1px solid var(--color-text-secondary);
+
+  color: var(--color-text-light);
+  border-radius: 6px;
+
+  text-decoration: none;
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  border-color: var(--color-accent-blue);
+  color: var(--color-accent-blue);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .app-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar-container {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .generate-button-wrapper {
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
+
+  .btn-back,
+  .btn-generate {
+    width: 100%;
+    justify-content: center;
+  }
+}

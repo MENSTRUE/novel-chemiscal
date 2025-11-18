@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login ChemisTry</title>
+    <link rel="stylesheet" href="../css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <h1 class="form-title">ChemisTry Login</h1>
+
+      <form class="login-form" onsubmit="handleLogin(event)">
+        <div class="input-group">
+          <input
+            type="text"
+            id="username"
+            class="input-field"
+            placeholder="Username atau Email"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            class="input-field"
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <div class="options-row">
+          <div class="remember-me">
+            <input type="checkbox" id="remember" />
+            <label for="remember">Ingat Saya (Remember Me)</label>
+          </div>
+          <a href="#" class="forgot-password">Lupa Password?</a>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-login">LOGIN</button>
+        </div>
+
+        <div class="button-group button-group-back">
+          <a href="../../index.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <script src="../js/login.js"></script>
+  </body>
+</html>
