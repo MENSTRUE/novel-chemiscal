@@ -1,0 +1,329 @@
+/*
+ * File: tabel-periodik.css
+ * Tema: Gelap, Modern, Skema Warna Tabel Periodik Lengkap dengan Aksen Biru
+ * Update: Skema warna elemen dibuat lebih muted/pastel agar harmonis dengan latar belakang gelap
+ */
+
+:root {
+  /* Warna latar belakang dan teks dari gambar "ChemisTry" (gelap) */
+  --color-bg-dark: #0a0a0a; /* Latar belakang sangat gelap */
+  --color-panel-bg: #1a1a1a; /* Latar belakang untuk legend dan pop-up */
+  --color-text-light: #e0e0e0; /* Teks terang untuk kontras */
+  --color-text-secondary: #aaaaaa; /* Teks sekunder/detail */
+  --color-accent-blue: #00bfff; /* Biru terang untuk aksen (seperti tombol/border pop-up, judul) */
+  --color-border-dark: #333; /* Border yang lebih gelap untuk elemen */
+  --color-shadow-dark: rgba(0, 0, 0, 0.5); /* Shadow lebih gelap */
+
+  /* Warna Elemen Tabel Periodik (diperbarui menjadi lebih muted/pastel) */
+  --color-alkali: #ffc254; /* Kuning/Jingga Muda -> tetap relatif cerah */
+  --color-alkali-earth: #ffdc7a; /* Kuning Lebih Pucat -> tetap relatif cerah */
+  --color-transition: #9c7fe6; /* Ungu Muda -> sedikit lebih muted */
+  --color-post-transition: #7cb3e1; /* Biru Muda -> sedikit lebih muted */
+  --color-metalloid: #4ac787; /* Hijau Mint -> tetap relatif cerah */
+  --color-non-metal: #a3e0a3; /* Hijau Paling Muda -> sedikit lebih muted */
+  --color-noble-gas: #ff8585; /* Merah Muda Pucat -> sedikit lebih muted */
+  --color-lanthanide: #ffb57f; /* Oranye Pucat -> sedikit lebih muted */
+  --color-actinide: #ff8ac7; /* Pink -> sedikit lebih muted */
+  --color-hydrogen: #b3ffb3; /* Hijau Paling Atas -> tetap relatif cerah */
+
+  /* Warna teks di dalam kotak elemen */
+  --color-element-text: #222; /* Teks gelap agar jelas di atas warna elemen */
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--color-bg-dark); /* Latar belakang gelap */
+  color: var(--color-text-light); /* Teks terang */
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- GAYA TOMBOL KEMBALI --- */
+.back-button-container {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  background-color: transparent; /* Latar belakang transparan */
+  color: var(--color-text-light);
+  border: 1px solid var(--color-accent-blue); /* Border biru terang */
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--color-shadow-dark);
+}
+
+.btn-back:hover {
+  background-color: var(
+    --color-accent-blue
+  ); /* Latar belakang biru terang saat hover */
+  color: var(--color-bg-dark); /* Teks gelap saat hover */
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 4px 8px var(--color-shadow-dark),
+    0 0 10px var(--color-accent-blue); /* Efek neon tambahan */
+}
+
+/* --- JUDUL --- */
+.main-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--color-accent-blue); /* Judul biru terang */
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.6); /* Efek glow ringan */
+}
+
+/* --- LEGEND STYLES --- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(
+    --color-panel-bg
+  ); /* Latar belakang legend lebih gelap */
+  box-shadow: 0 2px 5px var(--color-shadow-dark);
+  border: 1px solid var(--color-border-dark); /* Border gelap */
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  color: var(--color-text-light);
+}
+
+.color-box {
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Border tipis untuk warna box di latar gelap */
+}
+/* Warna-warna ini tetap cerah agar mudah dibedakan di latar belakang gelap */
+.alkali {
+  background-color: var(--color-alkali);
+}
+.alkali-earth {
+  background-color: var(--color-alkali-earth);
+}
+.transition {
+  background-color: var(--color-transition);
+}
+.post-transition {
+  background-color: var(--color-post-transition);
+}
+.metalloid {
+  background-color: var(--color-metalloid);
+}
+.non-metal {
+  background-color: var(--color-non-metal);
+}
+.noble-gas {
+  background-color: var(--color-noble-gas);
+}
+.lanthanide {
+  background-color: var(--color-lanthanide);
+}
+.actinide {
+  background-color: var(--color-actinide);
+}
+
+/* --- PERIODIC TABLE GRID --- */
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  gap: 3px;
+  max-width: 100%;
+}
+
+.element {
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--color-border-dark); /* Border gelap */
+  border-radius: 4px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, border-color 0.1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px var(--color-shadow-dark);
+  color: var(--color-element-text); /* Teks gelap di dalam kotak elemen */
+}
+
+.element:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px var(--color-shadow-dark),
+    0 0 15px var(--color-accent-blue); /* Aksen biru neon saat hover */
+  border-color: var(--color-accent-blue); /* Border biru terang saat hover */
+  z-index: 10;
+}
+
+.number {
+  font-size: 0.7em;
+  align-self: flex-start;
+  font-weight: bold;
+}
+
+.symbol {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.name {
+  font-size: 0.55em;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+/* Penempatan Elemen Spesifik (Grid Layout) */
+#H {
+  grid-area: 1 / 1;
+  background-color: var(--color-hydrogen);
+}
+#He {
+  grid-area: 1 / 18;
+  background-color: var(--color-noble-gas);
+}
+
+.spacer-1 {
+  grid-area: 1 / 2 / 1 / 18;
+  visibility: hidden;
+}
+.spacer-2 {
+  grid-area: 2 / 3 / 2 / 13;
+  visibility: hidden;
+}
+.spacer-3 {
+  grid-area: 3 / 3 / 3 / 13;
+  visibility: hidden;
+}
+
+.break {
+  grid-area: 8 / 1 / 9 / 19;
+  height: 30px;
+}
+
+.lantanide-start-spacer,
+.actinide-start-spacer {
+  grid-column: 2;
+  visibility: hidden;
+}
+
+/* Penempatan deret Lantanida (di bawah) */
+.periodic-table > .element:nth-child(91) {
+  grid-area: 10 / 3;
+}
+.periodic-table > .element:nth-child(92) {
+  grid-area: 10 / 4;
+}
+/* ... elemen lain akan menyesuaikan nomor urut anak (child number) */
+
+/* Penempatan deret Aktinida (di bawah) */
+.periodic-table > .element:nth-child(105) {
+  grid-area: 11 / 3;
+}
+/* ... elemen lain akan menyesuaikan nomor urut anak (child number) */
+
+/* --- POP-UP KETERANGAN --- */
+.popup-info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-panel-bg); /* Latar belakang pop-up gelap */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px var(--color-shadow-dark),
+    0 0 20px var(--color-accent-blue); /* Shadow biru neon */
+  z-index: 1000;
+  max-width: 350px;
+  border: 2px solid var(--color-accent-blue); /* Border biru neon */
+  display: none;
+  color: var(--color-text-light); /* Teks terang di pop-up */
+}
+
+.popup-name {
+  font-size: 1.5em;
+  margin-top: 0;
+  color: var(--color-accent-blue); /* Nama elemen biru terang */
+  text-shadow: 0 0 5px rgba(0, 191, 255, 0.4); /* Efek glow ringan */
+}
+
+.popup-details {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: var(--color-text-secondary); /* Detail abu-abu terang */
+}
+
+.popup-symbol {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: var(--color-text-light);
+}
+
+.popup-description {
+  color: var(--color-text-secondary); /* Deskripsi abu-abu terang */
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--color-accent-blue); /* Tombol close biru terang */
+  transition: color 0.2s ease;
+}
+.popup-close-btn:hover {
+  color: var(--color-text-light);
+}
+
+/* Media Query untuk Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 5px;
+  }
+  .periodic-table {
+    grid-template-columns: repeat(18, 1fr);
+    gap: 1px;
+  }
+  .element {
+    font-size: 0.6em;
+    padding: 1px;
+  }
+  .symbol {
+    font-size: 1em;
+  }
+  .name {
+    font-size: 0.5em;
+  }
+  .legend {
+    gap: 8px;
+    font-size: 0.7em;
+  }
+  .btn-back {
+    padding: 5px 10px;
+    font-size: 0.8em;
+  }
+}

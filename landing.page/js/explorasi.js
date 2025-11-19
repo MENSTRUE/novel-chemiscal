@@ -1,3 +1,5 @@
+// File: explorasi.js
+
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Ambil semua elemen penting dari DOM
   const compoundCards = document.querySelectorAll(".compound-card");
@@ -8,85 +10,84 @@ document.addEventListener("DOMContentLoaded", () => {
     ".reactor-boxes .compound-box:nth-child(3)"
   );
   const btnReset = document.querySelector(".btn-reset");
+  const btnGabung = document.querySelector(".btn-gabung"); // Tambahkan tombol Gabung
 
-  // Array untuk melacak senyawa mana yang sudah dipilih (maksimal 2)
+  // Array untuk melacak elemen kartu senyawa mana yang sudah dipilih (maksimal 2)
   let selectedCompounds = [];
+
+  // Fungsi pembantu untuk mengambil warna latar belakang dari formula circle
+  function getCardColor(cardElement) {
+    const formulaCircle = cardElement.querySelector(".formula-circle");
+    if (formulaCircle) {
+      // Mengambil computed style untuk mendapatkan warna latar belakang yang diterapkan CSS
+      const style = getComputedStyle(formulaCircle);
+      return style.backgroundColor;
+    }
+    return "#ffffff"; // Default putih
+  }
 
   // Fungsi untuk memperbarui tampilan kotak reaktor
   function updateReactorBoxes() {
+    // Hapus kelas 'selected' dari kotak reaktor
+    box1.classList.remove("selected");
+    box2.classList.remove("selected");
+
     // Reset isi kotak
     box1.innerHTML = '<p class="placeholder-text">Pilih senyawa pertama</p>';
     box2.innerHTML = '<p class="placeholder-text">Pilih senyawa kedua</p>';
 
-    // Tampilkan senyawa yang dipilih di kotak 1
+    // Fungsi pembantu untuk mengisi kotak
+    const fillBox = (boxElement, card) => {
+      const circleText = card.querySelector(".formula-circle").textContent;
+      const compoundName = card.querySelector("h4").textContent;
+      const compoundFormula = card.querySelector(".formula-text").textContent;
+      const color = getCardColor(card);
+
+      boxElement.innerHTML = `
+                <div class="selected-compound-display">
+                    <div class="formula-circle" style="background-color: ${color}; color: var(--color-background-dark)">${circleText}</div>
+                    <h4>${compoundName}</h4>
+                    <p class="formula-text">${compoundFormula}</p>
+                </div>
+            `;
+      boxElement.classList.add("selected");
+    };
+
+    // Tampilkan senyawa yang dipilih
     if (selectedCompounds[0]) {
-      const card = selectedCompounds[0];
-      box1.innerHTML = `
-                <div class="selected-compound-display" style="--card-color: ${getCardColor(
-                  card
-                )};">
-                    <div class="formula-circle">${
-                      card.querySelector(".formula-circle").textContent
-                    }</div>
-                    <h4>${card.querySelector("h4").textContent}</h4>
-                    <p class="formula-text">${
-                      card.querySelector(".formula-text").textContent
-                    }</p>
-                </div>
-            `;
-      box1.querySelector(".selected-compound-display").classList.add("active");
+      fillBox(box1, selectedCompounds[0]);
     }
 
-    // Tampilkan senyawa yang dipilih di kotak 2
     if (selectedCompounds[1]) {
-      const card = selectedCompounds[1];
-      box2.innerHTML = `
-                <div class="selected-compound-display" style="--card-color: ${getCardColor(
-                  card
-                )};">
-                    <div class="formula-circle">${
-                      card.querySelector(".formula-circle").textContent
-                    }</div>
-                    <h4>${card.querySelector("h4").textContent}</h4>
-                    <p class="formula-text">${
-                      card.querySelector(".formula-text").textContent
-                    }</p>
-                </div>
-            `;
-      box2.querySelector(".selected-compound-display").classList.add("active");
+      fillBox(box2, selectedCompounds[1]);
     }
-  }
 
-  // Fungsi pembantu untuk mengambil warna dari variabel CSS (digunakan untuk style inline)
-  function getCardColor(cardElement) {
-    // Mengambil nama kelas warna (e.g., 'water', 'salt')
-    const colorClass = Array.from(cardElement.classList).find((c) =>
-      c.startsWith("c")
-    );
-    if (colorClass) {
-      // Mengambil nilai variabel CSS berdasarkan kelas
-      const rootStyle = getComputedStyle(document.documentElement);
-      return rootStyle.getPropertyValue(`--color-card-${colorClass}`).trim();
+    // Atur status tombol Gabung
+    btnGabung.disabled = selectedCompounds.length !== 2;
+    if (selectedCompounds.length === 2) {
+      btnGabung.style.opacity = 1;
+    } else {
+      btnGabung.style.opacity = 0.5;
     }
-    return "#ffffff"; // Default putih
   }
 
   // 2. Tambahkan event listener ke setiap kartu senyawa
   compoundCards.forEach((card) => {
     card.addEventListener("click", () => {
-      const isSelected = card.classList.contains("is-selected");
+      // Perhatian: Menggunakan kelas 'selected-compound' yang ada di CSS Anda
+      const isSelected = card.classList.contains("selected-compound");
 
       if (isSelected) {
         // Jika sudah dipilih, hapus dari array dan hilangkan highlight
         selectedCompounds = selectedCompounds.filter((c) => c !== card);
-        card.classList.remove("is-selected");
+        card.classList.remove("selected-compound");
       } else {
         // Jika belum dipilih, dan array belum penuh (maksimal 2)
         if (selectedCompounds.length < 2) {
           selectedCompounds.push(card);
-          card.classList.add("is-selected");
+          card.classList.add("selected-compound");
         } else {
-          // Beri notifikasi (atau hanya abaikan klik)
+          // Beri notifikasi
           alert("Maksimal hanya 2 senyawa yang dapat dipilih!");
         }
       }
@@ -99,9 +100,29 @@ document.addEventListener("DOMContentLoaded", () => {
   btnReset.addEventListener("click", () => {
     selectedCompounds = [];
     compoundCards.forEach((card) => {
-      card.classList.remove("is-selected");
+      // Menghapus highlight
+      card.classList.remove("selected-compound");
     });
     updateReactorBoxes();
+    console.log("Reaktor Direset.");
+  });
+
+  // 4. Tambahkan fungsi Gabung
+  btnGabung.addEventListener("click", () => {
+    if (selectedCompounds.length === 2) {
+      const compoundA = selectedCompounds[0].querySelector("h4").textContent;
+      const compoundB = selectedCompounds[1].querySelector("h4").textContent;
+
+      // Logika Reaksi Sederhana (Contoh Simulasi)
+      console.log(`Menggabungkan ${compoundA} dan ${compoundB}...`);
+
+      // Di sini Anda akan menambahkan logika untuk menentukan hasil reaksi
+      alert(
+        `Simulasi: ${compoundA} bereaksi dengan ${compoundB} (Lihat konsol untuk detail)`
+      );
+    } else {
+      alert("Harap pilih 2 senyawa untuk digabungkan.");
+    }
   });
 
   // Panggil sekali untuk inisialisasi tampilan awal kotak reaktor

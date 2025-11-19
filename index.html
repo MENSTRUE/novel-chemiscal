@@ -4,31 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChemisTry - Menentukan Senyawa Baru</title>
+
     <link rel="stylesheet" href="landing.page/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
+
   <body>
+    <!-- ================= HEADER ================= -->
     <header class="navbar">
       <div class="logo">ChemisTry</div>
+
       <nav>
         <ul>
           <li><a href="#home">HOME</a></li>
           <li><a href="#explore">EXPLORE</a></li>
           <li><a href="#about">ABOUT</a></li>
-          <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
+
       <div class="actions">
-        <button class="btn-search">SEARCH</button>
+        <a href="landing.page/ui/login.html" class="btn btn-login">LOGIN</a>
         <a href="landing.page/ui/register.html" class="btn btn-register"
           >REGISTER</a
         >
       </div>
     </header>
 
+    <!-- ================= HERO SECTION ================= -->
     <main id="home" class="hero">
       <div class="hero-content">
         <p class="quote">
@@ -37,12 +42,17 @@
           Menciptakan<br />
           Masa Depan”
         </p>
+
         <div class="hero-buttons">
           <a href="landing.page/ui/explorasi.html" class="btn btn-start"
             >GET START</a
           >
+          <a href="landing.page/ui/generate-page.html" class="btn btn-generate"
+            >GENERATE</a
+          >
         </div>
       </div>
+
       <div class="hero-image">
         <img
           src="kimia1.png"
@@ -51,6 +61,7 @@
       </div>
     </main>
 
+    <!-- ================= EXPLORE SECTION ================= -->
     <section id="explore" class="section explore-section">
       <div class="section-container">
         <h2>Explore: Dunia Senyawa Kimia</h2>
@@ -58,6 +69,7 @@
           Temukan proyek penelitian dan terobosan terbaru dari komunitas
           ChemisTry.
         </p>
+
         <div class="card-grid">
           <div class="card">
             <h3>Sintesis Polimer Cerdas</h3>
@@ -66,6 +78,7 @@
               merespons lingkungan internal tubuh.
             </p>
           </div>
+
           <div class="card">
             <h3>Katalis Ramah Lingkungan</h3>
             <p>
@@ -73,6 +86,7 @@
               mengurangi limbah beracun dalam proses industri.
             </p>
           </div>
+
           <div class="card">
             <h3>Energi Terbarukan</h3>
             <p>
@@ -81,10 +95,14 @@
             </p>
           </div>
         </div>
-        <a href="#" class="btn btn-ghost">Lihat Semua Proyek</a>
+
+        <a href="landing.page/ui/tabel-periodik.html" class="btn btn-ghost"
+          >Tabel Periodik</a
+        >
       </div>
     </section>
 
+    <!-- ================= ABOUT SECTION ================= -->
     <section id="about" class="section about-section">
       <div class="section-container split-content">
         <div class="text-content">
@@ -92,38 +110,30 @@
           <p class="subtitle">
             Platform yang didedikasikan untuk revolusi kimia.
           </p>
+
           <p>
             ChemisTry didirikan dengan visi untuk menghubungkan para ilmuwan,
             mahasiswa, dan profesional industri kimia di seluruh dunia. Kami
             percaya bahwa kolaborasi adalah kunci untuk mengatasi tantangan
             global terbesar melalui ilmu senyawa baru.
           </p>
+
           <p>
             Misi kami adalah menyediakan sumber daya, alat, dan jaringan yang
             diperlukan untuk mempercepat penemuan dan implementasi solusi kimia
             yang inovatif dan etis.
           </p>
+
           <a href="#" class="btn btn-start">Pelajari Lebih Lanjut</a>
         </div>
+
         <div class="image-content">
           <div class="placeholder-image about-image"></div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section contact-section">
-      <div class="section-container form-wrapper">
-        <h2>Hubungi Kami</h2>
-        <p class="subtitle">Siap untuk berkolaborasi? Kirimkan pesan Anda.</p>
-        <form class="contact-form">
-          <input type="text" placeholder="Nama Lengkap" required />
-          <input type="email" placeholder="Email Anda" required />
-          <textarea placeholder="Pesan Anda..." rows="5" required></textarea>
-          <button type="submit" class="btn btn-create">Kirim Pesan</button>
-        </form>
-      </div>
-    </section>
-
+    <!-- ================= FOOTER ================= -->
     <footer class="footer">
       <p>&copy; 2025 ChemisTry. All Rights Reserved.</p>
     </footer>
