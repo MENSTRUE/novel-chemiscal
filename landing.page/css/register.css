@@ -1,14 +1,14 @@
-/* --- Variabel Warna --- */
+
 :root {
-  --dark-bg: #000000; /* Latar Belakang Gelap */
-  --form-bg: #0d0d0d; /* Latar Belakang Form sedikit lebih terang dari body */
-  --text-light: #ffffff; /* Teks Putih */
-  --accent-blue: #00bfff; /* Biru Neon/Aksen */
-  --accent-shadow: 0 0 10px rgba(0, 191, 255, 0.6); /* Bayangan Biru */
-  --input-border: #333333; /* Border Input */
+  --dark-bg: #000000; 
+  --form-bg: #0d0d0d; 
+  --text-light: #ffffff; 
+  --accent-blue: #00bfff; 
+  --accent-shadow: 0 0 10px rgba(0, 191, 255, 0.6); 
+  --input-border: #333333; 
 }
 
-/* --- Pengaturan Dasar dan Body --- */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,16 +26,16 @@ body {
   padding: 20px;
 }
 
-/* --- Container Form --- */
+
 .register-container {
   background-color: var(--form-bg);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: var(--accent-shadow); /* Memberi efek cahaya biru */
+  box-shadow: var(--accent-shadow); 
   width: 100%;
   max-width: 450px;
   text-align: center;
-  border: 1px solid var(--accent-blue); /* Border tipis biru */
+  border: 1px solid var(--accent-blue); 
 }
 
 .register-title {
@@ -51,7 +51,7 @@ body {
   font-size: 0.9em;
 }
 
-/* --- Input Group --- */
+
 .input-group {
   text-align: left;
   margin-bottom: 20px;
@@ -79,11 +79,11 @@ body {
 
 .input-group input:focus {
   border-color: var(--accent-blue);
-  box-shadow: 0 0 5px rgba(0, 191, 255, 0.5); /* Efek fokus biru neon */
+  box-shadow: 0 0 5px rgba(0, 191, 255, 0.5); 
   outline: none;
 }
 
-/* --- Checkbox Group --- */
+
 .checkbox-group {
   display: flex;
   align-items: center;
@@ -101,12 +101,12 @@ body {
   text-decoration: underline;
 }
 
-/* --- Tombol REGISTER Utama --- */
+
 .register-button {
   width: 100%;
   padding: 15px;
   background-color: var(--accent-blue);
-  color: var(--dark-bg); /* Teks gelap di tombol terang */
+  color: var(--dark-bg); 
   border: none;
   border-radius: 6px;
   font-size: 1.1em;
@@ -114,15 +114,15 @@ body {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
   text-transform: uppercase;
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4); /* Bayangan tombol */
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.4); 
 }
 
 .register-button:hover {
-  background-color: #4dc3ff; /* Biru sedikit lebih terang saat hover */
+  background-color: #4dc3ff; 
   transform: translateY(-2px);
 }
 
-/* --- Tombol Kembali/Back --- */
+
 .back-link {
   margin-top: 20px;
 }
@@ -144,11 +144,11 @@ body {
   background-color: var(--accent-blue);
   color: var(
     --dark-bg
-  ); /* Teks menjadi gelap saat latar belakang menjadi biru neon */
+  ); 
   box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
 }
 
-/* --- Link Masuk (Login) --- */
+
 .login-link {
   margin-top: 25px;
   color: #999;
@@ -165,7 +165,7 @@ body {
   text-decoration: underline;
 }
 
-/* --- Responsif Dasar --- */
+
 @media (max-width: 500px) {
   .register-container {
     padding: 30px 20px;

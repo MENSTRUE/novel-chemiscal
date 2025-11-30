@@ -1,7 +1,3 @@
-/* ============================================================
-   1. Base & Variables
-   ============================================================ */
-
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +5,6 @@
 }
 
 :root {
-  /* Colors */
   --color-dark-bg: #000000;
   --color-darker-bg: #0a0a0a;
   --color-text-light: #ffffff;
@@ -18,7 +13,6 @@
   --color-accent-blue-mid: #4a90e2;
   --color-card-bg: #111111;
 
-  /* Fonts */
   --font-heading: "Playfair Display", serif;
   --font-body: "Roboto", sans-serif;
 }
@@ -37,10 +31,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ============================================================
-   2. Buttons & Typography
-   ============================================================ */
-
 .btn {
   padding: 12px 30px;
   border: none;
@@ -53,7 +43,6 @@ body {
   display: inline-block;
 }
 
-/* Start Button */
 .btn-start {
   padding: 20px 20px;
   margin-left: 10px;
@@ -67,7 +56,6 @@ body {
   color: var(--color-dark-bg);
 }
 
-/* Generate Button */
 .btn-generate {
   padding: 20px 20px;
   background: var(--color-accent-blue-neon);
@@ -81,7 +69,6 @@ body {
   box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
 }
 
-/* Ghost Button */
 .btn-ghost {
   background: transparent;
   color: var(--color-accent-blue-neon);
@@ -92,16 +79,11 @@ body {
   background: rgba(0, 191, 255, 0.1);
 }
 
-/* Subtitle */
 .subtitle {
   font-size: 1.1em;
   color: var(--color-text-secondary);
   margin-bottom: 30px;
 }
-
-/* ============================================================
-   3. Navbar
-   ============================================================ */
 
 .navbar {
   display: flex;
@@ -143,7 +125,6 @@ body {
   display: flex;
 }
 
-/* Register Button */
 .btn-register {
   padding: 8px 18px;
   margin-left: 10px;
@@ -162,7 +143,6 @@ body {
   color: var(--color-text-light);
 }
 
-/* Login Button */
 .btn-login {
   padding: 8px 18px;
   margin-left: 10px;
@@ -180,10 +160,6 @@ body {
   background: var(--color-accent-blue-neon);
   color: var(--color-dark-bg);
 }
-
-/* ============================================================
-   4. Hero Section
-   ============================================================ */
 
 .hero {
   display: flex;
@@ -234,10 +210,6 @@ body {
   gap: 15px;
 }
 
-/* ============================================================
-   5. Sections
-   ============================================================ */
-
 .section {
   padding: 80px 0;
 }
@@ -253,10 +225,6 @@ body {
   font-size: 2.5em;
   margin-bottom: 10px;
 }
-
-/* ============================================================
-   6. Explore Section
-   ============================================================ */
 
 .explore-section {
   background: var(--color-darker-bg);
@@ -290,10 +258,6 @@ body {
   color: var(--color-accent-blue-neon);
   margin-bottom: 15px;
 }
-
-/* ============================================================
-   7. About Section
-   ============================================================ */
 
 .about-section {
   background: var(--color-dark-bg);
@@ -330,10 +294,6 @@ body {
   border: 1px solid var(--color-accent-blue-mid);
 }
 
-/* ============================================================
-   8. Footer
-   ============================================================ */
-
 .footer {
   text-align: center;
   padding: 20px;
@@ -343,9 +303,233 @@ body {
   font-size: 0.9em;
 }
 
-/* ============================================================
-   9. Responsive
-   ============================================================ */
+/* Page transition overlay - enhanced visuals */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background: radial-gradient( circle at 30% 30%, rgba(255,255,255,0.06), transparent 20% ), linear-gradient(135deg, var(--color-accent-blue-neon), var(--color-accent-blue-mid));
+  pointer-events: all;
+  /* slide animation defaults */
+  transform: translateX(0);
+  transition: transform 640ms cubic-bezier(.22,.9,.32,1), opacity 380ms ease;
+}
+
+.page-transition .pt-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0) scale(1);
+}
+
+.pt-logo {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+.pt-logo-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: stroke-dashoffset 900ms cubic-bezier(.22,.9,.32,1);
+}
+
+.pt-title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  color: var(--color-dark-bg);
+  transform: scale(0.98);
+  opacity: 0;
+  transition: transform 600ms cubic-bezier(.22,.9,.32,1), opacity 400ms ease;
+}
+
+.pt-sub {
+  color: rgba(0,0,0,0.7);
+  font-size: 0.95rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: transform 500ms ease, opacity 500ms ease;
+}
+
+.pt-spinner {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  opacity: 0;
+}
+.pt-spinner span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: rgba(0,0,0,0.9);
+  border-radius: 50%;
+  transform: translateY(0);
+  animation: pt-bounce 900ms infinite ease-in-out;
+}
+.pt-spinner span:nth-child(2) { animation-delay: 120ms; }
+.pt-spinner span:nth-child(3) { animation-delay: 240ms; }
+
+@keyframes pt-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.9; }
+  40% { transform: translateY(-10px); opacity: 1; }
+}
+
+/* Utility classes applied by JS to drive sequence */
+
+.pt-start .pt-logo-path { stroke-dashoffset: 0; }
+.pt-start .pt-title { opacity: 1; transform: scale(1); }
+.pt-start .pt-sub { opacity: 1; transform: translateY(0); }
+.pt-start .pt-spinner { opacity: 1; }
+
+/* Slide-off for entry: move overlay left and fade */
+.page-transition.slide-off-left {
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.page-transition.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 520ms ease;
+}
+
+.no-scroll { overflow: hidden !important; }
+
+/* Exit overlay specifics (used when navigating away) */
+.page-transition.exit-overlay {
+  opacity: 0;
+  transition: opacity 420ms ease, transform 420ms ease;
+  transform: scale(0.98) translateY(4px);
+}
+.page-transition.exit-overlay.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.page-transition.exit-overlay .pt-inner { gap: 6px; }
+.page-transition.exit-overlay .pt-title {
+  font-family: var(--font-heading);
+  color: var(--color-dark-bg);
+  font-size: 1.2rem;
+}
+
+/* Animated background shift (subtle) */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.page-transition {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+/* Light sweep element - triggered by .sweep-active */
+.page-transition::after {
+  content: '';
+  position: absolute;
+  left: -40%;
+  top: -10%;
+  width: 40%;
+  height: 120%;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-18deg) translateX(-120%);
+  pointer-events: none;
+}
+.page-transition.sweep-active::after {
+  animation: sweep 1100ms cubic-bezier(.22,.9,.32,1) forwards;
+}
+
+@keyframes sweep {
+  from { transform: skewX(-18deg) translateX(-120%); opacity: 0; }
+  40% { opacity: 1; }
+  to { transform: skewX(-18deg) translateX(220%); opacity: 0; }
+}
+
+/* Particles (created dynamically) */
+.pt-particles { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.pt-dot {
+  position: absolute;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 0 8px rgba(255,255,255,0.9);
+  transform: translateY(10px) scale(0.7);
+  opacity: 0;
+  animation-name: pt-float;
+  animation-timing-function: cubic-bezier(.2,.9,.3,1);
+  animation-iteration-count: 1;
+}
+
+@keyframes pt-float {
+  0% { transform: translateY(12px) scale(0.6); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-60px) scale(1); opacity: 0; }
+}
+
+/* Subtle logo glow and pop */
+.pt-logo { transform-origin: center; transform: scale(0.96); filter: drop-shadow(0 6px 18px rgba(0,0,0,0.25)); }
+.pt-start .pt-logo { animation: logo-pop 680ms cubic-bezier(.22,.9,.32,1) forwards; }
+@keyframes logo-pop { from { transform: scale(0.96); } 60% { transform: scale(1.08); } to { transform: scale(1); } }
+
+/* Exit overlay specifics (used when navigating away) */
+.page-transition.exit-overlay {
+  opacity: 0;
+  transition: opacity 420ms ease, transform 420ms ease;
+  transform: scale(0.98) translateY(4px);
+}
+.page-transition.exit-overlay.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Mosaic / tile transition styles */
+.page-transition.mosaic-overlay {
+  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.04), transparent 10%), linear-gradient(135deg, rgba(10,10,30,0.95), rgba(20,10,40,0.98));
+  overflow: hidden;
+}
+.mosaic-wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--mosaic-cols, 12), 1fr);
+  grid-auto-rows: minmax(20px, 1fr);
+  gap: 6px;
+}
+.mosaic-tile {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-radius: 4px;
+  transform: scale(0.76) rotateX(12deg);
+  opacity: 0;
+  transition: transform 480ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease, filter 420ms ease;
+  will-change: transform, opacity;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35) inset;
+  backface-visibility: hidden;
+}
+.mosaic-tile.show {
+  transform: scale(1) rotateX(0deg);
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* when mosaic is active we slightly tint tiles with accent for drama */
+.page-transition.mosaic-overlay .mosaic-tile.show {
+  background: linear-gradient(135deg, rgba(0,191,255,0.08), rgba(74,144,226,0.04));
+}
+
+/* a tiny ripple when tiles appear */
+@keyframes tile-ripple {
+  from { transform: scale(0.78) rotateX(12deg); opacity: 0; }
+  60% { transform: scale(1.05) rotateX(0deg); opacity: 1; }
+  to { transform: scale(1) rotateX(0deg); opacity: 1; }
+}
+
 
 @media (max-width: 900px) {
   .hero,

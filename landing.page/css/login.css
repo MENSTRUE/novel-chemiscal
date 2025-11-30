@@ -1,9 +1,4 @@
-/*
- * Tema: Dark Theme Form Login (Hitam & Biru Neon)
- * File: login.css
- */
 
-/* --- Variables --- */
 :root {
   --color-dark-bg: #0a0a1f;
   --color-card-bg: #1a1a30;
@@ -14,7 +9,7 @@
   --color-error-red: #ff4d4d;
 }
 
-/* --- Base Layout --- */
+
 body {
   font-family: "Roboto", sans-serif;
   background-color: var(--color-dark-bg);
@@ -25,7 +20,7 @@ body {
   margin: 0;
 }
 
-/* --- Container --- */
+
 .login-container {
   background-color: #11112e;
   padding: 40px 50px;
@@ -36,7 +31,7 @@ body {
   box-sizing: border-box;
 }
 
-/* --- Title --- */
+
 .form-title {
   color: var(--color-accent-blue-neon);
   font-size: 1.5em;
@@ -49,7 +44,7 @@ body {
   display: inline-block;
 }
 
-/* --- Input Fields --- */
+
 .input-group {
   margin-bottom: 20px;
 }
@@ -76,7 +71,7 @@ body {
   box-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
 }
 
-/* --- Options (Remember Me & Forgot Password) --- */
+
 .options-row {
   display: flex;
   justify-content: space-between;
@@ -133,7 +128,7 @@ body {
   text-decoration: underline;
 }
 
-/* --- Buttons --- */
+
 .button-group {
   margin-bottom: 15px;
 }
@@ -143,7 +138,7 @@ body {
   text-align: center;
 }
 
-/* Login Button (100% width) */
+
 .btn-login {
   width: 100%;
   padding: 12px 25px;
@@ -164,7 +159,7 @@ body {
   box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
 }
 
-/* Back Button (100% width) */
+
 .btn-back {
   width: 100%;
   padding: 10px 25px;
@@ -190,7 +185,7 @@ body {
   color: var(--color-accent-blue-neon);
 }
 
-/* --- Responsive --- */
+
 @media (max-width: 500px) {
   .login-container {
     padding: 30px 25px;
