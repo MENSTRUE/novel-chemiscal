@@ -14,7 +14,7 @@ from langchain_community.vectorstores import Chroma
 VECTOR_DB_PATH = "chroma_db"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 # Menggunakan nama file yang Anda konfirmasi
-DATA_FILE_PATH = "data/data_kimia_final_indo.json" 
+DATA_FILE_PATH = "beckend/data/data_kimia_final_indo.json   " 
 
 def initialize_embeddings():
     """Menginisialisasi dan mengembalikan HuggingFace Embeddings."""
