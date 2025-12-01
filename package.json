@@ -1,0 +1,26 @@
+{
+  "name": "chemistry-app",
+  "version": "1.0.0",
+  "description": "Chemistry compound generation and exploration app",
+  "main": "beckend/main.py",
+  "scripts": {
+    "install-python": "pip install fastapi uvicorn chromadb sentence-transformers google-generativeai python-dotenv httpx",
+    "dev": "uvicorn beckend.main:app --reload --host 0.0.0.0 --port 8000",
+    "preprocess": "python beckend/preprocess.py",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chemistry",
+    "ai",
+    "gemini",
+    "rag",
+    "fastapi"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "python": ">=3.8"
+  }
+}

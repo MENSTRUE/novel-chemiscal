@@ -1,48 +1,40 @@
-# File: agent/orchestrator.py
-
+# agent/AgentOrchestrator.py
 from .rag import RAGEngine
-from .llm import LLMHandler
+from .llm import get_llm_response # Untuk fallback/generasi murni
 
 class AgentOrchestrator:
+    """
+    Mengorkestrasi penggunaan RAGEngine dan LLM murni (Gemini).
+    """
     def __init__(self):
+        # RAGEngine harus diinisialisasi di main.py, kita hanya menyimpannya
         self.rag_engine = RAGEngine()
-        self.llm_handler = LLMHandler()
+        print("AgentOrchestrator initialized.")
 
     def process_query(self, user_query: str) -> str:
-        # Panggil RAGEngine untuk mengambil data
-        relevant_docs = self.rag_engine.search(query=user_query, k=5)
+        """
+        Menentukan alur terbaik untuk query: RAG atau LLM murni.
         
-        # Panggil fungsi yang Anda tanyakan: Mengubah hasil retrieval menjadi prompt
-        augmented_prompt = self._build_rag_prompt(user_query, relevant_docs)
-
-        # Kirim prompt yang diperkaya ke LLM
-        final_answer = self.llm_handler.ask(augmented_prompt)
+        ASUMSI LOGIKA:
+        - Jika query pendek/faktual (Ask), coba RAG dulu.
+        - Jika query panjang/kompleks (Generate), langsung ke LLM murni (Gemini).
+        """
         
-        return final_answer
-
-    # ⬅️ FUNGSI YANG ANDA TANYAKAN DITEMPATKAN DI SINI:
-    def _build_rag_prompt(self, query: str, context_results: list) -> str:
-        # Logika pembentukan prompt RAG yang Anda berikan
-        if not context_results['documents'][0]:
-            system_message = "Anda adalah asisten kimia. Jawab pertanyaan berikut. Jika Anda tidak yakin, jawab seadanya."
-            context_text = "TIDAK ADA DATA KHUSUS DITEMUKAN."
+        # Logika sederhana penentuan (bisa diperluas menggunakan prompt classification)
+        if len(user_query) < 150 and not user_query.lower().startswith("saya membutuhkan rekomendasi"):
+            # Factual query (Ask) -> Coba RAG
+            print("Orchestrator: Directing query to RAG Engine.")
+            rag_answer = self.rag_engine.query(user_query)
+            
+            # Tambahkan logika untuk cek apakah RAG menjawab dengan baik (opsional)
+            if "tidak dapat menemukan jawaban yang relevan" in rag_answer:
+                 # Jika RAG gagal, fallback ke LLM murni
+                 print("Orchestrator: RAG failed, falling back to LLM.")
+                 return get_llm_response(user_query)
+            
+            return rag_answer
+            
         else:
-            context_parts = context_results['documents'][0]
-            context_text = "\n---\n".join(context_parts)
-            
-            system_message = """
-Anda adalah asisten AI yang ahli dalam ilmu kimia. Tugas Anda adalah menjawab pertanyaan pengguna HANYA berdasarkan informasi yang tersedia di dalam KONTEKS DATA yang disediakan di bawah.
-Jika konteks data tidak menyediakan informasi yang cukup untuk menjawab kueri, AKUI bahwa informasinya tidak ada di dalam data yang diberikan.
-"""
-            
-        full_prompt = f"""{system_message}
-
----
-KONTEKS DATA (Senyawa Kimia Terstruktur):{context_text}
----
-
-PERTANYANAN PENGGUNA:{query}
-
-Jawaban Akhir (Hanya berdasarkan Konteks Data):
-"""
-        return full_prompt
+            # Complex/Generation query -> Langsung ke LLM murni (Gemini)
+            print("Orchestrator: Directing complex query to pure LLM (Gemini).")
+            return get_llm_response(user_query)
