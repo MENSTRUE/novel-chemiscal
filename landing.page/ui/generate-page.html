@@ -195,7 +195,29 @@
             <button type="submit" class="btn-generate">GENERATE</button>
           </div>
         </form>
+
+        <!-- ================= POPUP HASIL ================= -->
+        <div id="resultPopup" class="popup-overlay">
+          <div class="popup-box">
+            <h2>Hasil Generate</h2>
+            <div id="resultContent" class="result-content"></div>
+
+            <button id="closeResultPopup" class="close-btn">Tutup</button>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Popup Hasil Generate -->
+    <div id="resultPopup" class="popup-overlay">
+      <div class="popup-box">
+        <button id="closeResultPopup" class="popup-close">✖</button>
+        <h2 class="popup-title">Hasil Generate</h2>
+        <div id="resultContent" class="popup-content"></div>
+      </div>
+    </div>
+
+    <!-- PENTING: SCRIPT HARUS DI SINI -->
+    <script src="../js/generate-page.js"></script>
   </body>
 </html>

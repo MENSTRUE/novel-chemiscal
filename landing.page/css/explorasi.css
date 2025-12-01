@@ -1,14 +1,9 @@
-/* File: explorasi.css */
-
-/* ======================================================= */
-/* 1. VARIABEL DASAR DAN RESET */
-/* ======================================================= */
 :root {
-  --color-background-dark: #0a0a1f; /* Biru tua sangat gelap */
-  --color-primary-accent: #00aeef; /* Biru neon terang */
+  --color-background-dark: #0a0a1f;
+  --color-primary-accent: #00aeef;
   --color-text-light: #f0f0f0;
   --color-text-gray: #b0b0b0;
-  --color-card-dark: #1e1e3f; /* Latar belakang kartu/kotak */
+  --color-card-dark: #1e1e3f;
   --shadow-neon: 0 0 10px rgba(0, 174, 239, 0.6);
   --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
@@ -40,15 +35,12 @@ a {
   color: var(--color-primary-accent);
 }
 
-/* ======================================================= */
-/* 2. HEADER DAN NAVIGASI */
-/* ======================================================= */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 5%;
-  background-color: rgba(0, 0, 0, 0.3); /* Transparan gelap */
+  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: var(--shadow-soft);
   position: fixed;
   width: 100%;
@@ -82,11 +74,8 @@ a {
   margin-right: 8px;
 }
 
-/* ======================================================= */
-/* 3. HERO SECTION */
-/* ======================================================= */
 .hero-page {
-  padding-top: 100px; /* Offset dari fixed header */
+  padding-top: 100px;
   padding-bottom: 50px;
   background: linear-gradient(
     180deg,
@@ -119,9 +108,6 @@ a {
   font-size: 1.1rem;
 }
 
-/* ======================================================= */
-/* 4. REACTOR SECTION (REAKTOR SENYAWA) */
-/* ======================================================= */
 .reactor-section {
   padding: 40px 5%;
   background-color: var(--color-background-dark);
@@ -216,9 +202,6 @@ a {
   margin-right: 10px;
 }
 
-/* ======================================================= */
-/* 5. LIBRARY SECTION (PERPUSTAKAAN SENYAWA) */
-/* ======================================================= */
 .library-section {
   padding: 50px 5%;
 }
@@ -286,7 +269,6 @@ a {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-/* Styling warna spesifik untuk senyawa (sesuaikan dengan warna yang Anda inginkan) */
 .water .formula-circle {
   background-color: #3498db;
 }
@@ -324,43 +306,42 @@ a {
   background-color: #2980b9;
 }
 
-/* Senyawa Tambahan */
 .NaOH .formula-circle {
   background-color: #e67e22;
-} /* Oranye */
+}
 .c6h6 .formula-circle {
   background-color: #f39c12;
-} /* Kuning Tua */
+}
 .ch3cooh .formula-circle {
   background-color: #27ae60;
-} /* Hijau */
+}
 .kcl .formula-circle {
   background-color: #8e44ad;
-} /* Ungu */
+}
 .no .formula-circle {
   background-color: #3498db;
-} /* Biru */
+}
 .hf .formula-circle {
   background-color: #e74c3c;
-} /* Merah */
+}
 .mgcl2 .formula-circle {
   background-color: #7f8c8d;
-} /* Abu-abu */
+}
 .n2o .formula-circle {
   background-color: #1abc9c;
-} /* Hijau Muda */
+}
 .cuso4 .formula-circle {
   background-color: #2980b9;
-} /* Biru Tua */
+}
 .nano3 .formula-circle {
   background-color: #c0392b;
-} /* Merah Bata */
+}
 .c2h4 .formula-circle {
   background-color: #9b59b6;
-} /* Ungu Pucat */
+}
 .kmnO4 .formula-circle {
   background-color: #5d3580;
-} /* Ungu Gelap */
+}
 
 .compound-card h4 {
   color: var(--color-text-light);
@@ -380,9 +361,6 @@ a {
   font-size: 0.9rem;
 }
 
-/* ======================================================= */
-/* 6. FOOTER */
-/* ======================================================= */
 .footer-lab {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 20px 5%;
@@ -392,9 +370,6 @@ a {
   font-size: 0.9rem;
 }
 
-/* ======================================================= */
-/* 7. MEDIA QUERIES (Responsif) */
-/* ======================================================= */
 @media (max-width: 768px) {
   .header {
     padding: 10px 4%;
@@ -417,5 +392,263 @@ a {
   .reactor-actions {
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+}
+
+.popup-container {
+  background: linear-gradient(135deg, var(--color-card-dark) 0%, #2a2a4f 100%);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  border: 2px solid var(--color-primary-accent);
+  box-shadow: 0 0 30px rgba(0, 174, 239, 0.4),
+    inset 0 0 20px rgba(0, 174, 239, 0.1);
+  position: relative;
+  animation: popupAppear 0.3s ease-out;
+}
+
+@keyframes popupAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.popup-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.popup-header h3 {
+  color: var(--color-primary-accent);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  text-shadow: var(--shadow-neon);
+}
+
+.popup-header p {
+  color: var(--color-text-gray);
+  font-size: 1rem;
+}
+
+.popup-content {
+  margin-bottom: 25px;
+}
+
+.reaction-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 174, 239, 0.3);
+  flex-wrap: wrap;
+}
+
+.compound-display {
+  text-align: center;
+  padding: 15px;
+  background: var(--color-background-dark);
+  border-radius: 8px;
+  border: 1px solid var(--color-primary-accent);
+  min-width: 120px;
+  flex: 1;
+}
+
+.compound-display .formula-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-background-dark);
+  box-shadow: 0 0 10px rgba(0, 174, 239, 0.5);
+}
+
+.compound-display h4 {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.compound-display .formula-text {
+  color: var(--color-primary-accent);
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.reaction-arrow {
+  font-size: 1.5rem;
+  color: var(--color-primary-accent);
+  font-weight: bold;
+}
+
+.result-display {
+  text-align: center;
+  padding: 15px;
+  background: var(--color-background-dark);
+  border-radius: 8px;
+  border: 1px solid var(--color-primary-accent);
+  min-width: 120px;
+  flex: 1;
+}
+
+.result-display .formula-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-background-dark);
+  background: var(--color-primary-accent);
+  box-shadow: 0 0 15px rgba(0, 174, 239, 0.7);
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 15px rgba(0, 174, 239, 0.7);
+  }
+  to {
+    box-shadow: 0 0 25px rgba(0, 174, 239, 1);
+  }
+}
+
+.result-display h4 {
+  color: var(--color-primary-accent);
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.result-display .formula-text {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.result-description {
+  color: var(--color-text-gray);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-primary-accent);
+}
+
+.popup-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.popup-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popup-btn-close {
+  background: transparent;
+  border: 2px solid var(--color-text-gray);
+  color: var(--color-text-gray);
+}
+
+.popup-btn-close:hover {
+  border-color: var(--color-text-light);
+  color: var(--color-text-light);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.popup-btn-details {
+  background: var(--color-primary-accent);
+  color: var(--color-background-dark);
+  border: 2px solid var(--color-primary-accent);
+}
+
+.popup-btn-details:hover {
+  background: #33ccff;
+  box-shadow: var(--shadow-neon);
+  transform: translateY(-2px);
+}
+
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--color-text-gray);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-close:hover {
+  color: var(--color-primary-accent);
+  background: rgba(0, 174, 239, 0.1);
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .popup-container {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .reaction-display {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .reaction-arrow {
+    transform: rotate(90deg);
+  }
+
+  .popup-actions {
+    flex-direction: column;
   }
 }

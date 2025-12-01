@@ -13,6 +13,42 @@
   </head>
 
   <body>
+    <!-- Page transition overlay (removed after first visit) -->
+    <div id="page-transition" class="page-transition" aria-hidden="true">
+      <div class="pt-inner">
+        <!-- SVG logo with stroke for draw animation -->
+        <svg
+          class="pt-logo"
+          width="160"
+          height="160"
+          viewBox="0 0 120 120"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          role="img"
+        >
+          <g
+            fill="none"
+            stroke="rgba(0,0,0,0.9)"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              class="pt-logo-path"
+              d="M30 90 C30 60, 60 30, 90 30 C100 30, 110 35, 110 50 C110 70, 90 82, 60 100 C40 85, 35 105, 30 90 Z"
+            />
+          </g>
+        </svg>
+
+        <div class="pt-texts">
+          <div class="pt-title">ChemisTry</div>
+        </div>
+
+        <div class="pt-spinner" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
     <!-- ================= HEADER ================= -->
     <header class="navbar">
       <div class="logo">ChemisTry</div>
@@ -34,6 +70,7 @@
     </header>
 
     <!-- ================= HERO SECTION ================= -->
+    <div id="app">
     <main id="home" class="hero">
       <div class="hero-content">
         <p class="quote">
@@ -165,5 +202,45 @@
     <footer class="footer">
       <p>&copy; 2025 ChemisTry. All Rights Reserved.</p>
     </footer>
+    </div>
+    <script>window.SPA_MODE = true;</script>
+    <script src="landing.page/js/transition.js"></script>
+    <script>
+      // Attach click handlers to internal links that should use the exit transition
+      (function () {
+        function attachNav() {
+          var anchors = document.querySelectorAll('a[href$="explorasi.html"], a[href$="generate-page.html"], a[href$="tabel-periodik.html"]');
+          anchors.forEach(function (a) {
+            // remove previous listeners by cloning
+            var newA = a.cloneNode(true);
+            a.parentNode.replaceChild(newA, a);
+            newA.addEventListener('click', function (e) {
+              var href = newA.getAttribute('href');
+              if (!href) return;
+              e.preventDefault();
+              // decide transition variant: explorasi uses circular reveal, tabel-periodik uses mosaic, others use slide
+              var variant = 'slide';
+              if (href.endsWith('explorasi.html')) variant = 'reveal';
+              if (href.endsWith('tabel-periodik.html')) variant = 'mosaic';
+              var coords = { x: e.clientX, y: e.clientY };
+              if (window.navigateWithTransition) {
+                window.navigateWithTransition(href, 750, variant, coords);
+              } else {
+                window.location.href = href;
+              }
+            });
+          });
+        }
+
+        // expose so SPA can rebind after content swap
+        window._attachSpaNav = attachNav;
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', attachNav);
+        } else {
+          attachNav();
+        }
+      })();
+    </script>
   </body>
 </html>

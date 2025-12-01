@@ -1,39 +1,35 @@
-/*
- * File: tabel-periodik.css
- * Tema: Gelap, Modern, Skema Warna Tabel Periodik Lengkap dengan Aksen Biru
- * Update: Skema warna elemen dibuat lebih muted/pastel agar harmonis dengan latar belakang gelap
- */
+
 
 :root {
-  /* Warna latar belakang dan teks dari gambar "ChemisTry" (gelap) */
-  --color-bg-dark: #0a0a0a; /* Latar belakang sangat gelap */
-  --color-panel-bg: #1a1a1a; /* Latar belakang untuk legend dan pop-up */
-  --color-text-light: #e0e0e0; /* Teks terang untuk kontras */
-  --color-text-secondary: #aaaaaa; /* Teks sekunder/detail */
-  --color-accent-blue: #00bfff; /* Biru terang untuk aksen (seperti tombol/border pop-up, judul) */
-  --color-border-dark: #333; /* Border yang lebih gelap untuk elemen */
-  --color-shadow-dark: rgba(0, 0, 0, 0.5); /* Shadow lebih gelap */
+  
+  --color-bg-dark: #0a0a0a; 
+  --color-panel-bg: #1a1a1a;
+  --color-text-light: #e0e0e0; 
+  --color-text-secondary: #aaaaaa; 
+  --color-accent-blue: #00bfff; 
+  --color-border-dark: #333; 
+  --color-shadow-dark: rgba(0, 0, 0, 0.5); 
 
-  /* Warna Elemen Tabel Periodik (diperbarui menjadi lebih muted/pastel) */
-  --color-alkali: #ffc254; /* Kuning/Jingga Muda -> tetap relatif cerah */
-  --color-alkali-earth: #ffdc7a; /* Kuning Lebih Pucat -> tetap relatif cerah */
-  --color-transition: #9c7fe6; /* Ungu Muda -> sedikit lebih muted */
-  --color-post-transition: #7cb3e1; /* Biru Muda -> sedikit lebih muted */
-  --color-metalloid: #4ac787; /* Hijau Mint -> tetap relatif cerah */
-  --color-non-metal: #a3e0a3; /* Hijau Paling Muda -> sedikit lebih muted */
-  --color-noble-gas: #ff8585; /* Merah Muda Pucat -> sedikit lebih muted */
-  --color-lanthanide: #ffb57f; /* Oranye Pucat -> sedikit lebih muted */
-  --color-actinide: #ff8ac7; /* Pink -> sedikit lebih muted */
-  --color-hydrogen: #b3ffb3; /* Hijau Paling Atas -> tetap relatif cerah */
+  
+  --color-alkali: #ffc254; 
+  --color-alkali-earth: #ffdc7a; 
+  --color-transition: #9c7fe6;
+  --color-post-transition: #7cb3e1; 
+  --color-metalloid: #4ac787; 
+  --color-non-metal: #a3e0a3; 
+  --color-noble-gas: #ff8585; 
+  --color-lanthanide: #ffb57f; 
+  --color-actinide: #ff8ac7; 
+  --color-hydrogen: #b3ffb3; 
 
-  /* Warna teks di dalam kotak elemen */
-  --color-element-text: #222; /* Teks gelap agar jelas di atas warna elemen */
+  
+  --color-element-text: #222; 
 }
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--color-bg-dark); /* Latar belakang gelap */
-  color: var(--color-text-light); /* Teks terang */
+  background-color: var(--color-bg-dark); 
+  color: var(--color-text-light); 
   margin: 0;
   padding: 20px;
 }
@@ -44,7 +40,7 @@ body {
   padding: 20px;
 }
 
-/* --- GAYA TOMBOL KEMBALI --- */
+
 .back-button-container {
   margin-bottom: 20px;
   text-align: left;
@@ -55,9 +51,9 @@ body {
   align-items: center;
   gap: 8px;
   padding: 8px 15px;
-  background-color: transparent; /* Latar belakang transparan */
+  background-color: transparent; 
   color: var(--color-text-light);
-  border: 1px solid var(--color-accent-blue); /* Border biru terang */
+  border: 1px solid var(--color-accent-blue); 
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
@@ -68,25 +64,25 @@ body {
 .btn-back:hover {
   background-color: var(
     --color-accent-blue
-  ); /* Latar belakang biru terang saat hover */
-  color: var(--color-bg-dark); /* Teks gelap saat hover */
+  ); 
+  color: var(--color-bg-dark); 
   border-color: var(--color-accent-blue);
   box-shadow: 0 4px 8px var(--color-shadow-dark),
-    0 0 10px var(--color-accent-blue); /* Efek neon tambahan */
+    0 0 10px var(--color-accent-blue); 
 }
 
-/* --- JUDUL --- */
+
 .main-title {
   text-align: center;
   margin-top: 0;
   margin-bottom: 30px;
   font-size: 2em;
   font-weight: 700;
-  color: var(--color-accent-blue); /* Judul biru terang */
-  text-shadow: 0 0 8px rgba(0, 191, 255, 0.6); /* Efek glow ringan */
+  color: var(--color-accent-blue);
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.6); 
 }
 
-/* --- LEGEND STYLES --- */
+
 .legend {
   display: flex;
   flex-wrap: wrap;
@@ -97,9 +93,9 @@ body {
   border-radius: 5px;
   background-color: var(
     --color-panel-bg
-  ); /* Latar belakang legend lebih gelap */
+  ); 
   box-shadow: 0 2px 5px var(--color-shadow-dark);
-  border: 1px solid var(--color-border-dark); /* Border gelap */
+  border: 1px solid var(--color-border-dark); 
 }
 
 .legend-item {
@@ -114,9 +110,9 @@ body {
   height: 12px;
   margin-right: 5px;
   border-radius: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Border tipis untuk warna box di latar gelap */
+  border: 1px solid rgba(255, 255, 255, 0.1); 
 }
-/* Warna-warna ini tetap cerah agar mudah dibedakan di latar belakang gelap */
+
 .alkali {
   background-color: var(--color-alkali);
 }
@@ -145,7 +141,7 @@ body {
   background-color: var(--color-actinide);
 }
 
-/* --- PERIODIC TABLE GRID --- */
+
 .periodic-table {
   display: grid;
   grid-template-columns: repeat(18, 1fr);
@@ -155,7 +151,7 @@ body {
 
 .element {
   aspect-ratio: 1 / 1;
-  border: 1px solid var(--color-border-dark); /* Border gelap */
+  border: 1px solid var(--color-border-dark); 
   border-radius: 4px;
   padding: 5px;
   text-align: center;
@@ -166,14 +162,14 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 1px 3px var(--color-shadow-dark);
-  color: var(--color-element-text); /* Teks gelap di dalam kotak elemen */
+  color: var(--color-element-text); 
 }
 
 .element:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px var(--color-shadow-dark),
-    0 0 15px var(--color-accent-blue); /* Aksen biru neon saat hover */
-  border-color: var(--color-accent-blue); /* Border biru terang saat hover */
+    0 0 15px var(--color-accent-blue); 
+  border-color: var(--color-accent-blue); 
   z-index: 10;
 }
 
@@ -194,7 +190,7 @@ body {
   font-weight: 400;
 }
 
-/* Penempatan Elemen Spesifik (Grid Layout) */
+
 #H {
   grid-area: 1 / 1;
   background-color: var(--color-hydrogen);
@@ -228,50 +224,46 @@ body {
   visibility: hidden;
 }
 
-/* Penempatan deret Lantanida (di bawah) */
+
 .periodic-table > .element:nth-child(91) {
   grid-area: 10 / 3;
 }
 .periodic-table > .element:nth-child(92) {
   grid-area: 10 / 4;
 }
-/* ... elemen lain akan menyesuaikan nomor urut anak (child number) */
 
-/* Penempatan deret Aktinida (di bawah) */
 .periodic-table > .element:nth-child(105) {
   grid-area: 11 / 3;
 }
-/* ... elemen lain akan menyesuaikan nomor urut anak (child number) */
 
-/* --- POP-UP KETERANGAN --- */
 .popup-info {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--color-panel-bg); /* Latar belakang pop-up gelap */
+  background-color: var(--color-panel-bg); 
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 5px 20px var(--color-shadow-dark),
-    0 0 20px var(--color-accent-blue); /* Shadow biru neon */
+    0 0 20px var(--color-accent-blue);
   z-index: 1000;
   max-width: 350px;
-  border: 2px solid var(--color-accent-blue); /* Border biru neon */
+  border: 2px solid var(--color-accent-blue); 
   display: none;
-  color: var(--color-text-light); /* Teks terang di pop-up */
+  color: var(--color-text-light); 
 }
 
 .popup-name {
   font-size: 1.5em;
   margin-top: 0;
-  color: var(--color-accent-blue); /* Nama elemen biru terang */
-  text-shadow: 0 0 5px rgba(0, 191, 255, 0.4); /* Efek glow ringan */
+  color: var(--color-accent-blue); 
+  text-shadow: 0 0 5px rgba(0, 191, 255, 0.4); 
 }
 
 .popup-details {
   font-size: 1em;
   margin-bottom: 10px;
-  color: var(--color-text-secondary); /* Detail abu-abu terang */
+  color: var(--color-text-secondary); 
 }
 
 .popup-symbol {
@@ -281,7 +273,7 @@ body {
 }
 
 .popup-description {
-  color: var(--color-text-secondary); /* Deskripsi abu-abu terang */
+  color: var(--color-text-secondary); 
 }
 
 .popup-close-btn {
@@ -292,14 +284,14 @@ body {
   border: none;
   font-size: 1.5em;
   cursor: pointer;
-  color: var(--color-accent-blue); /* Tombol close biru terang */
+  color: var(--color-accent-blue); 
   transition: color 0.2s ease;
 }
 .popup-close-btn:hover {
   color: var(--color-text-light);
 }
 
-/* Media Query untuk Mobile */
+
 @media (max-width: 768px) {
   .container {
     padding: 5px;

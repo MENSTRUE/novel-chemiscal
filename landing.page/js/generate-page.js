@@ -1,81 +1,130 @@
 // File: generate-page.js
 
-// Tunggu hingga seluruh dokumen HTML selesai dimuat
 document.addEventListener("DOMContentLoaded", function () {
-  // 1. Ambil referensi ke formulir dan tombol-tombol
+  console.log("generate-page.js loaded");
+
+  // ================================
+  // Ambil elemen utama
+  // ================================
   const form = document.querySelector(".form-layout");
   const btnGenerate = document.querySelector(".btn-generate");
   const btnBack = document.querySelector(".btn-back");
+  const btnNewChat = document.querySelector(".btn-new-chat");
   const chatItems = document.querySelectorAll(".chat-item");
 
-  // =======================================================
-  // Fungsionalitas Tombol BACK: Kembali ke index.html
-  // =======================================================
-  btnBack.addEventListener("click", function (event) {
-    event.preventDefault(); // Mencegah tindakan default tombol
+  // Popup Elements
+  const popup = document.getElementById("resultPopup");
+  const popupContent = document.getElementById("resultContent");
+  const closePopup = document.getElementById("closeResultPopup");
 
-    // Mengasumsikan generate-page.html berada di subfolder (misalnya /pages/ atau /html/)
-    // dan index.html berada di folder induk (root).
-    window.location.href = "../index.html";
-  });
-  // =======================================================
-
-  // =======================================================
-  // Fungsionalitas SIDEBAR (Simulasi memilih riwayat chat)
-  // =======================================================
-  chatItems.forEach((item) => {
-    item.addEventListener("click", function () {
-      // Hapus kelas 'active' dari semua item
-      chatItems.forEach((i) => i.classList.remove("active"));
-
-      // Tambahkan kelas 'active' ke item yang baru diklik
-      this.classList.add("active");
-
-      // TODO: Di sini Anda akan menambahkan kode untuk memuat data
-      // dari chat yang dipilih ke dalam formulir utama.
-
-      // Simulasi: Tampilkan nama chat di konsol
-      console.log(`Riwayat Chat dipilih: ${this.textContent.trim()}`);
+  // ================================
+  // 1. Tombol BACK
+  // ================================
+  if (btnBack) {
+    btnBack.addEventListener("click", function (event) {
+      event.preventDefault();
+      // Pastikan path ini benar sesuai lokasi file HTML kamu!
+      window.location.href = "../../index.html";
     });
-  });
+  }
 
-  // Tambahkan fungsionalitas untuk tombol New Chat
-  const btnNewChat = document.querySelector(".btn-new-chat");
+  // ================================
+  // 2. Sidebar – Riwayat Chat
+  // ================================
+  if (chatItems) {
+    chatItems.forEach((item) => {
+      item.addEventListener("click", function () {
+        chatItems.forEach((i) => i.classList.remove("active"));
+        this.classList.add("active");
+        console.log(`Riwayat Chat dipilih: ${this.textContent.trim()}`);
+      });
+    });
+  }
+
+  // ================================
+  // 3. Tombol New Chat
+  // ================================
   if (btnNewChat) {
     btnNewChat.addEventListener("click", function (event) {
       event.preventDefault();
-      // Hapus kelas 'active' dari semua chat item
       chatItems.forEach((i) => i.classList.remove("active"));
-
-      // Reset formulir
-      form.reset();
+      if (form) form.reset();
       console.log("Memulai Sesi Chat Baru...");
     });
   }
-  // =======================================================
 
-  // Fungsionalitas Tombol GENERATE (Submit Form)
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    collectAndProcessData();
+  // ================================
+  // 4. Submit Form
+  // ================================
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      collectAndProcessData();
+    });
+  }
+
+  // ================================
+  // 5. POPUP – Menampilkan Hasil Generate
+  // ================================
+  function showResultPopup(data) {
+    if (!popup || !popupContent) return;
+
+    let html = `
+      <strong>Jenis Produk:</strong> ${data.jenisProduk || "-"}<br><br>
+      <strong>Tujuan Produk:</strong> ${data.tujuan || "-"}<br><br>
+      <strong><u>Properti Target:</u></strong><br>
+    `;
+
+    const keys = Object.keys(data.propertiTarget);
+
+    if (keys.length > 0) {
+      keys.forEach((key) => {
+        html += `<div>${key}: ${data.propertiTarget[key]}</div>`;
+      });
+    } else {
+      html += "<div>Tidak ada properti yang diisi.</div>";
+    }
+
+    html += `
+      <br><strong>Deskripsi Tambahan:</strong><br>
+      ${data.deskripsiKriteria || "-"}
+    `;
+
+    popupContent.innerHTML = html;
+    popup.style.display = "flex";
+  }
+
+  if (closePopup) {
+    closePopup.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+  }
+
+  if (popup) {
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) popup.style.display = "none";
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && popup) popup.style.display = "none";
   });
 
-  /**
-   * Fungsi untuk mengumpulkan data dari semua input field
-   */
+  // ================================
+  // 6. Fungsi Kumpul Data Input
+  // ================================
   function collectAndProcessData() {
     const compoundData = {};
 
-    // --- 1. Kumpulkan Input Utama ---
+    // --- 1. Input utama ---
     const primaryInputs = document.querySelectorAll(
       ".input-row.main-header .input-field"
     );
-    if (primaryInputs.length >= 2) {
-      compoundData.jenisProduk = primaryInputs[0].value.trim();
-      compoundData.tujuan = primaryInputs[1].value.trim();
-    }
 
-    // --- 2. Kumpulkan Properti Kimia ---
+    compoundData.jenisProduk = primaryInputs[0]?.value.trim() || "";
+    compoundData.tujuan = primaryInputs[1]?.value.trim() || "";
+
+    // --- 2. Properti Kimia ---
     compoundData.propertiTarget = {};
     const propertyGroups = document.querySelectorAll(
       ".input-row.property-group"
@@ -85,39 +134,35 @@ document.addEventListener("DOMContentLoaded", function () {
       const labelInput = group.querySelector(".property-field-label");
       const valueInput = group.querySelector(".property-field-value");
 
-      if (labelInput && valueInput) {
-        // Menggunakan ID/Nama yang lebih terstruktur dan menghindari spasi
-        const rawLabel = labelInput.value.trim();
-        const key = rawLabel.toLowerCase().replace(/\s+/g, ""); // Ex: titikdidih
-        const value = valueInput.value.trim();
+      const rawLabel = labelInput?.value.trim() || "";
+      const value = valueInput?.value.trim() || "";
 
-        if (value) {
-          compoundData.propertiTarget[key] = value;
-        }
-      }
+      // abaikan jika label atau nilai kosong
+      if (!rawLabel || !value) return;
+
+      // Sanitasi key: huruf kecil + menghapus spasi/simbol
+      const key = rawLabel.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+      compoundData.propertiTarget[key] = value;
     });
 
-    // --- 3. Kumpulkan Area Teks Bawah ---
+    // --- 3. Textarea bawah ---
     const textArea = document.querySelector(".textarea-placeholder");
     compoundData.deskripsiKriteria = textArea ? textArea.value.trim() : "";
 
-    // --- 4. Tampilkan Hasil (Simulasi Proses Generate) ---
-    console.log("===================================");
-    console.log("Data Kimia Siap untuk di-Generate:");
-    console.log(compoundData);
-
-    // --- Feedback ke Pengguna ---
-    btnGenerate.textContent = "Processing...";
-    btnGenerate.disabled = true;
+    // --- 4. Loading sementara ---
+    if (btnGenerate) {
+      btnGenerate.textContent = "Processing...";
+      btnGenerate.disabled = true;
+    }
 
     setTimeout(() => {
-      btnGenerate.textContent = "GENERATE";
-      btnGenerate.disabled = false;
-      // Gunakan console.table untuk tampilan data yang lebih rapi
-      console.table(compoundData.propertiTarget);
-      alert(
-        "Data berhasil dikirim. Cek konsol (F12) untuk melihat data yang terstruktur!"
-      );
-    }, 1500);
+      if (btnGenerate) {
+        btnGenerate.textContent = "GENERATE";
+        btnGenerate.disabled = false;
+      }
+
+      showResultPopup(compoundData);
+    }, 900);
   }
 });
