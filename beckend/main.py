@@ -21,11 +21,11 @@ agent = AgentOrchestrator()
 rag = RAGEngine()
 
 # Initialize RAG with data
-try:
-    rag.index_data()
-    print("✅ RAG Engine initialized successfully")
-except Exception as e:
-    print(f"❌ Indexing error: {e}")
+# try:
+#     rag.index_data()
+#     print("RAG Engine initialized successfully")
+# except Exception as e:
+#     print(f"Indexing error: {e}")
 
 class QueryRequest(BaseModel):
     query: str

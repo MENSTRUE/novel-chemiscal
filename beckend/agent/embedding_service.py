@@ -14,13 +14,13 @@ from langchain_community.vectorstores import Chroma
 VECTOR_DB_PATH = "chroma_db"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 # Menggunakan nama file yang Anda konfirmasi
-DATA_FILE_PATH = "beckend/data/data_kimia_final_indo.json       " 
+DATA_FILE_PATH = "data/data_kimia_final_indo.json" 
 
 def initialize_embeddings():
     """Menginisialisasi dan mengembalikan HuggingFace Embeddings."""
     # Menghilangkan LangChainDeprecationWarning
-    from langchain_huggingface import HuggingFaceEmbeddings as HFEmbeddingsNew
-    return HFEmbeddingsNew(model_name=EMBEDDING_MODEL)
+    from langchain_community.embeddings import HuggingFaceEmbeddings
+    return HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
 
 def run_ingestion() -> str:
     """Melaksanakan seluruh proses Ingestion dan menyimpan ke Vector DB."""
