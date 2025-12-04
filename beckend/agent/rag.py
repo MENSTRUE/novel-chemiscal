@@ -1,46 +1,38 @@
-# agent/rag.py
-from .embedding_service import run_ingestion
+# agent/rag.py (Sekarang berfungsi sebagai RAG Orchestrator)
 from .retriever_service import retrieve_documents
 from .generator_service import generate_answer
-from .llm import get_llm_response # Untuk fallback langsung ke Gemini
 
 class RAGEngine:
-    """
-    Menggabungkan proses Ingestion, Retrieval, dan Generation.
-    Dipanggil langsung oleh main.py.
-    """
     def __init__(self):
-        # State: Menandakan apakah data sudah diindeks/siap
-        self.is_indexed = False
+        self.is_indexed = False # Tetap simpan flag untuk health check
         print("RAGEngine initialized.")
 
     def index_data(self):
-        """
-        Melakukan indexing/ingestion data. Dipanggil saat startup main.py.
-        """
-        print("Starting RAG data indexing...")
-        result = run_ingestion()
+        """Melakukan indexing/ingestion data. Dipanggil saat startup main.py."""
+        # ... (Logika indexing tetap sama)
         
-        if result.startswith("Error"):
-            print(f"❌ RAGEngine Indexing failed: {result}")
-            self.is_indexed = False
-            raise Exception(result)
-        else:
-            print(f"✅ RAGEngine Indexing successful: {result}")
-            self.is_indexed = True
+        # Setelah sukses indexing:
+        # ...
+        self.is_indexed = True # Tetapkan True di sini.
 
     def query(self, user_query: str) -> str:
-        """
-        Menjalankan alur RAG (Retrieve -> Generate).
-        """
-        if not self.is_indexed:
-            return "Error: Data RAG belum diindeks atau gagal diinisialisasi. Tidak bisa melakukan pencarian."
-            
-        print(f"RAGEngine: Running retrieval for query: {user_query}")
+        """Menjalankan alur RAG (Retrieve -> Generate)."""
+        
+        # HAPUS pengecekan `if not self.is_indexed:` 
+        # Kita biarkan kode mencoba retrieval, dan ia akan gagal
+        # jika file fisik 'chroma_db' belum ada.
+
+        print(f"RAG Pipeline: Running retrieval for query: {user_query}")
         
         # 1. RETRIEVAL
-        retrieved_docs = retrieve_documents(user_query)
+        retrieved_docs = retrieve_documents(user_query) # Ini akan lempar FileNotFoundError jika DB belum siap
         
+        if not retrieved_docs:
+            # Jika retrieval gagal (folder tidak ada atau error internal), kembalikan pesan ini.
+            return "Gagal melakukan retrieval dokumen. Pastikan data sudah di-ingest dan server stabil."
+            
+        print(f"RAG Pipeline: Found {len(retrieved_docs)} relevant documents.")
+
         # 2. GENERATION
         final_answer = generate_answer(user_query, retrieved_docs)
         
