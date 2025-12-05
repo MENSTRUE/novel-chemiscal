@@ -1,40 +1,42 @@
-# agent/AgentOrchestrator.py
+# FILE: agent/AgentOrchestrator.py (KODE LENGKAP DIPERBARUI)
+
 from .rag import RAGEngine
-from .llm import get_llm_response # Untuk fallback/generasi murni
+from .llm import get_llm_response
 
 class AgentOrchestrator:
     """
     Mengorkestrasi penggunaan RAGEngine dan LLM murni (Gemini).
     """
     def __init__(self):
-        # RAGEngine harus diinisialisasi di main.py, kita hanya menyimpannya
         self.rag_engine = RAGEngine()
         print("AgentOrchestrator initialized.")
 
-    def process_query(self, user_query: str) -> str:
+    # MENAMBAH PARAMETER force_json
+    def process_query(self, user_query: str, force_json: bool = False) -> str:
         """
-        Menentukan alur terbaik untuk query: RAG atau LLM murni.
-        
-        ASUMSI LOGIKA:
-        - Jika query pendek/faktual (Ask), coba RAG dulu.
-        - Jika query panjang/kompleks (Generate), langsung ke LLM murni (Gemini).
+        Menentukan alur terbaik untuk query: RAG atau LLM murni, dan meneruskan flag JSON.
         """
         
-        # Logika sederhana penentuan (bisa diperluas menggunakan prompt classification)
-        if len(user_query) < 150 and not user_query.lower().startswith("saya membutuhkan rekomendasi"):
-            # Factual query (Ask) -> Coba RAG
-            print("Orchestrator: Directing query to RAG Engine.")
-            rag_answer = self.rag_engine.query(user_query)
+        # Logika: Jika JSON diminta (dari /generate atau /combine), atau jika query panjang/kompleks.
+        # Rute ke LLM Pro dengan JSON forcing.
+        if force_json or (len(user_query) >= 150 or user_query.lower().startswith("saya membutuhkan rekomendasi")):
+            print(f"Orchestrator: Directing query (Complex/JSON={force_json}) to pure LLM (Gemini Pro).")
+            return get_llm_response(user_query, force_json=force_json)
             
-            # Tambahkan logika untuk cek apakah RAG menjawab dengan baik (opsional)
-            if "tidak dapat menemukan jawaban yang relevan" in rag_answer:
-                 # Jika RAG gagal, fallback ke LLM murni
+        # Logika lama: Ask (RAG pipeline)
+        elif len(user_query) < 150 and not user_query.lower().startswith("saya membutuhkan rekomendasi"):
+            print("Orchestrator: Directing query to RAG Engine.")
+            
+            rag_answer = self.rag_engine.query(user_query) 
+            
+            if "tidak dapat menemukan jawaban yang relevan" in rag_answer or rag_answer.startswith("Error"):
                  print("Orchestrator: RAG failed, falling back to LLM.")
-                 return get_llm_response(user_query)
+                 # Panggil LLM Flash tanpa JSON force (default)
+                 return get_llm_response(user_query, force_json=False)
             
             return rag_answer
             
         else:
-            # Complex/Generation query -> Langsung ke LLM murni (Gemini)
+            # Fallback untuk complex query lainnya
             print("Orchestrator: Directing complex query to pure LLM (Gemini).")
-            return get_llm_response(user_query)
+            return get_llm_response(user_query, force_json=False)
