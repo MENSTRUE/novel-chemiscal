@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChemisTry - Menentukan Senyawa Baru</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Page transition overlay (removed after first visit) -->
+    <div id="page-transition" class="page-transition" aria-hidden="true">
+      <div class="pt-inner">
+        <!-- SVG logo with stroke for draw animation -->
+        <svg
+          class="pt-logo"
+          width="160"
+          height="160"
+          viewBox="0 0 120 120"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          role="img"
+        >
+          <g
+            fill="none"
+            stroke="rgba(0,0,0,0.9)"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              class="pt-logo-path"
+              d="M30 90 C30 60, 60 30, 90 30 C100 30, 110 35, 110 50 C110 70, 90 82, 60 100 C40 85, 35 105, 30 90 Z"
+            />
+          </g>
+        </svg>
+
+        <div class="pt-texts">
+          <div class="pt-title">ChemisTry</div>
+        </div>
+
+        <div class="pt-spinner" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ================= HEADER ================= -->
+    <header class="navbar">
+      <div class="logo">ChemisTry</div>
+
+      <nav>
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="#home"><span>Home</span></a>
+          </li>
+          <li>
+            <a class="nav-link" href="#explore"><span>Explore</span></a>
+          </li>
+          <li>
+            <a class="nav-link" href="#about"><span>About</span></a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" aria-hidden="true"></div>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <main id="home" class="hero">
+      <div class="hero-content">
+        <p class="quote">
+          “Menentukan<br />
+          Senyawa Baru<br />
+          Menciptakan<br />
+          Masa Depan”
+        </p>
+
+        <div class="hero-buttons">
+          <a href="ui/explorasi.html" class="btn btn-start"
+            >GET START</a
+          >
+          <a href="ui/generate-page.html" class="btn btn-generate"
+            >GENERATE</a
+          >
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="asset/kimia1.png"
+          alt="Laboratorium Kimia dengan berbagai tabung reaksi"
+        />
+      </div>
+    </main>
+
+    <!-- ================= EXPLORE SECTION ================= -->
+    <section id="explore" class="section explore-section">
+      <div class="section-container">
+        <h2>Explore: Dunia Senyawa Kimia</h2>
+        <p class="subtitle">
+          Temukan proyek penelitian dan terobosan terbaru dari komunitas
+          ChemisTry.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Sintesis Polimer Cerdas</h3>
+            <p>
+              Mengeksplorasi material baru untuk aplikasi biomedis yang dapat
+              merespons lingkungan internal tubuh.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Katalis Ramah Lingkungan</h3>
+            <p>
+              Mengembangkan metode katalisis yang efisien dan berkelanjutan,
+              mengurangi limbah beracun dalam proses industri.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Energi Terbarukan</h3>
+            <p>
+              Penelitian tentang baterai solid-state dan bahan sel surya
+              generasi ketiga untuk solusi energi masa depan.
+            </p>
+          </div>
+        </div>
+
+        <a href="ui/tabel-periodik.html" class="btn btn-ghost"
+          >Tabel Periodik</a
+        >
+      </div>
+    </section>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section id="about" class="section about-section">
+      <div class="section-container split-content">
+        <div class="text-content">
+          <h2>Tentang ChemisTry</h2>
+          <p class="subtitle">
+            Platform yang didedikasikan untuk revolusi kimia.
+          </p>
+
+          <p>
+            ChemisTry didirikan dengan visi untuk menghubungkan para ilmuwan,
+            mahasiswa, dan profesional industri kimia di seluruh dunia. Kami
+            percaya bahwa kolaborasi adalah kunci untuk mengatasi tantangan
+            global terbesar melalui ilmu senyawa baru.
+          </p>
+
+          <p>
+            Misi kami adalah menyediakan sumber daya, alat, dan jaringan yang
+            diperlukan untuk mempercepat penemuan dan implementasi solusi kimia
+            yang inovatif dan etis.
+          </p>
+
+          <a href="#" class="btn btn-start">Pelajari Lebih Lanjut</a>
+        </div>
+
+        <div class="image-content">
+          <div class="placeholder-image about-image"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+      <p>&copy; 2025 ChemisTry. All Rights Reserved.</p>
+    </footer>
+    <script src="js/transition.js"></script>
+    <script>
+      // Attach click handlers to internal links that should use the exit transition
+      (function () {
+        function attachNav() {
+          var anchors = document.querySelectorAll(
+            'a[href$="explorasi.html"], a[href$="generate-page.html"], a[href$="tabel-periodik.html"]'
+          );
+          anchors.forEach(function (a) {
+            a.addEventListener("click", function (e) {
+              var href = a.getAttribute("href");
+              if (!href) return;
+              e.preventDefault();
+              var variant = "slide";
+              if (href.endsWith("explorasi.html")) variant = "reveal";
+              if (href.endsWith("tabel-periodik.html")) variant = "mosaic";
+              var coords = { x: e.clientX, y: e.clientY };
+              if (window.navigateWithTransition) {
+                window.navigateWithTransition(href, 750, variant, coords);
+              } else {
+                window.location.href = href;
+              }
+            });
+          });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", attachNav);
+        } else {
+          attachNav();
+        }
+      })();
+    </script>
+  </body>
+</html>

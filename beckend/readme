@@ -3,9 +3,11 @@ install library
 pip install fastapi uvicorn chromadb sentence-transformers google-generativeai python-dotenv httpx
 pip install langchain-huggingface
 
+ cd .\beckend\
+
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 post 
 
-http://127.0.0.1:8000/ask
+http://127.0.0.1:8000/combine
 http://127.0.0.1:8000/generate
