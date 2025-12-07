@@ -436,3 +436,239 @@ body {
     padding: 18px;
   }
 }
+
+/* ===== 🎨 GENERATE RESULT POPUP STYLES (Tambahan untuk Kode JS yang Diperbaiki) ===== */
+
+/* --- General Popup Content Layout --- */
+.popup-box h2.popup-title {
+    color: var(--color-accent-blue-neon);
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-border-dark);
+    padding-bottom: 10px;
+}
+
+/* --- Result Sections --- */
+.result-header {
+    background-color: var(--color-card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-accent-blue-mid);
+}
+
+.result-header h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    color: var(--color-accent-blue-neon);
+}
+
+.match-score {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.score {
+    color: #FFD700; /* Warna Emas untuk skor */
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.result-section {
+    margin-bottom: 15px;
+    padding: 10px 0;
+}
+
+.result-section h4 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--color-accent-blue-mid);
+    margin-bottom: 8px;
+    border-left: 3px solid var(--color-accent-blue-mid);
+    padding-left: 10px;
+}
+
+.result-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.result-section li {
+    background-color: var(--color-input-bg);
+    padding: 6px 10px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: var(--color-text-secondary);
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+/* --- Safety Risk Styling --- */
+.risk-level {
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--color-dark-bg);
+    font-weight: bold;
+    display: inline-block;
+    font-size: 0.85em;
+}
+
+.risk-rendah { background-color: #27ae60; color: white; } /* Hijau */
+.risk-sedang { background-color: #f39c12; } /* Kuning Tua */
+.risk-tinggi { background-color: #e74c3c; color: white; } /* Merah */
+.risk-na { background-color: var(--color-text-secondary); } /* Abu-abu */
+
+
+/* --- Tombol Aksi Lanjutan (Perbaikan Fungsionalitas) --- */
+.result-actions {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 15px;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--color-border-dark);
+}
+
+.btn-action {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s, opacity 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-save {
+    background-color: var(--color-accent-blue-mid); 
+    color: var(--color-text-light);
+}
+
+.btn-save:hover {
+    background-color: #5d9cec;
+}
+
+.btn-new {
+    background-color: var(--color-card-bg); 
+    color: var(--color-accent-blue-neon);
+    border: 1px solid var(--color-accent-blue-neon);
+}
+
+.btn-new:hover {
+    background-color: var(--color-hover-bg);
+}
+
+/* Penyesuaian Tombol Close di Popup Box */
+.popup-box .popup-close {
+    background: #c0392b;
+    color: #fff;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 60;
+}
+
+/* --- Loading State untuk Tombol Generate --- */
+.btn-generate.loading {
+    background-color: var(--color-accent-blue-mid); 
+    cursor: wait;
+    opacity: 0.8;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 191, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 191, 255, 0); }
+}
+
+/* Responsive adjustment for actions */
+@media (max-width: 600px) {
+    .result-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn-action {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --- Gaya untuk Progres AI --- */
+#ai-progress-display {
+    padding: 10px 0;
+}
+
+.ai-steps {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.ai-steps li {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--color-input-bg);
+    color: var(--color-text-secondary);
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.6;
+}
+
+.ai-steps li.active {
+    background-color: var(--color-hover-bg);
+    color: var(--color-accent-blue-neon);
+    font-weight: 500;
+    opacity: 1;
+    border-left: 3px solid var(--color-accent-blue-neon);
+}
+
+.loading-bar {
+    height: 4px;
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--color-input-bg);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 50%;
+    background-color: var(--color-accent-blue-neon);
+    animation: loading-fill 2s infinite linear;
+}
+
+@keyframes loading-fill {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+/* Gaya untuk Popup saat Error */
+.error-state {
+    background-color: #3b1f1f; /* Background merah gelap */
+    border: 1px solid #e74c3c;
+    color: white;
+}
