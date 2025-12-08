@@ -47926,5 +47926,82 @@
     "skor_kecocokan": 98,
     "justifikasi_ringkas": "Polyglyceryl-10 Stearate adalah emulsifier O/W nabati (palm-based) yang ideal dengan HLB 12-13, stabil secara termal di atas 200°C (memenuhi kriteria titik didih >150°C), serta memenuhi semua kriteria pengguna termasuk sifat ringan, cepat terserap, vegan, dan bebas PEG/silikon.",
     "id": "Polyglyceryl-10 Stearate"
+  },
+  {
+    "nama_senyawa": "Propylene Glycol Monomethyl Ether",
+    "rumus_molekul": "C4H10O2",
+    "berat_molekul": 90.12,
+    "sinonim": "1-Methoxy-2-propanol; PGME; Methoxypropanol; Propylene Glycol Methyl Ether",
+    "deskripsi": "Propylene Glycol Monomethyl Ether (PGME) adalah pelarut glikol eter dengan polaritas menengah, viskositas rendah, dan titik didih yang sesuai. Senyawa ini dikenal karena sifat pelarutannya yang baik untuk berbagai resin dan cat, serta memiliki bau yang lembut dan tidak menyengat. PGME dapat diproduksi dari sumber daya terbarukan, menjadikannya pilihan yang baik untuk aplikasi berbasis bio. Senyawa ini juga mudah terurai secara hayati dan tidak termasuk dalam daftar SVHC.",
+    "titik_didih_celsius": 120.1,
+    "titik_leleh_celsius": -96.7,
+    "densitas_gcm3": 0.92,
+    "pernyataan_bahaya_ghs": "H226 - Cairan dan uap mudah terbakar; H332 - Berbahaya jika terhirup; H319 - Menyebabkan iritasi mata serius; H335 - Dapat menyebabkan iritasi saluran pernapasan.",
+    "kategori_aplikasi": "Pelarut, Agen Penggabung, Pembersih",
+    "sifat_fungsional": "Pelarut polar menengah, viskositas rendah, titik didih terkontrol, pH netral, biodegradabilitas cepat, tidak berbau tajam.",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Mudah terbakar, dapat menyebabkan iritasi mata dan saluran pernapasan jika terpapar dalam konsentrasi tinggi.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 96,
+    "justifikasi_ringkas": "Propylene Glycol Monomethyl Ether adalah glikol eter berbasis bio yang sangat cocok sebagai pelarut dengan titik didih 120.1 C, viskositas rendah, polaritas menengah, pH netral (6-7), dan biodegradabilitas cepat, serta bebas SVHC dan tidak berbau tajam.",
+    "id": "Propylene Glycol Monomethyl Ether"
+  },
+  {
+    "nama_senyawa": "Hydroxyethylidene Diphosphonic Acid",
+    "rumus_molekul": "C2H8O7P2",
+    "berat_molekul": 206.03,
+    "sinonim": "1-Hydroxyethylidene-1,1-diphosphonic acid; HEDP; Etidronic acid",
+    "deskripsi": "Hydroxyethylidene Diphosphonic Acid (HEDP) adalah asam organofosfonat yang sangat efektif sebagai penghambat korosi dan kerak dalam sistem air industri, khususnya sistem pendingin. Senyawa ini membentuk kompleks stabil dengan ion logam, mencegah pengendapan kerak dan melindungi permukaan logam dari korosi. HEDP stabil pada suhu tinggi, sangat larut dalam air, dan efektif pada dosis rendah (PPM), menjadikannya pilihan ideal untuk aplikasi berbasis air yang membutuhkan formulasi transparan dan efisiensi jangka panjang. Meskipun HEDP murni bersifat asam, formulasi cairnya dapat dengan mudah disesuaikan ke rentang pH alkali lemah yang diinginkan (8.5-9.5) menggunakan basa seperti amina atau natrium hidroksida.",
+    "titik_didih_celsius": 110,
+    "titik_leleh_celsius": 198,
+    "densitas_gcm3": 1.1,
+    "pernyataan_bahaya_ghs": "H314 (Menyebabkan luka bakar kulit dan kerusakan mata serius); H302 (Berbahaya jika tertelan). (Untuk konsentrat)",
+    "kategori_aplikasi": "Penghambat Korosi, Penghambat Kerak, Sekuestran Logam, Dispersan",
+    "sifat_fungsional": "Mencegah pembentukan kerak kalsium karbonat dan sulfat, menghambat korosi pada logam besi dan non-besi, menstabilkan ion logam dalam larutan, stabil pada suhu tinggi.",
+    "tingkat_risiko_keselamatan": "Sedang",
+    "bahaya_keselamatan": "Konsentrat dapat menyebabkan luka bakar kulit dan kerusakan mata serius. Berbahaya jika tertelan. Penanganan memerlukan Alat Pelindung Diri (APD). Namun, dalam dosis penggunaan rendah (PPM) dalam sistem, risikonya minimal.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      },
+      {
+        "nomor_atom": 15,
+        "nama_unsur": "Fosfor",
+        "simbol": "P"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "HEDP adalah penghambat korosi dan kerak berbasis fosfonat yang sangat efektif, stabil pada suhu tinggi, larut dalam air, dan cocok untuk formulasi transparan dengan dosis rendah, memenuhi semua kriteria utama dan preferensi logistik.",
+    "id": "Hydroxyethylidene Diphosphonic Acid"
   }
 ]

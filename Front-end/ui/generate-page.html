@@ -100,11 +100,9 @@
               readonly
             />
             <input
-              type="number"
+              type="text"
               class="input-field property-field-value"
               placeholder="Nilai Target (1–14)"
-              min="1"
-              max="14"
             />
           </div>
 
@@ -196,26 +194,16 @@
           </div>
         </form>
 
-        <!-- ================= POPUP HASIL ================= -->
-        <div id="resultPopup" class="popup-overlay">
+<div id="resultPopup" class="popup-overlay">
           <div class="popup-box">
-            <h2>Hasil Generate</h2>
-            <div id="resultContent" class="result-content"></div>
-
-            <button id="closeResultPopup" class="close-btn">Tutup</button>
+            <button id="closeResultPopup" class="popup-close">
+                <i class="fas fa-times"></i> 
+            </button> 
+            <h2 class="popup-title">Hasil Generate</h2>
+            <div id="resultContent" class="popup-content">
+              </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Popup Hasil Generate -->
-    <div id="resultPopup" class="popup-overlay">
-      <div class="popup-box">
-        <button id="closeResultPopup" class="popup-close">✖</button>
-        <h2 class="popup-title">Hasil Generate</h2>
-        <div id="resultContent" class="popup-content"></div>
-      </div>
-    </div>
 
     <!-- PENTING: SCRIPT HARUS DI SINI -->
     <script src="../js/generate-page.js"></script>

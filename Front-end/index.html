@@ -51,24 +51,29 @@
     </div>
     <!-- ================= HEADER ================= -->
     <header class="navbar">
-      <div class="logo">ChemisTry</div>
+  <div class="logo">ChemisTry</div>
 
-      <nav>
-        <ul class="nav-list">
-          <li>
-            <a class="nav-link" href="#home"><span>Home</span></a>
-          </li>
-          <li>
-            <a class="nav-link" href="#explore"><span>Explore</span></a>
-          </li>
-          <li>
-            <a class="nav-link" href="#about"><span>About</span></a>
-          </li>
-        </ul>
-      </nav>
+  <nav class="main-nav" id="main-nav"> <ul class="nav-list">
+      <li>
+        <a class="nav-link" href="#home"><span>Home</span></a>
+      </li>
+      <li>
+        <a class="nav-link" href="#explore"><span>Explore</span></a>
+      </li>
+      <li>
+        <a class="nav-link" href="#about"><span>About</span></a>
+      </li>
+    </ul>
+  </nav>
 
-      <div class="nav-actions" aria-hidden="true"></div>
-    </header>
+  <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+    <span class="sr-only">Buka Menu</span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <div class="nav-actions" aria-hidden="true"></div>
+</header>
 
     <!-- ================= HERO SECTION ================= -->
     <main id="home" class="hero">
@@ -206,6 +211,60 @@
           attachNav();
         }
       })();
+
+      // Tambahkan JS untuk Hamburger Menu
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.getElementById("main-nav");
+    const header = document.querySelector(".navbar");
+
+    function closeMenu() {
+        menuToggle.setAttribute("aria-expanded", "false");
+        header.classList.remove("nav-open");
+        nav.classList.remove("is-active");
+        document.body.classList.remove("no-scroll");
+    }
+
+    menuToggle.addEventListener("click", () => {
+        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
+        
+        // Toggle atribut
+        menuToggle.setAttribute("aria-expanded", !isExpanded);
+        header.classList.toggle("nav-open");
+        nav.classList.toggle("is-active"); 
+        
+        // Hanya tambahkan no-scroll jika di mobile
+        if (window.innerWidth <= 900) {
+            document.body.classList.toggle("no-scroll");
+        }
+    });
+    
+    // PERBAIKAN: Menutup menu ketika mengklik di luar sidebar
+    header.addEventListener("click", (e) => {
+        // PENTING: Periksa apakah layar berada dalam mode mobile
+        if (window.innerWidth <= 900) {
+            // Jika navbar terbuka, DAN target yang diklik BUKAN bagian dari navigasi (sidebar) dan BUKAN tombol toggle
+            if (header.classList.contains("nav-open") && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                // Ini berarti pengguna mengklik area overlay gelap
+                closeMenu();
+            }
+        }
+    });
+
+    // Opsional: Tutup menu saat mengklik tautan
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            if (window.innerWidth <= 900) { // Hanya berlaku di mobile
+                closeMenu();
+            }
+        });
+    });
+});
+
+
     </script>
+
+    
+
   </body>
 </html>

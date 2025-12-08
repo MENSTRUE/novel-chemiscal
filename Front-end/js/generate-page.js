@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const popupContent = document.getElementById("resultContent");
     const closePopup = document.getElementById("closeResultPopup");
 
+    if (popup) {
+        popup.style.display = "none"; 
+    }
+
     // =================================
     // 2. HELPER: LOADING STATE
     // =================================
@@ -152,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert('Memulai Sesi Generate Baru. Semua input direset.');
                 popup.style.display = 'none';
             }
+            
         });
     }
     document.addEventListener("keydown", (e) => {
@@ -227,48 +232,54 @@ document.addEventListener("DOMContentLoaded", function () {
         currentRecommendation = compound; 
         
         // --- Konten Utama HTML ---
-        let htmlContent = `
-            <div class="result-header">
-                <h3>🧪 Senyawa Rekomendasi ${isRefinement ? "Baru" : "Awal"}: <strong>${compoundName}</strong></h3>
-                <p class="match-score">Skor Kecocokan: <span class="score">${compound.skor_kecocokan || 0}%</span></p>
-                <p>Rumus Molekul: <strong>${compound.rumus_molekul || 'N/A'}</strong> | Berat Molekul: ${compound.berat_molekul || 'N/A'} g/mol</p>
-            </div>
-            
-            <div class="result-section">
-                <h4>📝 Justifikasi & Deskripsi</h4>
-                <p><strong>Justifikasi:</strong> ${compound.justifikasi_ringkas || 'N/A'}</p>
-                <p><strong>Deskripsi Detail:</strong> ${compound.deskripsi || 'N/A'}</p>
-            </div>
-            
-            <details class="property-details">
-                <summary>🔬 Lihat Properti Kimia Detail</summary>
-                <div class="property-grid">
-                     <div><strong>Titik Didih:</strong> ${compound.titik_didih_celsius || 'N/A'} °C</div>
-                     <div><strong>Densitas:</strong> ${compound.densitas_gcm3 || 'N/A'} g/cm³</div>
-                     <div><strong>Sifat Fungsional:</strong> ${compound.sifat_fungsional || 'N/A'}</div>
-                     <div><strong>Risiko Keselamatan:</strong> <span class="risk-level risk-${(compound.tingkat_risiko_keselamatan || 'N/A').toLowerCase()}">${compound.tingkat_risiko_keselamatan || 'N/A'}</span></div>
-                 </div>
-            </details>
-            
-            <div class="feedback-section">
-                <h4>Perlu Perbaikan?</h4>
-                <p>Masukkan instruksi perbaikan, misalnya: "Cari yang Titik Didihnya lebih rendah dari 100C" atau "Tekankan sifat fungsional sebagai anti-oksidan."</p>
-                <input type="text" id="feedbackInput" placeholder="Masukkan perintah perbaikan (feedback)..." class="feedback-input">
-            </div>
-            
-            <div class="result-actions">
-                <button id="refineResultBtn" class="btn-action btn-refine">
-                    <i class="fas fa-magic"></i> Generate Rekomendasi Ulang
-                </button>
-                <button id="saveResultBtn" class="btn-action btn-save">
-                    <i class="fas fa-save"></i> Save & Selesai
-                </button>
-            </div>
-            
-            <button id="newChatBtn" class="btn-action btn-new btn-reset-form">
-                 <i class="fas fa-plus"></i> Mulai Sesi Baru (Reset Form)
+let htmlContent = `
+    <div class="result-header">
+        <h3>🧪 Senyawa Rekomendasi ${isRefinement ? "Baru" : "Awal"}: <strong>${compoundName}</strong></h3>
+        <p class="match-score">Skor Kecocokan: <span class="score">${compound.skor_kecocokan || 0}%</span></p>
+        <p class="molecule-detail">
+            <span class="detail-item">Rumus: <strong>${compound.rumus_molekul || 'N/A'}</strong></span> 
+            | 
+            <span class="detail-item">Berat: ${compound.berat_molekul || 'N/A'} g/mol</span>
+        </p>
+    </div>
+    
+    <div class="result-section">
+        <h4>📝 Justifikasi & Deskripsi</h4>
+        <p><strong>Justifikasi:</strong> ${compound.justifikasi_ringkas || 'N/A'}</p>
+        <p><strong>Deskripsi Detail:</strong> ${compound.deskripsi || 'N/A'}</p>
+    </div>
+    
+    <details class="property-details">
+        <summary>🔬 Lihat Properti Kimia Detail</summary>
+        <div class="property-grid">
+            <div><strong>Titik Didih:</strong> ${compound.titik_didih_celsius || 'N/A'} °C</div>
+            <div><strong>Densitas:</strong> ${compound.densitas_gcm3 || 'N/A'} g/cm³</div>
+            <div><strong>Sifat Fungsional:</strong> ${compound.sifat_fungsional || 'N/A'}</div>
+            <div><strong>Risiko Keselamatan:</strong> <span class="risk-level risk-${(compound.tingkat_risiko_keselamatan || 'N/A').toLowerCase()}">${compound.tingkat_risiko_keselamatan || 'N/A'}</span></div>
+        </div>
+    </details>
+    
+    <div class="feedback-section">
+        <h4>Perlu Perbaikan?</h4>
+        <p>Masukkan instruksi perbaikan, misalnya: "Cari yang Titik Didihnya lebih rendah dari 100C" atau "Tekankan sifat fungsional sebagai anti-oksidan."</p>
+        <input type="text" id="feedbackInput" placeholder="Masukkan perintah perbaikan (feedback)..." class="feedback-input">
+    </div>
+    
+    <div class="result-actions">
+        <button id="newChatBtn" class="btn-action btn-new btn-reset-form">
+             <i class="fas fa-plus"></i> Mulai Sesi Baru (Reset Form)
+        </button>
+
+        <div class="action-group-right"> 
+            <button id="refineResultBtn" class="btn-action btn-refine">
+                <i class="fas fa-sync-alt"></i> Generate Rekomendasi Ulang
             </button>
-        `;
+            <button id="saveResultBtn" class="btn-action btn-save">
+                <i class="fas fa-check"></i> Save & Selesai
+            </button>
+        </div>
+    </div>
+`;
         
         const popupTitle = popup.querySelector('.popup-title');
         if (popupTitle) popupTitle.textContent = "✅ Hasil Generate Ditemukan!";
