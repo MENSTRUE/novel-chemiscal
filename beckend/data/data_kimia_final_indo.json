@@ -48003,5 +48003,298 @@
     "skor_kecocokan": 95,
     "justifikasi_ringkas": "HEDP adalah penghambat korosi dan kerak berbasis fosfonat yang sangat efektif, stabil pada suhu tinggi, larut dalam air, dan cocok untuk formulasi transparan dengan dosis rendah, memenuhi semua kriteria utama dan preferensi logistik.",
     "id": "Hydroxyethylidene Diphosphonic Acid"
+  },
+  {
+    "nama_senyawa": "Asam Fosfat",
+    "rumus_molekul": "H3PO4",
+    "berat_molekul": 98,
+    "sinonim": "Asam Ortofosfat, Asam Fosfat(V)",
+    "deskripsi": "Asam fosfat adalah asam mineral anorganik yang tidak berwarna, tidak berbau, dan tidak mudah menguap. Ini adalah asam triprotik yang digunakan secara luas sebagai agen pengkarat, aditif makanan, dan dalam produksi pupuk. Dalam aplikasi pembersih karat, asam fosfat bereaksi dengan oksida besi (karat) untuk membentuk besi fosfat, lapisan hitam yang melindungi permukaan logam dari korosi lebih lanjut. Meskipun efektif, ia bersifat korosif dan memerlukan penanganan yang hati-hati.",
+    "titik_didih_celsius": 158,
+    "titik_leleh_celsius": 42.35,
+    "densitas_gcm3": 1.685,
+    "pernyataan_bahaya_ghs": "H314 (Menyebabkan luka bakar kulit dan kerusakan mata yang parah).",
+    "kategori_aplikasi": "Pembersih karat, pengubah karat, aditif makanan, pupuk, deterjen, bahan kimia industri.",
+    "sifat_fungsional": "Asam kuat, agen pengkelat, agen pengkarat, pengatur pH.",
+    "tingkat_risiko_keselamatan": "Sedang",
+    "bahaya_keselamatan": "Korosif terhadap kulit dan mata, dapat menyebabkan luka bakar serius. Iritasi saluran pernapasan jika terhirup uapnya.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 15,
+        "nama_unsur": "Fosfor",
+        "simbol": "P"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Asam fosfat sangat efektif dalam menghilangkan karat dengan mengubahnya menjadi lapisan besi fosfat pelindung, menjadikannya pilihan ideal untuk pembersih karat yang bersih dan mencegah korosi lebih lanjut.",
+    "id": "Asam Fosfat"
+  },
+  {
+    "nama_senyawa": "Beta-Ecdysterone",
+    "rumus_molekul": "C27H44O7",
+    "berat_molekul": 480.64,
+    "sinonim": "20-Hydroxyecdysone, Ecdysterone, 20E",
+    "deskripsi": "Beta-Ecdysterone adalah fitosteroid alami yang ditemukan pada tumbuhan dan serangga. Senyawa ini telah diteliti karena potensi efek anaboliknya, yaitu kemampuannya untuk meningkatkan sintesis protein dan pertumbuhan otot, tanpa menunjukkan efek androgenik yang signifikan seperti steroid anabolik sintetis. Ini menjadikannya pilihan yang menarik bagi mereka yang mencari dukungan pertumbuhan otot dengan profil risiko yang lebih rendah dibandingkan dengan steroid anabolik-androgenik farmasi.",
+    "titik_didih_celsius": 0,
+    "titik_leleh_celsius": 240,
+    "densitas_gcm3": 0,
+    "pernyataan_bahaya_ghs": "Tidak diklasifikasikan sebagai bahan berbahaya yang signifikan menurut GHS untuk penggunaan yang dimaksudkan.",
+    "kategori_aplikasi": "Suplemen makanan, Peningkatan kinerja atletik, Nutrisi olahraga",
+    "sifat_fungsional": "Anabolik (meningkatkan sintesis protein), Adaptogenik (potensial), Antioksidan (potensial)",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Umumnya dianggap aman pada dosis yang direkomendasikan. Efek samping jarang terjadi dan ringan (misalnya, gangguan pencernaan ringan pada dosis sangat tinggi). Tidak ada toksisitas organ yang signifikan yang dilaporkan secara luas.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Carbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hydrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oxygen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Beta-Ecdysterone adalah fitosteroid alami yang mendukung pertumbuhan otot dengan meningkatkan sintesis protein, menawarkan profil risiko yang jauh lebih rendah dibandingkan steroid anabolik sintetis, sehingga sangat cocok dengan kriteria 'steroid', 'massa otot', dan 'risiko rendah'.",
+    "id": "Beta-Ecdysterone"
+  },
+  {
+    "nama_senyawa": "Retinol",
+    "rumus_molekul": "C20H30O",
+    "berat_molekul": 286.45,
+    "sinonim": "Vitamin A1, Axerophthol",
+    "deskripsi": "Retinol adalah bentuk alkohol dari Vitamin A, yang dikenal luas karena perannya dalam kesehatan kulit dan penglihatan. Dalam aplikasi topikal, retinol bekerja dengan merangsang pergantian sel kulit dan produksi kolagen dan elastin, yang secara signifikan membantu mengurangi tampilan kerutan, garis halus, dan meningkatkan elastisitas kulit. Efek ini memberikan pengencangan dan peremajaan pada kulit, menjadikannya sangat efektif untuk tujuan anti-penuaan dan pengencangan kulit wajah serta bagian vital.",
+    "titik_didih_celsius": 250,
+    "titik_leleh_celsius": 62,
+    "densitas_gcm3": 0.937,
+    "pernyataan_bahaya_ghs": "H360D (Dapat merusak janin), H315 (Menyebabkan iritasi kulit), H319 (Menyebabkan iritasi mata serius), H335 (Dapat menyebabkan iritasi pernapasan)",
+    "kategori_aplikasi": "Kosmetik (Anti-aging, Perawatan Kulit), Suplemen Nutrisi",
+    "sifat_fungsional": "Antioksidan, Pendorong Produksi Kolagen dan Elastin, Peningkat Pergantian Sel Kulit, Pengencang Kulit",
+    "tingkat_risiko_keselamatan": "Sedang",
+    "bahaya_keselamatan": "Iritasi kulit dan mata pada konsentrasi tinggi, teratogenik (berbahaya bagi janin) pada paparan sistemik atau dosis tinggi, dapat meningkatkan fotosensitivitas kulit (sensitivitas terhadap matahari).",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Retinol adalah senyawa yang sangat efektif dalam merangsang produksi kolagen dan pergantian sel kulit, secara signifikan mengurangi tanda-tanda penuaan dan mengencangkan kulit wajah serta bagian vital, menjadikannya pilihan utama untuk ramuan awet muda.",
+    "id": "Retinol"
+  },
+  {
+    "nama_senyawa": "Merkuri",
+    "rumus_molekul": "Hg",
+    "berat_molekul": 200.59,
+    "sinonim": "Hydrargyrum, quicksilver, raksa",
+    "deskripsi": "Merkuri adalah unsur logam berat yang unik karena berbentuk cair pada suhu kamar. Dalam sejarah, merkuri dan senyawanya sering digunakan dalam alkimia dan pengobatan tradisional, termasuk pencarian ramuan keabadian oleh kaisar seperti Qin Shi Huang, meskipun sifatnya sangat beracun bagi manusia. Paparan merkuri dapat menyebabkan kerusakan neurologis, ginjal, dan organ lainnya, serta dapat berakibat fatal.",
+    "titik_didih_celsius": 356.73,
+    "titik_leleh_celsius": -38.83,
+    "densitas_gcm3": 13.534,
+    "pernyataan_bahaya_ghs": "H300 (Fatal if swallowed), H310 (Fatal in contact with skin), H330 (Fatal if inhaled), H373 (May cause damage to organs through prolonged or repeated exposure), H400 (Very toxic to aquatic life), H410 (Very toxic to aquatic life with long lasting effects).",
+    "kategori_aplikasi": "Historis (Alkimia, Pengobatan Tradisional), Termometer, Barometer, Lampu Fluorescent (sebelumnya)",
+    "sifat_fungsional": "Logam cair pada suhu kamar, konduktor listrik yang baik, densitas tinggi.",
+    "tingkat_risiko_keselamatan": "Tinggi",
+    "bahaya_keselamatan": "Sangat beracun melalui inhalasi, kontak kulit, atau tertelan. Dapat menyebabkan kerusakan sistem saraf pusat, ginjal, dan paru-paru. Teratogenik. Berbahaya bagi lingkungan.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 80,
+        "nama_unsur": "Merkuri",
+        "simbol": "Hg"
+      }
+    ],
+    "skor_kecocokan": 10,
+    "justifikasi_ringkas": "Merkuri secara historis adalah salah satu zat utama yang dicari oleh Qin Shi Huang sebagai ramuan keabadian, meskipun sangat beracun dan tidak efektif.",
+    "id": "Merkuri"
+  },
+  {
+    "nama_senyawa": "Hydrogen Cyanide",
+    "rumus_molekul": "HCN",
+    "berat_molekul": 27.03,
+    "sinonim": "Asam Prussic, Asam Hidrosianat, Formonitril",
+    "deskripsi": "Hydrogen Cyanide (HCN) adalah cairan tidak berwarna yang sangat mudah menguap pada suhu kamar, dengan bau khas seperti almond pahit (meskipun tidak semua orang dapat mendeteksinya). Ini adalah racun yang sangat kuat dan bekerja cepat, mengganggu respirasi seluler. HCN dapat dihasilkan secara alami dari hidrolisis glikosida sianogenik seperti amigdalin yang ditemukan dalam biji-bijian tertentu, termasuk almond pahit.",
+    "titik_didih_celsius": 25.7,
+    "titik_leleh_celsius": -13.4,
+    "densitas_gcm3": 0.687,
+    "pernyataan_bahaya_ghs": "H224 (Cairan dan uap sangat mudah terbakar), H300 (Fatal jika tertelan), H310 (Fatal jika kontak dengan kulit), H330 (Fatal jika terhirup), H400 (Sangat toksik bagi kehidupan akuatik).",
+    "kategori_aplikasi": "Fumigan, bahan baku kimia (misalnya untuk akrilonitril, metionin), agen racun.",
+    "sifat_fungsional": "Racun pernapasan seluler, agen pengkelat, prekursor kimia.",
+    "tingkat_risiko_keselamatan": "Tinggi",
+    "bahaya_keselamatan": "Sangat beracun jika tertelan, terhirup, atau kontak kulit. Dapat menyebabkan kematian dengan cepat. Cairan dan uapnya sangat mudah terbakar.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 7,
+        "nama_unsur": "Nitrogen",
+        "simbol": "N"
+      }
+    ],
+    "skor_kecocokan": 100,
+    "justifikasi_ringkas": "Hydrogen Cyanide adalah racun sianida mematikan yang dapat dihasilkan dari hidrolisis amigdalin dalam almond, dan sangat larut dalam air, memenuhi semua kriteria yang diminta secara sempurna.",
+    "id": "Hydrogen Cyanide"
+  },
+  {
+    "nama_senyawa": "Metronidazole",
+    "rumus_molekul": "C6H9N3O3",
+    "berat_molekul": 171.15,
+    "sinonim": "Flagyl, MetroGel, Protostat",
+    "deskripsi": "Metronidazole adalah antibiotik dan antiprotozoa yang digunakan secara luas untuk mengobati infeksi yang disebabkan oleh bakteri anaerob, termasuk Clostridium tetani, bakteri penyebab tetanus. Ini adalah obat esensial dalam manajemen medis tetanus. Senyawa ini bekerja dengan merusak DNA mikroorganisme, menghambat sintesis asam nukleat. Penting untuk dicatat bahwa metronidazole tidak memiliki sifat pembersih karat dan tidak direkomendasikan untuk tujuan tersebut, karena fokus utamanya adalah aplikasi medis.",
+    "titik_didih_celsius": 0,
+    "titik_leleh_celsius": 160,
+    "densitas_gcm3": 1.3,
+    "pernyataan_bahaya_ghs": "H302 (Berbahaya jika tertelan), H319 (Menyebabkan iritasi mata serius), H341 (Diduga menyebabkan cacat genetik), H350 (Dapat menyebabkan kanker), H361d (Diduga merusak janin).",
+    "kategori_aplikasi": "Obat (Antibiotik, Antiprotozoa)",
+    "sifat_fungsional": "Antimikroba, Antibakteri (anaerobik), Antiprotozoa",
+    "tingkat_risiko_keselamatan": "Tinggi",
+    "bahaya_keselamatan": "Mual, muntah, diare, sakit kepala, pusing, neuropati perifer (jarang). Potensi karsinogenik dan mutagenik pada dosis tinggi atau paparan jangka panjang (terutama dalam konteks kimia, bukan dosis terapeutik). Interaksi serius dengan alkohol (efek disulfiram).",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 7,
+        "nama_unsur": "Nitrogen",
+        "simbol": "N"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 85,
+    "justifikasi_ringkas": "Metronidazole adalah antibiotik pilihan untuk mengobati infeksi Clostridium tetani, secara langsung memenuhi kriteria 'obat' dan 'tetanus', meskipun tidak berfungsi sebagai pembersih karat.",
+    "id": "Metronidazole"
+  },
+  {
+    "nama_senyawa": "Dimethicone",
+    "rumus_molekul": "Polimer (CH₃)₃SiO[Si(CH₃)₂O]nSi(CH₃)₃",
+    "berat_molekul": 0,
+    "sinonim": "Polydimethylsiloxane (PDMS), Silicone oil",
+    "deskripsi": "Dimethicone adalah polimer berbasis silikon yang inert, tidak beracun, dan hidrofobik, dikenal karena sifat pelumasnya yang sangat baik dan kemampuannya membentuk lapisan pelindung yang halus. Senyawa ini stabil pada berbagai suhu dan pH, tidak diserap oleh kulit atau selaput lendir, serta kompatibel dengan kondom lateks dan mainan seks silikon. Karena sifatnya yang non-iritasi dan tahan lama, dimethicone sangat cocok sebagai bahan dasar pelumas pribadi.",
+    "titik_didih_celsius": 0,
+    "titik_leleh_celsius": 0,
+    "densitas_gcm3": 0.96,
+    "pernyataan_bahaya_ghs": "Tidak diklasifikasikan sebagai bahan berbahaya menurut GHS.",
+    "kategori_aplikasi": "Pelumas pribadi, kosmetik, produk perawatan kulit, agen anti-busa.",
+    "sifat_fungsional": "Pelumas, emolien, hidrofobik, tidak reaktif, agen anti-busa.",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Umumnya dianggap sangat aman. Tidak menyebabkan iritasi kulit atau mata. Tidak beracun jika tertelan dalam jumlah kecil.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 14,
+        "nama_unsur": "Silikon",
+        "simbol": "Si"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      },
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Dimethicone adalah pelumas silikon inert yang sangat efektif, aman untuk kulit sensitif dan selaput lendir, serta kompatibel dengan kondom lateks, menjadikannya pilihan optimal untuk pelumas pribadi. Sifatnya yang tahan lama dan tidak lengket sangat ideal untuk mencegah lecet selama aktivitas seksual.",
+    "id": "Dimethicone"
+  },
+  {
+    "nama_senyawa": "Dimethicone",
+    "rumus_molekul": "CH3[Si(CH3)2O]nSi(CH3)3",
+    "berat_molekul": 0,
+    "sinonim": "Polydimethylsiloxane, PDMS, Silicone oil",
+    "deskripsi": "Dimethicone adalah polimer berbasis silikon yang banyak digunakan dalam kosmetik karena sifatnya yang membentuk lapisan pelindung, memberikan rasa halus pada kulit, dan tahan air. Berat molekulnya bervariasi tergantung pada panjang rantai polimer. Senyawa ini non-iritasi, non-komedogenik, dan membantu mengunci kelembaban serta meningkatkan daya tahan produk kosmetik terhadap air.",
+    "titik_didih_celsius": 0,
+    "titik_leleh_celsius": 0,
+    "densitas_gcm3": 0.96,
+    "pernyataan_bahaya_ghs": "Tidak diklasifikasikan sebagai bahan berbahaya menurut GHS.",
+    "kategori_aplikasi": "Kosmetik (perawatan kulit, rambut, riasan), farmasi, pelumas",
+    "sifat_fungsional": "Emolien, agen pembentuk film, agen pengkondisi kulit, agen anti-busa, tahan air",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Sangat rendah. Non-iritasi, non-sensitisasi, dan umumnya dianggap aman untuk penggunaan topikal.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 14,
+        "nama_unsur": "Silikon",
+        "simbol": "Si"
+      },
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Dimethicone sangat cocok untuk kosmetik tahan air karena sifatnya yang membentuk lapisan hidrofobik, memberikan rasa halus, dan stabilitas yang sangat baik pada kulit.",
+    "id": "Dimethicone"
   }
 ]

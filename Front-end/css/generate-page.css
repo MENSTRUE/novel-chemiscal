@@ -14,9 +14,15 @@
     --color-hover-bg: rgba(0, 191, 255, 0.1);
 
     /* Custom Colors for Iterative Flow */
-    --color-save: #1abc9c; /* Hijau Teal yang elegan */
-    --color-refine: #00bfff; /* Neon Blue */
-    --color-reset: #e74c3c; /* Merah */
+    --color-save: #1abc9c;
+    /* Hijau Teal yang elegan */
+    --color-refine: #00bfff;
+    /* Neon Blue */
+    --color-reset: #e74c3c;
+    /* Merah */
+
+    --color-success: #2ecc71;
+    --color-error: #e74c3c;
 }
 
 /* ===== GENERAL LAYOUT ===== */
@@ -48,7 +54,10 @@ body {
     flex-direction: column;
 }
 
-.new-chat-section { margin-bottom: 20px; }
+.new-chat-section {
+    margin-bottom: 20px;
+}
+
 .btn-new-chat {
     display: inline-flex;
     align-items: center;
@@ -69,7 +78,10 @@ body {
     color: var(--color-text-light);
 }
 
-.search-section { margin-bottom: 20px; }
+.search-section {
+    margin-bottom: 20px;
+}
+
 .search-box {
     display: flex;
     align-items: center;
@@ -88,10 +100,29 @@ body {
     color: var(--color-text-light);
 }
 
-.search-box input::placeholder { color: var(--color-text-secondary); }
-.history-section { flex: 1; display: flex; flex-direction: column; }
-.history-title { font-size: 14px; margin-bottom: 10px; color: var(--color-text-secondary); }
-.chat-history-list { list-style: none; overflow-y: auto; flex: 1; margin-bottom: 15px; }
+.search-box input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.history-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--color-text-secondary);
+}
+
+.chat-history-list {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+    margin-bottom: 15px;
+}
+
 .chat-item {
     padding: 10px;
     margin-bottom: 5px;
@@ -126,11 +157,37 @@ body {
 }
 
 /* ===== MAIN CONTENT (Standard Styling) ===== */
-.main-content { flex: 1; padding: 32px 48px; overflow-y: auto; }
-.form-title { font-size: 28px; font-weight: 600; margin-bottom: 24px; color: var(--color-accent-blue-neon); }
-.form-layout { display: flex; flex-direction: column; gap: 18px; }
-.form-section-title { font-size: 18px; font-weight: 600; margin-top: 10px; color: var(--color-accent-blue-mid); }
-.input-row { display: flex; gap: 14px; }
+.main-content {
+    flex: 1;
+    padding: 32px 48px;
+    overflow-y: auto;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--color-accent-blue-neon);
+}
+
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: var(--color-accent-blue-mid);
+}
+
+.input-row {
+    display: flex;
+    gap: 14px;
+}
+
 .input-field {
     flex: 1;
     padding: 14px;
@@ -141,12 +198,35 @@ body {
     color: var(--color-text-light);
 }
 
-.input-field:focus { outline: none; border-color: var(--color-accent-blue-neon); box-shadow: 0 0 5px var(--color-accent-blue-neon); }
-.input-field::placeholder { color: var(--color-text-secondary); }
-.primary-field { font-weight: 500; }
-.property-group .property-field-label { flex: 0.8; background-color: var(--color-card-bg); font-weight: 600; border-color: var(--color-card-bg); }
-.property-field-value { flex: 2; }
-.wide-input .wide-field { width: 100%; }
+.input-field:focus {
+    outline: none;
+    border-color: var(--color-accent-blue-neon);
+    box-shadow: 0 0 5px var(--color-accent-blue-neon);
+}
+
+.input-field::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.primary-field {
+    font-weight: 500;
+}
+
+.property-group .property-field-label {
+    flex: 0.8;
+    background-color: var(--color-card-bg);
+    font-weight: 600;
+    border-color: var(--color-card-bg);
+}
+
+.property-field-value {
+    flex: 2;
+}
+
+.wide-input .wide-field {
+    width: 100%;
+}
+
 .bottom-input-area textarea {
     width: 100%;
     padding: 16px;
@@ -159,10 +239,17 @@ body {
     color: var(--color-text-light);
 }
 
-.bottom-input-area textarea::placeholder { color: var(--color-text-secondary); }
+.bottom-input-area textarea::placeholder {
+    color: var(--color-text-secondary);
+}
 
 /* ===== EXCLAMATION ICON & TOOLTIP (Standard Styling) ===== */
-.info-wrapper { position: relative; display: inline-flex; align-items: center; }
+.info-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
 .info-icon {
     margin-left: 10px;
     background: var(--color-accent-blue-neon);
@@ -194,7 +281,12 @@ body {
 }
 
 /* ===== BUTTONS (Generate/Back) ===== */
-.generate-button-wrapper { display: flex; justify-content: space-between; margin-top: 20px; }
+.generate-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
 .btn-back {
     background: var(--color-card-bg);
     color: var(--color-text-light);
@@ -207,7 +299,9 @@ body {
     transition: 0.3s;
 }
 
-.btn-back:hover { background: var(--color-hover-bg); }
+.btn-back:hover {
+    background: var(--color-hover-bg);
+}
 
 .btn-generate {
     background: var(--color-accent-blue-neon);
@@ -233,7 +327,7 @@ body {
 /* ========================================================== */
 
 .popup-overlay {
-    display: flex; 
+    display: flex;
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.85);
@@ -247,14 +341,15 @@ body {
     color: var(--color-text-light);
     border-radius: 12px;
     /* 🔥 FIX 1: Maximize height and width for fuller feel */
-    width: 700px; 
+    width: 700px;
     max-width: 90%;
-    max-height: 95vh; /* Ditingkatkan agar pop-up terlihat lebih full */
+    max-height: 95vh;
+    /* Ditingkatkan agar pop-up terlihat lebih full */
     overflow-y: auto;
     border: 1px solid var(--color-accent-blue-mid);
     box-shadow: 0 0 25px var(--color-accent-blue-neon);
-    position: relative; 
-    padding: 20px 25px; 
+    position: relative;
+    padding: 20px 25px;
 }
 
 /* --- Posisi Tombol Tutup (Sesuai Permintaan) --- */
@@ -267,8 +362,8 @@ body {
     cursor: pointer;
     font-size: 16px;
     position: absolute;
-    top: 15px; 
-    right: 15px; 
+    top: 15px;
+    right: 15px;
     width: 30px;
     height: 30px;
     display: flex;
@@ -284,7 +379,7 @@ body {
     margin-bottom: 20px;
     border-bottom: 2px solid var(--color-border-dark);
     padding-bottom: 10px;
-    padding-top: 10px; 
+    padding-top: 10px;
 }
 
 /* --- Result Sections --- */
@@ -296,17 +391,33 @@ body {
     border: 1px solid var(--color-accent-blue-mid);
 }
 
-.result-header h3 { margin: 0 0 5px 0; font-size: 1.2em; color: var(--color-accent-blue-neon); }
-.match-score { font-size: 1.1em; font-weight: 500; margin-top: 10px; }
-.score { color: #FFD700; font-size: 1.2em; font-weight: bold; }
+.result-header h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    color: var(--color-accent-blue-neon);
+}
+
+.match-score {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.score {
+    color: #FFD700;
+    font-size: 1.2em;
+    font-weight: bold;
+}
 
 .result-section {
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
     padding: 10px 0;
     border-bottom: 1px solid var(--color-border-dark);
 }
 
-.result-section:last-of-type { border-bottom: none; }
+.result-section:last-of-type {
+    border-bottom: none;
+}
 
 .result-section h4 {
     font-size: 1.1em;
@@ -317,7 +428,11 @@ body {
     padding-left: 10px;
 }
 
-.result-section ul { list-style: none; padding-left: 0; }
+.result-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
 .result-section li {
     background-color: var(--color-input-bg);
     padding: 6px 10px;
@@ -327,7 +442,11 @@ body {
     color: var(--color-text-secondary);
 }
 
-.property-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
 
 /* --- Safety Risk Styling --- */
 .risk-level {
@@ -339,17 +458,31 @@ body {
     font-size: 0.85em;
 }
 
-.risk-rendah { background-color: #27ae60; color: white; }
-.risk-sedang { background-color: #f39c12; color: var(--color-dark-bg); }
-.risk-tinggi { background-color: var(--color-reset); color: white; }
-.risk-na { background-color: var(--color-text-secondary); }
+.risk-rendah {
+    background-color: #27ae60;
+    color: white;
+}
+
+.risk-sedang {
+    background-color: #f39c12;
+    color: var(--color-dark-bg);
+}
+
+.risk-tinggi {
+    background-color: var(--color-reset);
+    color: white;
+}
+
+.risk-na {
+    background-color: var(--color-text-secondary);
+}
 
 #resultPopup .feedback-section {
     background-color: var(--color-card-bg);
     border: 1px solid var(--color-border-dark);
     padding: 15px;
     border-radius: 8px;
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 #resultPopup .feedback-section h4 {
@@ -369,17 +502,18 @@ body {
 #resultPopup .feedback-input {
     width: 100%;
     /* Padding disesuaikan dengan input form utama */
-    padding: 14px; 
-    
+    padding: 14px;
+
     /* Border dan background serasi dengan form utama */
-    border: 1px solid var(--color-accent-blue-mid); 
-    border-radius: 8px; 
+    border: 1px solid var(--color-accent-blue-mid);
+    border-radius: 8px;
     background: var(--color-input-bg);
     color: var(--color-text-light);
-    
+
     font-size: 15px;
     outline: none;
-    box-sizing: border-box; /* Pastikan padding tidak merusak width: 100% */
+    box-sizing: border-box;
+    /* Pastikan padding tidak merusak width: 100% */
     transition: border-color 0.3s;
 }
 
@@ -397,17 +531,18 @@ body {
 #resultPopup .result-actions {
     display: flex;
     /* 🔥 FIX: Pisahkan Reset (Kiri) dari Aksi Utama (Kanan) */
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
     padding-top: 15px;
-    margin-top: 20px; /* Jarak dari feedback section */
-    border-top: 1px solid var(--color-border-dark); 
+    margin-top: 20px;
+    /* Jarak dari feedback section */
+    border-top: 1px solid var(--color-border-dark);
 }
 
 #resultPopup .action-group-right {
     display: flex;
-    gap: 10px; 
+    gap: 10px;
     align-items: center;
 }
 
@@ -427,7 +562,7 @@ body {
 
 /* Tombol GENERATE REKOMENDASI ULANG (Refine) */
 #resultPopup .btn-refine {
-    background-color: var(--color-refine); 
+    background-color: var(--color-refine);
     color: var(--color-dark-bg);
 }
 
@@ -438,22 +573,23 @@ body {
 
 /* Tombol SAVE & SELESAI (Finalisasi) */
 #resultPopup .btn-save {
-    background-color: var(--color-save); 
+    background-color: var(--color-save);
     color: white;
 }
 
 #resultPopup .btn-save:hover {
-    background-color: #16a085; 
+    background-color: #16a085;
 }
 
 /* Tombol MULAI SESI BARU (Reset) */
 #resultPopup .btn-reset-form {
     background-color: transparent;
     color: var(--color-text-secondary);
-    border: 1px solid var(--color-border-dark); 
-    padding: 8px 14px; 
+    border: 1px solid var(--color-border-dark);
+    padding: 8px 14px;
     font-size: 13px;
-    order: -1; /* Memastikan di paling kiri */
+    order: -1;
+    /* Memastikan di paling kiri */
 }
 
 #resultPopup .btn-reset-form:hover {
@@ -461,116 +597,7 @@ body {
     color: var(--color-accent-blue-neon);
 }
 
-/* --- Progress Display Styles --- */
-#ai-progress-display { padding: 10px 0; }
-.ai-steps { list-style: none; padding-left: 0; margin-top: 15px; }
-.ai-steps li {
-    padding: 8px 12px;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    font-size: 14px;
-    background-color: var(--color-input-bg);
-    color: var(--color-text-secondary);
-    transition: background-color 0.3s, color 0.3s;
-    opacity: 0.6;
-}
-
-.ai-steps li.active {
-    background-color: var(--color-hover-bg);
-    color: var(--color-accent-blue-neon);
-    font-weight: 500;
-    opacity: 1;
-    border-left: 3px solid var(--color-accent-blue-neon);
-}
-
-.loading-bar {
-    height: 4px;
-    width: 100%;
-    margin-top: 20px;
-    background-color: var(--color-input-bg);
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.loading-bar::before {
-    content: '';
-    display: block;
-    height: 100%;
-    width: 50%;
-    background-color: var(--color-accent-blue-neon);
-    animation: loading-fill 2s infinite linear;
-}
-
-@keyframes loading-fill {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
-}
-
-.btn-generate.loading {
-    background-color: var(--color-accent-blue-mid); 
-    cursor: wait;
-    opacity: 0.8;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(0, 191, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 191, 255, 0); }
-}
-
-/* Gaya untuk Popup saat Error */
-.error-state {
-    background-color: #3b1f1f; 
-    border: 1px solid var(--color-reset);
-    color: white;
-}
-
-
-/* ===== RESPONSIVE DESIGN (Final) ===== */
-@media (max-width: 992px) {
-    .app-wrapper { flex-direction: column; }
-    .sidebar-container { width: 100%; flex-direction: row; overflow-x: auto; padding: 14px; gap: 12px; }
-    .history-section { display: none; }
-    .main-content { padding: 24px; }
-    .input-row { flex-direction: column; }
-}
-
-@media (max-width: 768px) {
-    .main-content { padding: 20px; }
-    .form-title { font-size: 22px; }
-    .btn-generate, .btn-back { width: 100%; text-align: center; }
-    .generate-button-wrapper { flex-direction: column; gap: 12px; }
-    
-    /* Popup di layar kecil */
-    .popup-box { width: 95%; max-width: 95%; padding: 18px; }
-
-    /* Penempatan Tombol di Mobile (Vertical Stack) */
-    .result-actions { 
-        flex-direction: column; 
-        gap: 10px;
-    }
-    
-    .action-group-right { 
-        flex-direction: column; 
-        width: 100%; 
-        gap: 10px; 
-        order: -1; /* Pindah grup Refine/Save ke atas */
-    }
-    
-    .btn-action { justify-content: center; width: 100%; }
-    .btn-reset-form { order: 99; margin: 10px 0 0 0; } /* Pindah reset ke paling bawah di mobile */
-}
-
-@media (max-width: 480px) {
-    .sidebar-container { flex-direction: column; }
-    .btn-new-chat { padding: 10px 14px; }
-    .search-box { padding: 8px 10px; }
-    .form-section-title { font-size: 16px; }
-    .input-field { font-size: 14px; }
-}
-
-/* --- Gaya untuk Progres AI --- */
+/* --- Progress Display Styles (Digunakan untuk loading generate) --- */
 #ai-progress-display {
     padding: 10px 0;
 }
@@ -619,13 +646,266 @@ body {
 }
 
 @keyframes loading-fill {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+.btn-generate.loading {
+    background-color: var(--color-accent-blue-mid);
+    cursor: wait;
+    opacity: 0.8;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 191, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 191, 255, 0);
+    }
 }
 
 /* Gaya untuk Popup saat Error */
 .error-state {
-    background-color: #3b1f1f; /* Background merah gelap */
-    border: 1px solid #e74c3c;
+    background-color: #3b1f1f;
+    border: 1px solid var(--color-reset);
+    color: white;
+}
+
+
+/* ===== RESPONSIVE DESIGN (Final) ===== */
+@media (max-width: 992px) {
+    .app-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar-container {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .history-section {
+        display: none;
+    }
+
+    .main-content {
+        padding: 24px;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .btn-generate,
+    .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+
+    .generate-button-wrapper {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* Popup di layar kecil */
+    .popup-box {
+        width: 95%;
+        max-width: 95%;
+        padding: 18px;
+    }
+
+    /* Penempatan Tombol di Mobile (Vertical Stack) */
+    .result-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-group-right {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        order: -1;
+        /* Pindah grup Refine/Save ke atas */
+    }
+
+    .btn-action {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .btn-reset-form {
+        order: 99;
+        margin: 10px 0 0 0;
+    }
+
+    /* Pindah reset ke paling bawah di mobile */
+}
+
+@media (max-width: 480px) {
+    .sidebar-container {
+        flex-direction: column;
+    }
+
+    .btn-new-chat {
+        padding: 10px 14px;
+    }
+
+    .search-box {
+        padding: 8px 10px;
+    }
+
+    .form-section-title {
+        font-size: 16px;
+    }
+
+    .input-field {
+        font-size: 14px;
+    }
+}
+
+/* --- Gaya untuk Progres AI --- */
+/* Blok ini hanya duplikasi dari yang atas, DIBIARKAN SEMENTARA untuk menghindari bug */
+#ai-progress-display {
+    padding: 10px 0;
+}
+
+.ai-steps {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.ai-steps li {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--color-input-bg);
+    color: var(--color-text-secondary);
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.6;
+}
+
+.ai-steps li.active {
+    background-color: var(--color-hover-bg);
+    color: var(--color-accent-blue-neon);
+    font-weight: 500;
+    opacity: 1;
+    border-left: 3px solid var(--color-accent-blue-neon);
+}
+
+.loading-bar {
+    height: 4px;
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--color-input-bg);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 50%;
+    background-color: var(--color-accent-blue-neon);
+    animation: loading-fill 2s infinite linear;
+}
+
+@keyframes loading-fill {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+
+/* ========================================================== */
+/* 🔥 TAMBAHAN AKSI LANJUTAN (Loading Spinner & Custom Modal) 🔥 */
+/* ========================================================== */
+
+/* 🔥 FIXED: Style untuk tombol kustom di modal simpan */
+.btn-modal-action {
+    /* Copy style dasar dari .btn-action agar tidak merusak tombol generate */
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s, opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Tambahkan ini agar teks OK/Selesai di tengah */
+    gap: 8px;
+    width: 100px;
+    /* Lebar tetap untuk tombol OK/Selesai */
+}
+
+/* Style Modal Container */
+.custom-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100px;
+}
+
+/* Style Spinner */
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--color-accent-blue-neon);
+    /* Menggunakan warna neon */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-top: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Gaya untuk Popup saat Error */
+.error-state {
+    background-color: #3b1f1f;
+    /* Background merah gelap */
+    border: 1px solid var(--color-error);
     color: white;
 }

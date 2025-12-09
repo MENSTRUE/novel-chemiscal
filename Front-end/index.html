@@ -7,16 +7,14 @@
 
     <link rel="stylesheet" href="css/style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght=400;700&display=swap"
       rel="stylesheet"
     />
   </head>
 
   <body>
-    <!-- Page transition overlay (removed after first visit) -->
     <div id="page-transition" class="page-transition" aria-hidden="true">
       <div class="pt-inner">
-        <!-- SVG logo with stroke for draw animation -->
         <svg
           class="pt-logo"
           width="160"
@@ -49,33 +47,58 @@
         </div>
       </div>
     </div>
-    <!-- ================= HEADER ================= -->
+
+    <aside id="mobile-sidebar" class="mobile-sidebar">
+      <nav>
+        <ul class="sidebar-list">
+          <li>
+            <a class="sidebar-link" href="#home"><span>Home</span></a>
+          </li>
+          <li>
+            <a class="sidebar-link" href="#explore"><span>Explore</span></a>
+          </li>
+          <li>
+            <a class="sidebar-link" href="#about"><span>About</span></a>
+          </li>
+          <li>
+            <a class="sidebar-link" href="#OurTeam"><span>OurTeam</span></a>
+          </li>
+        </ul>
+      </nav>
+      <button id="close-sidebar-btn" class="close-btn" aria-label="Tutup Menu">
+        &times;
+      </button>
+    </aside>
     <header class="navbar">
-  <div class="logo">ChemisTry</div>
+      <div class="logo">ChemisTry</div>
 
-  <nav class="main-nav" id="main-nav"> <ul class="nav-list">
-      <li>
-        <a class="nav-link" href="#home"><span>Home</span></a>
-      </li>
-      <li>
-        <a class="nav-link" href="#explore"><span>Explore</span></a>
-      </li>
-      <li>
-        <a class="nav-link" href="#about"><span>About</span></a>
-      </li>
-    </ul>
-  </nav>
+      <nav class="desktop-nav">
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="#home"><span>Home</span></a>
+          </li>
+          <li>
+            <a class="nav-link" href="#explore"><span>Explore</span></a>
+          </li>
+          <li>
+            <a class="nav-link" href="#about"><span>About</span></a>
+          </li>
+          <li>
+            <a class="nav-link" href="#OurTeam"><span>OurTeam</span></a>
+          </li>
+        </ul>
+      </nav>
+      <button
+        id="open-sidebar-btn"
+        class="menu-toggle-btn"
+        aria-label="Buka Menu"
+      >
+        &#9776;
+      </button>
 
-  <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
-    <span class="sr-only">Buka Menu</span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-  <div class="nav-actions" aria-hidden="true"></div>
-</header>
+      <div class="nav-actions" aria-hidden="true"></div>
+    </header>
 
-    <!-- ================= HERO SECTION ================= -->
     <main id="home" class="hero">
       <div class="hero-content">
         <p class="quote">
@@ -86,12 +109,8 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="ui/explorasi.html" class="btn btn-start"
-            >GET START</a
-          >
-          <a href="ui/generate-page.html" class="btn btn-generate"
-            >GENERATE</a
-          >
+          <a href="ui/explorasi.html" class="btn btn-start">GET START</a>
+          <a href="ui/generate-page.html" class="btn btn-generate">GENERATE</a>
         </div>
       </div>
 
@@ -103,7 +122,6 @@
       </div>
     </main>
 
-    <!-- ================= EXPLORE SECTION ================= -->
     <section id="explore" class="section explore-section">
       <div class="section-container">
         <h2>Explore: Dunia Senyawa Kimia</h2>
@@ -144,7 +162,6 @@
       </div>
     </section>
 
-    <!-- ================= ABOUT SECTION ================= -->
     <section id="about" class="section about-section">
       <div class="section-container split-content">
         <div class="text-content">
@@ -174,97 +191,57 @@
         </div>
       </div>
     </section>
+<section id="OurTeam" class="section team-section">
+  <div class="section-container">
+    <h2>Our Team</h2>
+    <p class="subtitle">Berkenalan dengan tim luar biasa di balik ChemisTry</p>
 
-    <!-- ================= FOOTER ================= -->
+    <div class="team-grid">
+
+      <div class="team-card">
+        <img src="asset/ifan.png" alt="Anggota Tim 1" class="team-photo" />
+        <h3 class="team-name">Danica Dwifananda</h3>
+        <p class="team-campus">Universitas Gunadarma</p>
+        <p class="team-field">Kimia Material</p>
+      </div>
+
+      <div class="team-card">
+        <img src="asset/ifan.png" alt="Anggota Tim 1" class="team-photo" />
+        <h3 class="team-name">Nadia Azzahra</h3>
+        <p class="team-campus">Universitas Indonesia</p>
+        <p class="team-field">Kimia Organik</p>
+      </div>
+
+      <div class="team-card">
+        <img src="asset/ifan.png" alt="Anggota Tim 1" class="team-photo" />
+        <h3 class="team-name">Dimas Wijaya</h3>
+        <p class="team-campus">Universitas Gadjah Mada</p>
+        <p class="team-field">Katalis & Energi</p>
+      </div>
+
+      <div class="team-card">
+        <img src="asset/ifan.png" alt="Anggota Tim 1" class="team-photo" />
+        <h3 class="team-name">Keisha Laras</h3>
+        <p class="team-campus">ITS Surabaya</p>
+        <p class="team-field">Biokimia Terapan</p>
+      </div>
+
+      <div class="team-card">
+        <img src="asset/ifan.png" alt="Anggota Tim 1" class="team-photo" />
+        <h3 class="team-name">Fajar Aditya</h3>
+        <p class="team-campus">Universitas Padjadjaran</p>
+        <p class="team-field">Kimia Komputasi</p>
+      </div>
+
+    </div>
+  </div>
+</section>
     <footer class="footer">
       <p>&copy; 2025 ChemisTry. All Rights Reserved.</p>
     </footer>
+
     <script src="js/transition.js"></script>
-    <script>
-      // Attach click handlers to internal links that should use the exit transition
-      (function () {
-        function attachNav() {
-          var anchors = document.querySelectorAll(
-            'a[href$="explorasi.html"], a[href$="generate-page.html"], a[href$="tabel-periodik.html"]'
-          );
-          anchors.forEach(function (a) {
-            a.addEventListener("click", function (e) {
-              var href = a.getAttribute("href");
-              if (!href) return;
-              e.preventDefault();
-              var variant = "slide";
-              if (href.endsWith("explorasi.html")) variant = "reveal";
-              if (href.endsWith("tabel-periodik.html")) variant = "mosaic";
-              var coords = { x: e.clientX, y: e.clientY };
-              if (window.navigateWithTransition) {
-                window.navigateWithTransition(href, 750, variant, coords);
-              } else {
-                window.location.href = href;
-              }
-            });
-          });
-        }
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", attachNav);
-        } else {
-          attachNav();
-        }
-      })();
-
-      // Tambahkan JS untuk Hamburger Menu
-  document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.querySelector(".menu-toggle");
-    const nav = document.getElementById("main-nav");
-    const header = document.querySelector(".navbar");
-
-    function closeMenu() {
-        menuToggle.setAttribute("aria-expanded", "false");
-        header.classList.remove("nav-open");
-        nav.classList.remove("is-active");
-        document.body.classList.remove("no-scroll");
-    }
-
-    menuToggle.addEventListener("click", () => {
-        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
-        
-        // Toggle atribut
-        menuToggle.setAttribute("aria-expanded", !isExpanded);
-        header.classList.toggle("nav-open");
-        nav.classList.toggle("is-active"); 
-        
-        // Hanya tambahkan no-scroll jika di mobile
-        if (window.innerWidth <= 900) {
-            document.body.classList.toggle("no-scroll");
-        }
-    });
-    
-    // PERBAIKAN: Menutup menu ketika mengklik di luar sidebar
-    header.addEventListener("click", (e) => {
-        // PENTING: Periksa apakah layar berada dalam mode mobile
-        if (window.innerWidth <= 900) {
-            // Jika navbar terbuka, DAN target yang diklik BUKAN bagian dari navigasi (sidebar) dan BUKAN tombol toggle
-            if (header.classList.contains("nav-open") && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
-                // Ini berarti pengguna mengklik area overlay gelap
-                closeMenu();
-            }
-        }
-    });
-
-    // Opsional: Tutup menu saat mengklik tautan
-    document.querySelectorAll(".nav-link").forEach(link => {
-        link.addEventListener("click", () => {
-            if (window.innerWidth <= 900) { // Hanya berlaku di mobile
-                closeMenu();
-            }
-        });
-    });
-});
-
-
-    </script>
-
-    
-
+    <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
   </body>
 </html>
