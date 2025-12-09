@@ -40,229 +40,48 @@
     </section>
 
     <section class="section reactor-section">
-      <div class="reactor-container">
-        <h2>Reaktor Senyawa</h2>
+      <div class="reactor-container">
+        <h2>Reaktor Senyawa</h2>
 
-        <div class="reactor-boxes">
-          <div class="compound-box">
-            <p>Pilih senyawa pertama</p>
-          </div>
+        <div class="reactor-boxes">
+          <div class="compound-box">
+            <p>Pilih senyawa pertama</p>
+          </div>
 
-          <div class="plus-icon">+</div>
+          <div class="plus-icon">+</div>
 
-          <div class="compound-box">
-            <p>Pilih senyawa kedua</p>
-          </div>
-        </div>
+          <div class="compound-box">
+            <p>Pilih senyawa kedua</p>
+          </div>
+        </div>
 
-        <div class="reactor-actions">
-          <button class="btn btn-gabung">
-            <i class="fas fa-magic"></i> Gabungkan Senyawa
-          </button>
-          <button class="btn btn-reset">Reset</button>
-        </div>
-      </div>
-    </section>
+        <div class="reactor-actions">
+          <button class="btn btn-gabung">
+            <i class="fas fa-magic"></i> Gabungkan Senyawa
+          </button>
+          <button class="btn btn-reset">Reset</button>
+        </div>
+      </div>
+    </section>
 
-    <!-- ganti pake data asli -->
+    <div id="reactionResultArea"></div>
 
-    <section class="section library-section">
-      <div class="library-container">
-        <h3>Perpustakaan Senyawa</h3>
-        <p class="library-subtitle">
-          Klik pada senyawa untuk memilihnya (maksimal 2 senyawa)
-        </p>
+    <section class="section library-section">
+      <div class="library-container">
+        <h3>Perpustakaan Senyawa</h3>
+        <p class="library-subtitle">
+          Klik pada senyawa untuk memilihnya (maksimal 2 senyawa)
+        </p>
 
-        <div class="compound-grid">
-          <div class="compound-card water">
-            <div class="formula-circle">H₂O</div>
-            <h4>Air</h4>
-            <p class="formula-text">H₂O</p>
-            <p class="description">
-              Senyawa penting untuk kehidupan, terdiri dari hidrogen dan oksigen
-            </p>
-          </div>
+                <div class="compound-grid">
+          <p>Loading Compound Data...</p>         </div>
+      </div>
+    </section>
 
-          <div class="compound-card salt">
-            <div class="formula-circle">NaCl</div>
-            <h4>Garam Dapur</h4>
-            <p class="formula-text">NaCl</p>
-            <p class="description">
-              Natrium klorida, digunakan sebagai bumbu masakan
-            </p>
-          </div>
-
-          <div class="compound-card co2">
-            <div class="formula-circle">CO₂</div>
-            <h4>Karbon Dioksida</h4>
-            <p class="formula-text">CO₂</p>
-            <p class="description">
-              Gas yang dihasilkan dari respirasi dan pembakaran
-            </p>
-          </div>
-
-          <div class="compound-card sulfat">
-            <div class="formula-circle">H₂SO₄</div>
-            <h4>Asam Sulfat</h4>
-            <p class="formula-text">H₂SO₄</p>
-            <p class="description">Asam kuat yang digunakan dalam industri</p>
-          </div>
-
-          <div class="compound-card oksigen">
-            <div class="formula-circle">O₂</div>
-            <h4>Oksigen</h4>
-            <p class="formula-text">O₂</p>
-            <p class="description">Gas penting untuk respirasi makhluk hidup</p>
-          </div>
-
-          <div class="compound-card metana">
-            <div class="formula-circle">CH₄</div>
-            <h4>Metana</h4>
-            <p class="formula-text">CH₄</p>
-            <p class="description">
-              Gas alam yang digunakan sebagai bahan bakar
-            </p>
-          </div>
-
-          <div class="compound-card amonia">
-            <div class="formula-circle">NH₃</div>
-            <h4>Amonia</h4>
-            <p class="formula-text">NH₃</p>
-            <p class="description">Senyawa nitrogen dengan bau menyengat</p>
-          </div>
-
-          <div class="compound-card glukosa">
-            <div class="formula-circle">C₆H₁₂O₆</div>
-            <h4>Glukosa</h4>
-            <p class="formula-text">C₆H₁₂O₆</p>
-            <p class="description">
-              Gula sederhana yang merupakan sumber energi utama
-            </p>
-          </div>
-
-          <div class="compound-card kalsium">
-            <div class="formula-circle">CaO</div>
-            <h4>Kalsium Oksida</h4>
-            <p class="formula-text">CaO</p>
-            <p class="description">
-              Kapur tohor yang digunakan dalam konstruksi
-            </p>
-          </div>
-
-          <div class="compound-card etanol">
-            <div class="formula-circle">C₂H₅OH</div>
-            <h4>Etanol</h4>
-            <p class="formula-text">C₂H₅OH</p>
-            <p class="description">
-              Alkohol yang terdapat dalam minuman beralkohol
-            </p>
-          </div>
-
-          <div class="compound-card besi">
-            <div class="formula-circle">Fe₂O₃</div>
-            <h4>Besi Oksida</h4>
-            <p class="formula-text">Fe₂O₃</p>
-            <p class="description">Karat yang terbentuk dari besi</p>
-          </div>
-
-          <div class="compound-card hcl-2">
-            <div class="formula-circle">HCl</div>
-            <h4>Asam Klorida</h4>
-            <p class="formula-text">HCl</p>
-            <p class="description">Asam kuat yang terdapat dalam lambung</p>
-          </div>
-
-          <div class="compound-card NaOH">
-            <div class="formula-circle">NaOH</div>
-            <h4>Natrium Hidroksida</h4>
-            <p class="formula-text">NaOH</p>
-            <p class="description">Basa kuat, dikenal sebagai soda kaustik</p>
-          </div>
-
-          <div class="compound-card c6h6">
-            <div class="formula-circle">C₆H₆</div>
-            <h4>Benzena</h4>
-            <p class="formula-text">C₆H₆</p>
-            <p class="description">Senyawa organik aromatik sederhana</p>
-          </div>
-
-          <div class="compound-card ch3cooh">
-            <div class="formula-circle">CH₃COOH</div>
-            <h4>Asam Asetat</h4>
-            <p class="formula-text">CH₃COOH</p>
-            <p class="description">Komponen utama cuka</p>
-          </div>
-
-          <div class="compound-card kcl">
-            <div class="formula-circle">KCl</div>
-            <h4>Kalium Klorida</h4>
-            <p class="formula-text">KCl</p>
-            <p class="description">Pengganti garam dan pupuk</p>
-          </div>
-
-          <div class="compound-card no">
-            <div class="formula-circle">NO</div>
-            <h4>Nitrogen Monoksida</h4>
-            <p class="formula-text">NO</p>
-            <p class="description">Gas sinyal penting dalam biologi</p>
-          </div>
-
-          <div class="compound-card hf">
-            <div class="formula-circle">HF</div>
-            <h4>Asam Fluorida</h4>
-            <p class="formula-text">HF</p>
-            <p class="description">Asam yang dapat melarutkan kaca</p>
-          </div>
-
-          <div class="compound-card mgcl2">
-            <div class="formula-circle">MgCl₂</div>
-            <h4>Magnesium Klorida</h4>
-            <p class="formula-text">MgCl₂</p>
-            <p class="description">Ditemukan dalam air laut</p>
-          </div>
-
-          <div class="compound-card n2o">
-            <div class="formula-circle">N₂O</div>
-            <h4>Dinitrogen Monoksida</h4>
-            <p class="formula-text">N₂O</p>
-            <p class="description">Gas tertawa, digunakan sebagai anestesi</p>
-          </div>
-
-          <div class="compound-card cuso4">
-            <div class="formula-circle">CuSO₄</div>
-            <h4>Tembaga Sulfat</h4>
-            <p class="formula-text">CuSO₄</p>
-            <p class="description">Zat kimia berwarna biru yang beracun</p>
-          </div>
-
-          <div class="compound-card nano3">
-            <div class="formula-circle">NaNO₃</div>
-            <h4>Natrium Nitrat</h4>
-            <p class="formula-text">NaNO₃</p>
-            <p class="description">Dikenal sebagai "Chile saltpeter", pupuk</p>
-          </div>
-
-          <div class="compound-card c2h4">
-            <div class="formula-circle">C₂H₄</div>
-            <h4>Etena (Etilen)</h4>
-            <p class="formula-text">C₂H₄</p>
-            <p class="description">Hormon pematangan buah</p>
-          </div>
-
-          <div class="compound-card kmnO4">
-            <div class="formula-circle">KMnO₄</div>
-            <h4>Kalium Permanganat</h4>
-            <p class="formula-text">KMnO₄</p>
-            <p class="description">Zat pengoksidasi kuat, berwarna ungu tua</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer-lab">
-      <p>
-        Eksplorasi Senyawa Kimia - Belajar kimia dengan cara yang interaktif
-      </p>
-    </footer>
-  </body>
+    <footer class="footer-lab">
+      <p>
+        Eksplorasi Senyawa Kimia - Belajar kimia dengan cara yang interaktif
+      </p>
+    </footer>
+  </body>
 </html>

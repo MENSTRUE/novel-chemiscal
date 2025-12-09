@@ -1,6 +1,8 @@
 install library
 
 pip install fastapi uvicorn chromadb sentence-transformers google-generativeai python-dotenv httpx
+pip install langchain-community
+pip install google-genai
 pip install langchain-huggingface
 
  cd .\beckend\

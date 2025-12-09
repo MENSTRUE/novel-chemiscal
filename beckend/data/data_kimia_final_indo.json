@@ -48296,5 +48296,36 @@
     "skor_kecocokan": 95,
     "justifikasi_ringkas": "Dimethicone sangat cocok untuk kosmetik tahan air karena sifatnya yang membentuk lapisan hidrofobik, memberikan rasa halus, dan stabilitas yang sangat baik pada kulit.",
     "id": "Dimethicone"
+  },
+  {
+    "nama_senyawa": "Perfluorohexane",
+    "rumus_molekul": "C6F14",
+    "berat_molekul": 338.03,
+    "sinonim": "Tetradecafluorohexane, FC-72",
+    "deskripsi": "Perfluorohexane adalah cairan bening, tidak berwarna, dan tidak berbau, termasuk dalam golongan perfluorokarbon. Senyawa ini dikenal karena sifatnya yang sangat hidrofobik dan lipofobik, serta tegangan permukaan yang sangat rendah, menjadikannya pelarut non-pembasah yang sangat baik. Ia stabil secara termal dan kimia, tidak mudah terbakar, dan memiliki toksisitas yang relatif rendah.",
+    "titik_didih_celsius": 56,
+    "titik_leleh_celsius": -85,
+    "densitas_gcm3": 1.68,
+    "pernyataan_bahaya_ghs": "H412 (Berbahaya bagi kehidupan akuatik dengan efek jangka panjang)",
+    "kategori_aplikasi": "Pelarut khusus, cairan pendingin dielektrik, media perpindahan panas, cairan uji kebocoran, pembersihan presisi",
+    "sifat_fungsional": "Pelarut non-polar, non-pembasah (tegangan permukaan rendah), tidak mudah terbakar, stabil secara kimia, dielektrik",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Toksisitas akut rendah, dapat menyebabkan iritasi ringan pada kulit dan mata. Inhalasi konsentrasi tinggi dapat menyebabkan efek anestesi. Persisten di lingkungan.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 9,
+        "nama_unsur": "Fluor",
+        "simbol": "F"
+      }
+    ],
+    "skor_kecocokan": 5,
+    "justifikasi_ringkas": "Perfluorohexane adalah pelarut perfluorokarbon yang sangat efektif dengan tegangan permukaan sangat rendah, menjadikannya pilihan ideal sebagai pelarut non-pembasah yang stabil dan tidak mudah terbakar.",
+    "id": "Perfluorohexane"
   }
 ]

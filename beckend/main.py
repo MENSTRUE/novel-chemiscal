@@ -311,3 +311,15 @@ def combine_compounds(req: CombineRequest):
 def health_check():
     # Cek status RAG
     return {"status": "healthy", "rag_initialized": rag.is_indexed}
+
+@app.get("/get_all_compounds")
+def get_all_compounds():
+    """Endpoint untuk mendapatkan semua data senyawa dari database."""
+    try:
+        with open(DATA_FILE_PATH, 'r', encoding='utf-8') as f:
+            data_list = json.load(f)
+        return data_list
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Database senyawa tidak ditemukan.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Gagal memuat data: {str(e)}")
