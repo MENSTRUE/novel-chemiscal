@@ -48327,5 +48327,41 @@
     "skor_kecocokan": 5,
     "justifikasi_ringkas": "Perfluorohexane adalah pelarut perfluorokarbon yang sangat efektif dengan tegangan permukaan sangat rendah, menjadikannya pilihan ideal sebagai pelarut non-pembasah yang stabil dan tidak mudah terbakar.",
     "id": "Perfluorohexane"
+  },
+  {
+    "nama_senyawa": "Fenol",
+    "rumus_molekul": "C6H6O",
+    "berat_molekul": 94.11,
+    "sinonim": "Asam Karbolat, Benzenol, Hidroksibenzena",
+    "deskripsi": "Fenol adalah senyawa organik aromatik yang bersifat asam lemah, dikenal sebagai pelarut dan disinfektan. Ini adalah padatan kristal putih yang mudah menguap, berbau khas, dan korosif. Fenol dapat menyebabkan denaturasi protein dan kerusakan membran sel, menjadikannya agen antiseptik dan biosida yang efektif. Namun, ia sangat beracun dan korosif bagi jaringan hidup.",
+    "titik_didih_celsius": 181.7,
+    "titik_leleh_celsius": 40.9,
+    "densitas_gcm3": 1.071,
+    "pernyataan_bahaya_ghs": "H301 (Toksik jika tertelan), H311 (Toksik jika bersentuhan dengan kulit), H314 (Menyebabkan luka bakar kulit dan kerusakan mata serius), H331 (Toksik jika terhirup), H341 (Diduga menyebabkan cacat genetik), H373 (Dapat menyebabkan kerusakan organ melalui paparan berulang atau berkepanjangan).",
+    "kategori_aplikasi": "Pelarut, Antiseptik, Disinfektan, Bahan baku industri kimia (resin, nilon, deterjen).",
+    "sifat_fungsional": "Pelarut, Antiseptik, Disinfektan, Korosif, Toksik, Denaturasi protein.",
+    "tingkat_risiko_keselamatan": "Tinggi",
+    "bahaya_keselamatan": "Sangat korosif terhadap kulit dan mata, toksik jika tertelan, terhirup, atau terserap kulit. Dapat menyebabkan kerusakan organ dan diduga karsinogenik.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 90,
+    "justifikasi_ringkas": "Fenol adalah pelarut yang efektif dan agen biosida kuat yang bekerja dengan mendenaturasi protein dan merusak membran sel, secara langsung menghambat fungsi seluler dan kemampuan 'lifesteal' organisme, serta mencegah regenerasi jaringan.",
+    "id": "Fenol"
   }
 ]

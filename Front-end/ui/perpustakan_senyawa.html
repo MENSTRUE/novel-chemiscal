@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Senyawa Kimia</title>
+    
+    <link rel="stylesheet" href="../css/perpustakaan_senyawa.css"> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script defer src="../js/perpustakaan_senyawa.js"></script> 
+</head>
+<body>
+
+    <header class="header">
+        <a href="../../index.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+        <div class="logo">ChemisTry Library</div>
+    </header>
+
+    <section class="library-page-hero">
+        <div class="library-content-container">
+            <h1>Perpustakaan Senyawa</h1>
+            <p>Telusuri dan cari ribuan senyawa kimia yang tersedia dalam database.</p>
+        </div>
+    </section>
+
+    <section class="section search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, rumus, atau deskripsi..." aria-label="Cari Senyawa">
+            </div>
+            <p id="compoundCount" class="count-text">Memuat...</p>
+        </div>
+    </section>
+
+    <section class="section compound-list-section">
+        <div class="list-container">
+            <div class="compound-grid" id="compoundGrid">
+                <p class="loading-message">Memuat data dari database...</p>
+                </div>
+        </div>
+    </section>
+    
+    <div id="compoundDetailPopup" class="popup-overlay" style="display: none;">
+        </div>
+
+    <footer class="footer">
+        <p>
+            Perpustakaan Senyawa Kimia - Data dinamis dari ChemisTry Agentic API.
+        </p>
+    </footer>
+
+</body>
+</html>

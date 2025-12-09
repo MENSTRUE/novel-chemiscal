@@ -1,0 +1,281 @@
+/* FILE: perpustakaan_senyawa.css (KODE FINAL DAN BERSIH) */
+
+:root {
+    --color-dark-bg: #000000;
+    --color-darker-bg: #0a0a0a;
+    --color-card-bg: #111111;
+    --color-input-bg: #1f1f2e;
+    --color-text-light: #ffffff;
+    --color-text-secondary: #aaaaaa;
+    --color-accent-blue-neon: #00bfff;
+    --color-accent-blue-mid: #4a90e2;
+    --color-reset: #e74c3c;
+    --color-border-dark: rgba(255, 255, 255, 0.1);
+    --color-success: #2ecc71;
+    --color-error: #e74c3c;
+    --color-warning: #f39c12;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--color-darker-bg);
+    color: var(--color-text-light);
+    min-height: 100vh;
+}
+
+/* Header & Back Button */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--color-border-dark);
+}
+
+.btn-back {
+    background: var(--color-card-bg);
+    color: var(--color-text-light);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--color-accent-blue-mid);
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-accent-blue-neon);
+}
+
+/* Hero Section */
+.library-page-hero {
+    background: var(--color-dark-bg);
+    padding: 60px 40px 30px;
+    text-align: center;
+}
+.library-page-hero h1 {
+    font-size: 36px;
+    color: var(--color-accent-blue-neon);
+    margin-bottom: 10px;
+}
+.library-page-hero p {
+    color: var(--color-text-secondary);
+    font-size: 18px;
+}
+
+/* Search Section */
+.search-section {
+    padding: 20px 40px;
+    background: var(--color-darker-bg);
+}
+.search-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+.search-box {
+    display: flex;
+    align-items: center;
+    background: var(--color-input-bg);
+    padding: 14px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-dark);
+    margin-bottom: 15px;
+}
+.search-box i {
+    color: var(--color-accent-blue-mid);
+    margin-right: 10px;
+    font-size: 18px;
+}
+.search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--color-text-light);
+    font-size: 16px;
+}
+.count-text {
+    color: var(--color-text-secondary);
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Compound Grid */
+.compound-list-section {
+    padding: 30px 40px 60px;
+}
+.list-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.compound-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+.loading-message {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: var(--color-accent-blue-neon);
+    padding: 40px;
+}
+
+/* ================================================= */
+/* 🔥 COMPOUND CARD & FORMULA CIRCLE STYLES (FIXED) 🔥 */
+/* ================================================= */
+
+.compound-card {
+    background: var(--color-card-bg); 
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-dark);
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+    /* Tata letak */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+.compound-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-accent-blue-neon);
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.2);
+}
+
+.compound-card.selected-compound { 
+    border: 2px solid var(--color-success);
+    box-shadow: 0 0 10px var(--color-success);
+}
+
+/* FORMULA CIRCLE - Target untuk warna */
+.formula-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--color-dark-bg); /* Teks di dalam lingkaran harus gelap */
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s;
+}
+
+/* 🔥 COLOR CLASSES (Menargetkan HANYA formula-circle) */
+.formula-circle.water { background-color: #3498db; }
+.formula-circle.salt { background-color: #95a5a6; }
+.formula-circle.co2 { background-color: #2ecc71; }
+.formula-circle.sulfat { background-color: #f39c12; }
+.formula-circle.oksigen { background-color: #e74c3c; }
+.formula-circle.etanol { background-color: #f39c12; }
+.formula-circle.amonia { background-color: #c0392b; }
+.formula-circle.glukosa { background-color: #1abc9c; }
+.formula-circle.kalsium { background-color: #3498db; }
+.formula-circle.besi { background-color: #7f8c8d; }
+
+.compound-card h4 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    color: var(--color-accent-blue-neon);
+}
+.formula-text {
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+    margin-bottom: 10px;
+}
+.description {
+    font-size: 0.85em;
+    color: #ccc;
+    line-height: 1.4;
+    min-height: 40px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--color-darker-bg);
+    border-top: 1px solid var(--color-border-dark);
+    color: var(--color-text-secondary);
+    font-size: 0.9em;
+}
+
+/* ================== */
+/* Popup Detail Style */
+/* ================== */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-detail-box {
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid var(--color-accent-blue-mid);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+}
+
+.popup-detail-box .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: var(--color-error);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.detail-section h2 {
+    color: var(--color-accent-blue-neon);
+    margin-bottom: 10px;
+}
+.detail-section h4 {
+    color: var(--color-accent-blue-mid);
+    margin-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--color-border-dark);
+}
+.detail-section p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: #ccc;
+}
+.detail-section strong {
+    color: var(--color-text-light);
+}
