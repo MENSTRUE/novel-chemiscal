@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabel Periodik Interaktif Lengkap</title>
+    <link rel="stylesheet" href="../css/tabel-periodik.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="main-title">Tabel Periodik</h1>
+
+      <div class="legend">
+        <span class="legend-item"
+          ><span class="color-box alkali"></span> Logam alkali</span
+        >
+        <span class="legend-item"
+          ><span class="color-box alkali-earth"></span> Logam alkali tanah</span
+        >
+        <span class="legend-item"
+          ><span class="color-box transition"></span> Logam transisi</span
+        >
+        <span class="legend-item"
+          ><span class="color-box post-transition"></span> Pasca-transisi</span
+        >
+        <span class="legend-item"
+          ><span class="color-box metalloid"></span> Metaloid</span
+        >
+        <span class="legend-item"
+          ><span class="color-box non-metal"></span> Non-logam</span
+        >
+        <span class="legend-item"
+          ><span class="color-box noble-gas"></span> Gas mulia</span
+        >
+        <span class="legend-item"
+          ><span class="color-box lanthanide"></span> Lantanida</span
+        >
+        <span class="legend-item"
+          ><span class="color-box actinide"></span> Aktinida</span
+        >
+      </div>
+
+      <div class="periodic-table">
+        <div
+          class="element non-metal"
+          id="H"
+          data-name="Hidrogen"
+          data-symbol="H"
+          data-number="1"
+          data-desc="Gas paling ringan, paling melimpah di alam semesta."
+        >
+          <div class="number">1</div>
+          <div class="symbol">H</div>
+          <div class="name">Hidrogen</div>
+        </div>
+        <div class="spacer-1"></div>
+        <div
+          class="element noble-gas"
+          id="He"
+          data-name="Helium"
+          data-symbol="He"
+          data-number="2"
+          data-desc="Gas mulia kedua paling ringan, digunakan dalam balon dan pendinginan superkonduktor."
+        >
+          <div class="number">2</div>
+          <div class="symbol">He</div>
+          <div class="name">Helium</div>
+        </div>
+
+        <div
+          class="element alkali"
+          id="Li"
+          data-name="Litium"
+          data-symbol="Li"
+          data-number="3"
+          data-desc="Logam alkali paling ringan, digunakan dalam baterai isi ulang."
+        >
+          <div class="number">3</div>
+          <div class="symbol">Li</div>
+          <div class="name">Litium</div>
+        </div>
+        <div
+          class="element alkali-earth"
+          id="Be"
+          data-name="Berilium"
+          data-symbol="Be"
+          data-number="4"
+          data-desc="Logam ringan, digunakan dalam paduan dan komponen pesawat luar angkasa."
+        >
+          <div class="number">4</div>
+          <div class="symbol">Be</div>
+          <div class="name">Berilium</div>
+        </div>
+        <div class="spacer-2"></div>
+        <div
+          class="element metalloid"
+          id="B"
+          data-name="Boron"
+          data-symbol="B"
+          data-number="5"
+          data-desc="Metaloid yang penting untuk dinding sel tanaman."
+        >
+          <div class="number">5</div>
+          <div class="symbol">B</div>
+          <div class="name">Boron</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="C"
+          data-name="Karbon"
+          data-symbol="C"
+          data-number="6"
+          data-desc="Dasar dari semua kehidupan organik, alotropnya termasuk intan dan grafit."
+        >
+          <div class="number">6</div>
+          <div class="symbol">C</div>
+          <div class="name">Karbon</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="N"
+          data-name="Nitrogen"
+          data-symbol="N"
+          data-number="7"
+          data-desc="Komponen utama atmosfer bumi."
+        >
+          <div class="number">7</div>
+          <div class="symbol">N</div>
+          <div class="name">Nitrogen</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="O"
+          data-name="Oksigen"
+          data-symbol="O"
+          data-number="8"
+          data-desc="Penting untuk respirasi dan proses pembakaran."
+        >
+          <div class="number">8</div>
+          <div class="symbol">O</div>
+          <div class="name">Oksigen</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="F"
+          data-name="Fluorin"
+          data-symbol="F"
+          data-number="9"
+          data-desc="Elemen paling elektronegatif dan reaktif."
+        >
+          <div class="number">9</div>
+          <div class="symbol">F</div>
+          <div class="name">Fluorin</div>
+        </div>
+        <div
+          class="element noble-gas"
+          id="Ne"
+          data-name="Neon"
+          data-symbol="Ne"
+          data-number="10"
+          data-desc="Gas mulia yang menghasilkan cahaya oranye-merah saat diberi listrik."
+        >
+          <div class="number">10</div>
+          <div class="symbol">Ne</div>
+          <div class="name">Neon</div>
+        </div>
+
+        <div
+          class="element alkali"
+          id="Na"
+          data-name="Natrium"
+          data-symbol="Na"
+          data-number="11"
+          data-desc="Esensial bagi kehidupan hewan, ditemukan dalam garam dapur (NaCl)."
+        >
+          <div class="number">11</div>
+          <div class="symbol">Na</div>
+          <div class="name">Natrium</div>
+        </div>
+        <div
+          class="element alkali-earth"
+          id="Mg"
+          data-name="Magnesium"
+          data-symbol="Mg"
+          data-number="12"
+          data-desc="Penting dalam klorofil tanaman dan paduan ringan."
+        >
+          <div class="number">12</div>
+          <div class="symbol">Mg</div>
+          <div class="name">Magnesium</div>
+        </div>
+        <div class="spacer-3"></div>
+        <div
+          class="element post-transition"
+          id="Al"
+          data-name="Aluminium"
+          data-symbol="Al"
+          data-number="13"
+          data-desc="Logam ringan dan tahan korosi, digunakan dalam kemasan."
+        >
+          <div class="number">13</div>
+          <div class="symbol">Al</div>
+          <div class="name">Aluminium</div>
+        </div>
+        <div
+          class="element metalloid"
+          id="Si"
+          data-name="Silikon"
+          data-symbol="Si"
+          data-number="14"
+          data-desc="Bahan utama semikonduktor dan kaca."
+        >
+          <div class="number">14</div>
+          <div class="symbol">Si</div>
+          <div class="name">Silikon</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="P"
+          data-name="Fosfor"
+          data-symbol="P"
+          data-number="15"
+          data-desc="Penting dalam DNA dan ATP."
+        >
+          <div class="number">15</div>
+          <div class="symbol">P</div>
+          <div class="name">Fosfor</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="S"
+          data-name="Belerang"
+          data-symbol="S"
+          data-number="16"
+          data-desc="Ditemukan dalam asam sulfat dan banyak protein."
+        >
+          <div class="number">16</div>
+          <div class="symbol">S</div>
+          <div class="name">Belerang</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="Cl"
+          data-name="Klorin"
+          data-symbol="Cl"
+          data-number="17"
+          data-desc="Gas kuning-hijau beracun, digunakan sebagai disinfektan."
+        >
+          <div class="number">17</div>
+          <div class="symbol">Cl</div>
+          <div class="name">Klorin</div>
+        </div>
+        <div
+          class="element noble-gas"
+          id="Ar"
+          data-name="Argon"
+          data-symbol="Ar"
+          data-number="18"
+          data-desc="Gas inert yang digunakan dalam pencahayaan."
+        >
+          <div class="number">18</div>
+          <div class="symbol">Ar</div>
+          <div class="name">Argon</div>
+        </div>
+
+        <div
+          class="element alkali"
+          id="K"
+          data-name="Kalium"
+          data-symbol="K"
+          data-number="19"
+          data-desc="Penting untuk fungsi sel dan keseimbangan cairan tubuh."
+        >
+          <div class="number">19</div>
+          <div class="symbol">K</div>
+          <div class="name">Kalium</div>
+        </div>
+        <div
+          class="element alkali-earth"
+          id="Ca"
+          data-name="Kalsium"
+          data-symbol="Ca"
+          data-number="20"
+          data-desc="Komponen utama tulang dan gigi."
+        >
+          <div class="number">20</div>
+          <div class="symbol">Ca</div>
+          <div class="name">Kalsium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Sc"
+          data-name="Skandium"
+          data-symbol="Sc"
+          data-number="21"
+          data-desc="Logam transisi ringan, digunakan dalam paduan aerospace."
+        >
+          <div class="number">21</div>
+          <div class="symbol">Sc</div>
+          <div class="name">Skandium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Ti"
+          data-name="Titanium"
+          data-symbol="Ti"
+          data-number="22"
+          data-desc="Kuat dan ringan, digunakan dalam implan medis dan jet engine."
+        >
+          <div class="number">22</div>
+          <div class="symbol">Ti</div>
+          <div class="name">Titanium</div>
+        </div>
+        <div
+          class="element transition"
+          id="V"
+          data-name="Vanadium"
+          data-symbol="V"
+          data-number="23"
+          data-desc="Digunakan dalam paduan baja yang kuat."
+        >
+          <div class="number">23</div>
+          <div class="symbol">V</div>
+          <div class="name">Vanadium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Cr"
+          data-name="Kromium"
+          data-symbol="Cr"
+          data-number="24"
+          data-desc="Memberikan kilau keras pada stainless steel."
+        >
+          <div class="number">24</div>
+          <div class="symbol">Cr</div>
+          <div class="name">Kromium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Mn"
+          data-name="Mangan"
+          data-symbol="Mn"
+          data-number="25"
+          data-desc="Digunakan dalam produksi baja dan baterai."
+        >
+          <div class="number">25</div>
+          <div class="symbol">Mn</div>
+          <div class="name">Mangan</div>
+        </div>
+        <div
+          class="element transition"
+          id="Fe"
+          data-name="Besi"
+          data-symbol="Fe"
+          data-number="26"
+          data-desc="Logam paling umum di bumi, komponen utama baja."
+        >
+          <div class="number">26</div>
+          <div class="symbol">Fe</div>
+          <div class="name">Besi</div>
+        </div>
+        <div
+          class="element transition"
+          id="Co"
+          data-name="Kobalt"
+          data-symbol="Co"
+          data-number="27"
+          data-desc="Digunakan dalam paduan super dan baterai."
+        >
+          <div class="number">27</div>
+          <div class="symbol">Co</div>
+          <div class="name">Kobalt</div>
+        </div>
+        <div
+          class="element transition"
+          id="Ni"
+          data-name="Nikel"
+          data-symbol="Ni"
+          data-number="28"
+          data-desc="Tahan korosi, digunakan dalam koin dan stainless steel."
+        >
+          <div class="number">28</div>
+          <div class="symbol">Ni</div>
+          <div class="name">Nikel</div>
+        </div>
+        <div
+          class="element transition"
+          id="Cu"
+          data-name="Tembaga"
+          data-symbol="Cu"
+          data-number="29"
+          data-desc="Konduktor panas dan listrik yang sangat baik."
+        >
+          <div class="number">29</div>
+          <div class="symbol">Cu</div>
+          <div class="name">Tembaga</div>
+        </div>
+        <div
+          class="element transition"
+          id="Zn"
+          data-name="Seng"
+          data-symbol="Zn"
+          data-number="30"
+          data-desc="Digunakan untuk galvanisasi baja."
+        >
+          <div class="number">30</div>
+          <div class="symbol">Zn</div>
+          <div class="name">Seng</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Ga"
+          data-name="Galium"
+          data-symbol="Ga"
+          data-number="31"
+          data-desc="Logam yang meleleh di suhu ruangan, digunakan dalam LED."
+        >
+          <div class="number">31</div>
+          <div class="symbol">Ga</div>
+          <div class="name">Galium</div>
+        </div>
+        <div
+          class="element metalloid"
+          id="Ge"
+          data-name="Germanium"
+          data-symbol="Ge"
+          data-number="32"
+          data-desc="Semikonduktor, digunakan dalam serat optik."
+        >
+          <div class="number">32</div>
+          <div class="symbol">Ge</div>
+          <div class="name">Germanium</div>
+        </div>
+        <div
+          class="element metalloid"
+          id="As"
+          data-name="Arsen"
+          data-symbol="As"
+          data-number="33"
+          data-desc="Beracun, digunakan dalam semikonduktor."
+        >
+          <div class="number">33</div>
+          <div class="symbol">As</div>
+          <div class="name">Arsen</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="Se"
+          data-name="Selenium"
+          data-symbol="Se"
+          data-number="34"
+          data-desc="Fotosensitif, digunakan dalam fotokopi."
+        >
+          <div class="number">34</div>
+          <div class="symbol">Se</div>
+          <div class="name">Selenium</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="Br"
+          data-name="Bromin"
+          data-symbol="Br"
+          data-number="35"
+          data-desc="Satu-satunya non-logam cair pada suhu kamar."
+        >
+          <div class="number">35</div>
+          <div class="symbol">Br</div>
+          <div class="name">Bromin</div>
+        </div>
+        <div
+          class="element noble-gas"
+          id="Kr"
+          data-name="Kripton"
+          data-symbol="Kr"
+          data-number="36"
+          data-desc="Digunakan dalam lampu kilat berkecepatan tinggi."
+        >
+          <div class="number">36</div>
+          <div class="symbol">Kr</div>
+          <div class="name">Kripton</div>
+        </div>
+
+        <div
+          class="element alkali"
+          id="Rb"
+          data-name="Rubidium"
+          data-symbol="Rb"
+          data-number="37"
+          data-desc="Sangat reaktif, digunakan dalam sel fotoelektrik."
+        >
+          <div class="number">37</div>
+          <div class="symbol">Rb</div>
+          <div class="name">Rubidium</div>
+        </div>
+        <div
+          class="element alkali-earth"
+          id="Sr"
+          data-name="Stronsium"
+          data-symbol="Sr"
+          data-number="38"
+          data-desc="Memberikan warna merah pada kembang api."
+        >
+          <div class="number">38</div>
+          <div class="symbol">Sr</div>
+          <div class="name">Stronsium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Y"
+          data-name="Itrium"
+          data-symbol="Y"
+          data-number="39"
+          data-desc="Digunakan dalam laser dan superkonduktor."
+        >
+          <div class="number">39</div>
+          <div class="symbol">Y</div>
+          <div class="name">Itrium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Zr"
+          data-name="Zirkonium"
+          data-symbol="Zr"
+          data-number="40"
+          data-desc="Tahan panas dan korosi, digunakan dalam reaktor nuklir."
+        >
+          <div class="number">40</div>
+          <div class="symbol">Zr</div>
+          <div class="name">Zirkonium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Nb"
+          data-name="Niobium"
+          data-symbol="Nb"
+          data-number="41"
+          data-desc="Digunakan untuk membuat paduan baja superkonduktor."
+        >
+          <div class="number">41</div>
+          <div class="symbol">Nb</div>
+          <div class="name">Niobium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Mo"
+          data-name="Molibdenum"
+          data-symbol="Mo"
+          data-number="42"
+          data-desc="Digunakan dalam paduan baja berkekuatan tinggi."
+        >
+          <div class="number">42</div>
+          <div class="symbol">Mo</div>
+          <div class="name">Molibdenum</div>
+        </div>
+        <div
+          class="element transition"
+          id="Tc"
+          data-name="Teknesium"
+          data-symbol="Tc"
+          data-number="43"
+          data-desc="Unsur radioaktif pertama yang dibuat secara sintetis; alat diagnostik nuklir."
+        >
+          <div class="number">43</div>
+          <div class="symbol">Tc</div>
+          <div class="name">Teknesium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Ru"
+          data-name="Rutenium"
+          data-symbol="Ru"
+          data-number="44"
+          data-desc="Logam platinum group, digunakan dalam kontak listrik."
+        >
+          <div class="number">44</div>
+          <div class="symbol">Ru</div>
+          <div class="name">Rutenium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Rh"
+          data-name="Rodium"
+          data-symbol="Rh"
+          data-number="45"
+          data-desc="Digunakan dalam konverter katalitik dan perhiasan."
+        >
+          <div class="number">45</div>
+          <div class="symbol">Rh</div>
+          <div class="name">Rodium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Pd"
+          data-name="Paladium"
+          data-symbol="Pd"
+          data-number="46"
+          data-desc="Digunakan dalam konverter katalitik dan elektronik."
+        >
+          <div class="number">46</div>
+          <div class="symbol">Pd</div>
+          <div class="name">Paladium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Ag"
+          data-name="Perak"
+          data-symbol="Ag"
+          data-number="47"
+          data-desc="Konduktor terbaik, digunakan dalam perhiasan dan fotografi."
+        >
+          <div class="number">47</div>
+          <div class="symbol">Ag</div>
+          <div class="name">Perak</div>
+        </div>
+        <div
+          class="element transition"
+          id="Cd"
+          data-name="Kadmium"
+          data-symbol="Cd"
+          data-number="48"
+          data-desc="Beracun, digunakan dalam baterai dan kontrol batang reaktor nuklir."
+        >
+          <div class="number">48</div>
+          <div class="symbol">Cd</div>
+          <div class="name">Kadmium</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="In"
+          data-name="Indium"
+          data-symbol="In"
+          data-number="49"
+          data-desc="Digunakan dalam lapisan tipis LCD/LED."
+        >
+          <div class="number">49</div>
+          <div class="symbol">In</div>
+          <div class="name">Indium</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Sn"
+          data-name="Timah"
+          data-symbol="Sn"
+          data-number="50"
+          data-desc="Digunakan untuk melapisi kaleng baja."
+        >
+          <div class="number">50</div>
+          <div class="symbol">Sn</div>
+          <div class="name">Timah</div>
+        </div>
+        <div
+          class="element metalloid"
+          id="Sb"
+          data-name="Antimon"
+          data-symbol="Sb"
+          data-number="51"
+          data-desc="Digunakan dalam dioda dan infrared."
+        >
+          <div class="number">51</div>
+          <div class="symbol">Sb</div>
+          <div class="name">Antimon</div>
+        </div>
+        <div
+          class="element metalloid"
+          id="Te"
+          data-name="Telurium"
+          data-symbol="Te"
+          data-number="52"
+          data-desc="Digunakan dalam paduan logam."
+        >
+          <div class="number">52</div>
+          <div class="symbol">Te</div>
+          <div class="name">Telurium</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="I"
+          data-name="Iodin"
+          data-symbol="I"
+          data-number="53"
+          data-desc="Penting untuk tiroid dan digunakan sebagai antiseptik."
+        >
+          <div class="number">53</div>
+          <div class="symbol">I</div>
+          <div class="name">Iodin</div>
+        </div>
+        <div
+          class="element noble-gas"
+          id="Xe"
+          data-name="Xenon"
+          data-symbol="Xe"
+          data-number="54"
+          data-desc="Digunakan dalam lampu berintensitas tinggi."
+        >
+          <div class="number">54</div>
+          <div class="symbol">Xe</div>
+          <div class="name">Xenon</div>
+        </div>
+
+        <div
+          class="element alkali"
+          id="Cs"
+          data-name="Sesium"
+          data-symbol="Cs"
+          data-number="55"
+          data-desc="Digunakan dalam jam atom."
+        >
+          <div class="number">55</div>
+          <div class="symbol">Cs</div>
+          <div class="name">Sesium</div>
+        </div>
+        <div
+          class="element alkali-earth"
+          id="Ba"
+          data-name="Barium"
+          data-symbol="Ba"
+          data-number="56"
+          data-desc="Digunakan dalam pencitraan sinar-X (barium meal)."
+        >
+          <div class="number">56</div>
+          <div class="symbol">Ba</div>
+          <div class="name">Barium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="La"
+          data-name="Lantanum"
+          data-symbol="La"
+          data-number="57"
+          data-desc="Dipakai di lensa kamera."
+        >
+          <div class="number">57</div>
+          <div class="symbol">La</div>
+          <div class="name">Lantanum</div>
+        </div>
+        <div
+          class="element transition"
+          id="Hf"
+          data-name="Hafnium"
+          data-symbol="Hf"
+          data-number="72"
+          data-desc="Digunakan dalam kontrol batang reaktor nuklir."
+        >
+          <div class="number">72</div>
+          <div class="symbol">Hf</div>
+          <div class="name">Hafnium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Ta"
+          data-name="Tantalum"
+          data-symbol="Ta"
+          data-number="73"
+          data-desc="Tahan korosi, digunakan dalam kapasitor."
+        >
+          <div class="number">73</div>
+          <div class="symbol">Ta</div>
+          <div class="name">Tantalum</div>
+        </div>
+        <div
+          class="element transition"
+          id="W"
+          data-name="Wolfram"
+          data-symbol="W"
+          data-number="74"
+          data-desc="Memiliki titik leleh tertinggi, digunakan dalam filamen lampu."
+        >
+          <div class="number">74</div>
+          <div class="symbol">W</div>
+          <div class="name">Wolfram</div>
+        </div>
+        <div
+          class="element transition"
+          id="Re"
+          data-name="Renium"
+          data-symbol="Re"
+          data-number="75"
+          data-desc="Digunakan dalam superalloys."
+        >
+          <div class="number">75</div>
+          <div class="symbol">Re</div>
+          <div class="name">Renium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Os"
+          data-name="Osmium"
+          data-symbol="Os"
+          data-number="76"
+          data-desc="Logam paling padat."
+        >
+          <div class="number">76</div>
+          <div class="symbol">Os</div>
+          <div class="name">Osmium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Ir"
+          data-name="Iridium"
+          data-symbol="Ir"
+          data-number="77"
+          data-desc="Tahan korosi, digunakan dalam spark plug dan pena mancur."
+        >
+          <div class="number">77</div>
+          <div class="symbol">Ir</div>
+          <div class="name">Iridium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Pt"
+          data-name="Platina"
+          data-symbol="Pt"
+          data-number="78"
+          data-desc="Logam mulia, digunakan sebagai katalis."
+        >
+          <div class="number">78</div>
+          <div class="symbol">Pt</div>
+          <div class="name">Platina</div>
+        </div>
+        <div
+          class="element transition"
+          id="Au"
+          data-name="Emas"
+          data-symbol="Au"
+          data-number="79"
+          data-desc="Logam mulia, digunakan dalam perhiasan dan elektronik."
+        >
+          <div class="number">79</div>
+          <div class="symbol">Au</div>
+          <div class="name">Emas</div>
+        </div>
+        <div
+          class="element transition"
+          id="Hg"
+          data-name="Raksa"
+          data-symbol="Hg"
+          data-number="80"
+          data-desc="Satu-satunya logam cair pada suhu kamar."
+        >
+          <div class="number">80</div>
+          <div class="symbol">Hg</div>
+          <div class="name">Raksa</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Tl"
+          data-name="Talium"
+          data-symbol="Tl"
+          data-number="81"
+          data-desc="Beracun, digunakan dalam peralatan optik."
+        >
+          <div class="number">81</div>
+          <div class="symbol">Tl</div>
+          <div class="name">Talium</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Pb"
+          data-name="Timbal"
+          data-symbol="Pb"
+          data-number="82"
+          data-desc="Digunakan dalam baterai dan perisai radiasi."
+        >
+          <div class="number">82</div>
+          <div class="symbol">Pb</div>
+          <div class="name">Timbal</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Bi"
+          data-name="Bismut"
+          data-symbol="Bi"
+          data-number="83"
+          data-desc="Kurang beracun, digunakan sebagai pengganti timbal."
+        >
+          <div class="number">83</div>
+          <div class="symbol">Bi</div>
+          <div class="name">Bismut</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Po"
+          data-name="Polonium"
+          data-symbol="Po"
+          data-number="84"
+          data-desc="Radioaktif, digunakan sebagai sumber pemanas termoelektrik."
+        >
+          <div class="number">84</div>
+          <div class="symbol">Po</div>
+          <div class="name">Polonium</div>
+        </div>
+        <div
+          class="element metalloid"
+          id="At"
+          data-name="Astatin"
+          data-symbol="At"
+          data-number="85"
+          data-desc="Unsur radioaktif langka, dipelajari untuk kedokteran nuklir."
+        >
+          <div class="number">85</div>
+          <div class="symbol">At</div>
+          <div class="name">Astatin</div>
+        </div>
+        <div
+          class="element noble-gas"
+          id="Rn"
+          data-name="Radon"
+          data-symbol="Rn"
+          data-number="86"
+          data-desc="Gas radioaktif, penyebab utama kedua kanker paru-paru."
+        >
+          <div class="number">86</div>
+          <div class="symbol">Rn</div>
+          <div class="name">Radon</div>
+        </div>
+
+        <div
+          class="element alkali"
+          id="Fr"
+          data-name="Fransium"
+          data-symbol="Fr"
+          data-number="87"
+          data-desc="Elemen alami paling langka, sangat radioaktif."
+        >
+          <div class="number">87</div>
+          <div class="symbol">Fr</div>
+          <div class="name">Fransium</div>
+        </div>
+        <div
+          class="element alkali-earth"
+          id="Ra"
+          data-name="Radium"
+          data-symbol="Ra"
+          data-number="88"
+          data-desc="Sangat radioaktif, digunakan dalam cat bercahaya."
+        >
+          <div class="number">88</div>
+          <div class="symbol">Ra</div>
+          <div class="name">Radium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Ac"
+          data-name="Aktinium"
+          data-symbol="Ac"
+          data-number="89"
+          data-desc="Radioaktif, digunakan dalam sumber neutron."
+        >
+          <div class="number">89</div>
+          <div class="symbol">Ac</div>
+          <div class="name">Aktinium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Rf"
+          data-name="Ruterfordium"
+          data-symbol="Rf"
+          data-number="104"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">104</div>
+          <div class="symbol">Rf</div>
+          <div class="name">Ruterfordium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Db"
+          data-name="Dubnium"
+          data-symbol="Db"
+          data-number="105"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">105</div>
+          <div class="symbol">Db</div>
+          <div class="name">Dubnium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Sg"
+          data-name="Seaborgium"
+          data-symbol="Sg"
+          data-number="106"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">106</div>
+          <div class="symbol">Sg</div>
+          <div class="name">Seaborgium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Bh"
+          data-name="Bohrium"
+          data-symbol="Bh"
+          data-number="107"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">107</div>
+          <div class="symbol">Bh</div>
+          <div class="name">Bohrium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Hs"
+          data-name="Hassium"
+          data-symbol="Hs"
+          data-number="108"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">108</div>
+          <div class="symbol">Hs</div>
+          <div class="name">Hassium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Mt"
+          data-name="Meitnerium"
+          data-symbol="Mt"
+          data-number="109"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">109</div>
+          <div class="symbol">Mt</div>
+          <div class="name">Meitnerium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Ds"
+          data-name="Darmstadtium"
+          data-symbol="Ds"
+          data-number="110"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">110</div>
+          <div class="symbol">Ds</div>
+          <div class="name">Darmstadtium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Rg"
+          data-name="Roentgenium"
+          data-symbol="Rg"
+          data-number="111"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">111</div>
+          <div class="symbol">Rg</div>
+          <div class="name">Roentgenium</div>
+        </div>
+        <div
+          class="element transition"
+          id="Cn"
+          data-name="Kopernisium"
+          data-symbol="Cn"
+          data-number="112"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">112</div>
+          <div class="symbol">Cn</div>
+          <div class="name">Kopernisium</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Nh"
+          data-name="Nihonium"
+          data-symbol="Nh"
+          data-number="113"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">113</div>
+          <div class="symbol">Nh</div>
+          <div class="name">Nihonium</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Fl"
+          data-name="Flerovium"
+          data-symbol="Fl"
+          data-number="114"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">114</div>
+          <div class="symbol">Fl</div>
+          <div class="name">Flerovium</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Mc"
+          data-name="Moskovium"
+          data-symbol="Mc"
+          data-number="115"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">115</div>
+          <div class="symbol">Mc</div>
+          <div class="name">Moskovium</div>
+        </div>
+        <div
+          class="element post-transition"
+          id="Lv"
+          data-name="Livermorium"
+          data-symbol="Lv"
+          data-number="116"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">116</div>
+          <div class="symbol">Lv</div>
+          <div class="name">Livermorium</div>
+        </div>
+        <div
+          class="element non-metal"
+          id="Ts"
+          data-name="Tenesin"
+          data-symbol="Ts"
+          data-number="117"
+          data-desc="Unsur sintetis, kemungkinan halogen."
+        >
+          <div class="number">117</div>
+          <div class="symbol">Ts</div>
+          <div class="name">Tenesin</div>
+        </div>
+        <div
+          class="element noble-gas"
+          id="Og"
+          data-name="Oganeson"
+          data-symbol="Og"
+          data-number="118"
+          data-desc="Unsur sintetis, kemungkinan gas mulia."
+        >
+          <div class="number">118</div>
+          <div class="symbol">Og</div>
+          <div class="name">Oganeson</div>
+        </div>
+
+        <div class="break"></div>
+
+        <div class="lantanide-start-spacer"></div>
+
+        <div
+          class="element lanthanide"
+          id="Ce"
+          data-name="Serium"
+          data-symbol="Ce"
+          data-number="58"
+          data-desc="Logam tanah jarang paling melimpah."
+        >
+          <div class="number">58</div>
+          <div class="symbol">Ce</div>
+          <div class="name">Serium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Pr"
+          data-name="Praseodimium"
+          data-symbol="Pr"
+          data-number="59"
+          data-desc="Digunakan dalam kaca las dan magnet."
+        >
+          <div class="number">59</div>
+          <div class="symbol">Pr</div>
+          <div class="name">Praseodimium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Nd"
+          data-name="Neodimium"
+          data-symbol="Nd"
+          data-number="60"
+          data-desc="Digunakan dalam magnet permanen yang kuat."
+        >
+          <div class="number">60</div>
+          <div class="symbol">Nd</div>
+          <div class="name">Neodimium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Pm"
+          data-name="Prometium"
+          data-symbol="Pm"
+          data-number="61"
+          data-desc="Radioaktif, tidak ditemukan secara alami."
+        >
+          <div class="number">61</div>
+          <div class="symbol">Pm</div>
+          <div class="name">Prometium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Sm"
+          data-name="Samarium"
+          data-symbol="Sm"
+          data-number="62"
+          data-desc="Digunakan dalam magnet suhu tinggi."
+        >
+          <div class="number">62</div>
+          <div class="symbol">Sm</div>
+          <div class="name">Samarium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Eu"
+          data-name="Europium"
+          data-symbol="Eu"
+          data-number="63"
+          data-desc="Digunakan dalam fosfor TV warna."
+        >
+          <div class="number">63</div>
+          <div class="symbol">Eu</div>
+          <div class="name">Europium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Gd"
+          data-name="Gadolinium"
+          data-symbol="Gd"
+          data-number="64"
+          data-desc="Digunakan dalam MRI."
+        >
+          <div class="number">64</div>
+          <div class="symbol">Gd</div>
+          <div class="name">Gadolinium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Tb"
+          data-name="Terbium"
+          data-symbol="Tb"
+          data-number="65"
+          data-desc="Digunakan dalam pencahayaan hemat energi."
+        >
+          <div class="number">65</div>
+          <div class="symbol">Tb</div>
+          <div class="name">Terbium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Dy"
+          data-name="Disprosium"
+          data-symbol="Dy"
+          data-number="66"
+          data-desc="Digunakan dalam magnet berdaya tinggi."
+        >
+          <div class="number">66</div>
+          <div class="symbol">Dy</div>
+          <div class="name">Disprosium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Ho"
+          data-name="Holmium"
+          data-symbol="Ho"
+          data-number="67"
+          data-desc="Memiliki momen magnetik tertinggi."
+        >
+          <div class="number">67</div>
+          <div class="symbol">Ho</div>
+          <div class="name">Holmium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Er"
+          data-name="Erbium"
+          data-symbol="Er"
+          data-number="68"
+          data-desc="Digunakan dalam penguat serat optik."
+        >
+          <div class="number">68</div>
+          <div class="symbol">Er</div>
+          <div class="name">Erbium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Tm"
+          data-name="Tulium"
+          data-symbol="Tm"
+          data-number="69"
+          data-desc="Logam lantanida yang paling jarang."
+        >
+          <div class="number">69</div>
+          <div class="symbol">Tm</div>
+          <div class="name">Tulium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Yb"
+          data-name="Iterbium"
+          data-symbol="Yb"
+          data-number="70"
+          data-desc="Digunakan dalam laser serat."
+        >
+          <div class="number">70</div>
+          <div class="symbol">Yb</div>
+          <div class="name">Iterbium</div>
+        </div>
+        <div
+          class="element lanthanide"
+          id="Lu"
+          data-name="Lutetium"
+          data-symbol="Lu"
+          data-number="71"
+          data-desc="Digunakan dalam pemindai PET."
+        >
+          <div class="number">71</div>
+          <div class="symbol">Lu</div>
+          <div class="name">Lutetium</div>
+        </div>
+
+        <div class="actinide-start-spacer"></div>
+
+        <div
+          class="element actinide"
+          id="Th"
+          data-name="Torium"
+          data-symbol="Th"
+          data-number="90"
+          data-desc="Bahan bakar nuklir potensial."
+        >
+          <div class="number">90</div>
+          <div class="symbol">Th</div>
+          <div class="name">Torium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Pa"
+          data-name="Protaktinium"
+          data-symbol="Pa"
+          data-number="91"
+          data-desc="Sangat radioaktif dan beracun."
+        >
+          <div class="number">91</div>
+          <div class="symbol">Pa</div>
+          <div class="name">Protaktinium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="U"
+          data-name="Uranium"
+          data-symbol="U"
+          data-number="92"
+          data-desc="Digunakan sebagai bahan bakar nuklir."
+        >
+          <div class="number">92</div>
+          <div class="symbol">U</div>
+          <div class="name">Uranium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Np"
+          data-name="Neptunium"
+          data-symbol="Np"
+          data-number="93"
+          data-desc="Unsur transuranium pertama."
+        >
+          <div class="number">93</div>
+          <div class="symbol">Np</div>
+          <div class="name">Neptunium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Pu"
+          data-name="Plutonium"
+          data-symbol="Pu"
+          data-number="94"
+          data-desc="Digunakan dalam senjata nuklir dan reaktor."
+        >
+          <div class="number">94</div>
+          <div class="symbol">Pu</div>
+          <div class="name">Plutonium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Am"
+          data-name="Amerisium"
+          data-symbol="Am"
+          data-number="95"
+          data-desc="Digunakan dalam detektor asap."
+        >
+          <div class="number">95</div>
+          <div class="symbol">Am</div>
+          <div class="name">Amerisium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Cm"
+          data-name="Kurium"
+          data-symbol="Cm"
+          data-number="96"
+          data-desc="Sangat radioaktif, digunakan dalam sumber daya radioisotop."
+        >
+          <div class="number">96</div>
+          <div class="symbol">Cm</div>
+          <div class="name">Kurium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Bk"
+          data-name="Berkelium"
+          data-symbol="Bk"
+          data-number="97"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">97</div>
+          <div class="symbol">Bk</div>
+          <div class="name">Berkelium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Cf"
+          data-name="Kalifornium"
+          data-symbol="Cf"
+          data-number="98"
+          data-desc="Digunakan sebagai sumber neutron."
+        >
+          <div class="number">98</div>
+          <div class="symbol">Cf</div>
+          <div class="name">Kalifornium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Es"
+          data-name="Einsteinium"
+          data-symbol="Es"
+          data-number="99"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">99</div>
+          <div class="symbol">Es</div>
+          <div class="name">Einsteinium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Fm"
+          data-name="Fermium"
+          data-symbol="Fm"
+          data-number="100"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">100</div>
+          <div class="symbol">Fm</div>
+          <div class="name">Fermium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Md"
+          data-name="Mendelevium"
+          data-symbol="Md"
+          data-number="101"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">101</div>
+          <div class="symbol">Md</div>
+          <div class="name">Mendelevium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="No"
+          data-name="Nobelium"
+          data-symbol="No"
+          data-number="102"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">102</div>
+          <div class="symbol">No</div>
+          <div class="name">Nobelium</div>
+        </div>
+        <div
+          class="element actinide"
+          id="Lr"
+          data-name="Lawrencium"
+          data-symbol="Lr"
+          data-number="103"
+          data-desc="Unsur sintetis."
+        >
+          <div class="number">103</div>
+          <div class="symbol">Lr</div>
+          <div class="name">Lawrencium</div>
+        </div>
+      </div>
+
+      <div class="periodic-explanation">
+  <h2>Cara Membaca Tabel Periodik Unsur</h2>
+
+  <p>
+    Tabel periodik menunjukkan susunan unsur kimia berdasarkan <strong>nomor atom</strong>,
+    <strong>konfigurasi elektron</strong>, dan <strong>sifat kimia</strong>. Setiap kotak unsur
+    mewakili satu unsur dengan informasi dasar.
+  </p>
+
+  <h3>1. Informasi dalam Setiap Kotak Unsur</h3>
+  <ul>
+    <li><strong>Nomor Atom</strong> — angka paling atas; menunjukkan jumlah proton.</li>
+    <li><strong>Simbol Unsur</strong> — huruf besar/kecil di tengah; singkatan nama unsur.</li>
+    <li><strong>Nama Unsur</strong> — biasanya di bawah simbol.</li>
+    <li><strong>Warna Kotak</strong> — menunjukkan kategori/jenis unsur.</li>
+  </ul>
+
+  <h3>2. Baris (Periode)</h3>
+  <p>
+    Baris mendatar disebut <strong>periode</strong>. Terdapat 7 periode utama.
+    Dari kiri ke kanan, sifat logam berkurang dan sifat non-logam meningkat.
+  </p>
+
+  <h3>3. Kolom (Golongan)</h3>
+  <p>
+    Kolom tegak disebut <strong>golongan</strong>. Unsur dalam satu golongan memiliki
+    sifat kimia yang mirip karena jumlah elektron valensi yang sama.
+  </p>
+
+  <h3>4. Blok dalam Tabel Periodik</h3>
+  <p>
+    Tabel periodik terbagi menjadi beberapa blok berdasarkan orbital:
+  </p>
+  <ul>
+    <li><strong>Blok s</strong> — Golongan 1 dan 2 serta Helium.</li>
+    <li><strong>Blok p</strong> — Golongan 13–18.</li>
+    <li><strong>Blok d</strong> — Logam transisi (bagian tengah).</li>
+    <li><strong>Blok f</strong> — Lantanida dan Aktinida (bagian bawah).</li>
+  </ul>
+
+  <h3>5. Kategori Warna Unsur</h3>
+  <p>Warna pada tabel menunjukkan jenis unsur:</p>
+  <ul>
+    <li><span class="color-box alkali"></span> Logam Alkali</li>
+    <li><span class="color-box alkali-earth"></span> Logam Alkali Tanah</li>
+    <li><span class="color-box transition"></span> Logam Transisi</li>
+    <li><span class="color-box post-transition"></span> Logam Pasca-Transisi</li>
+    <li><span class="color-box metalloid"></span> Metaloid</li>
+    <li><span class="color-box non-metal"></span> Non-Logam</li>
+    <li><span class="color-box noble-gas"></span> Gas Mulia</li>
+    <li><span class="color-box lanthanide"></span> Lantanida</li>
+    <li><span class="color-box actinide"></span> Aktinida</li>
+  </ul>
+
+  <h3>6. Lantanida dan Aktinida</h3>
+  <p>
+    Dua deret di bagian bawah tabel adalah <strong>lantanida</strong> dan
+    <strong>aktinida</strong>. Secara posisi sebenarnya berada di periode 6 dan 7 tetapi
+    diletakkan terpisah agar tabel tidak terlalu panjang.
+  </p>
+
+  <h3>7. Cara Menggunakan Tabel Periodik</h3>
+  <ul>
+    <li>Mencari sifat logam vs non-logam.</li>
+    <li>Menentukan jumlah elektron valensi.</li>
+    <li>Memahami kecenderungan periodik seperti jari-jari atom, keelektronegatifan, dan energi ionisasi.</li>
+    <li>Mempelajari hubungan antar unsur dalam satu golongan.</li>
+  </ul>
+</div>
+
+
+      <div class="popup-info" id="element-popup">
+        <h3 class="popup-name"></h3>
+        <p class="popup-details">
+          <span class="popup-symbol"></span>. No. Atom:
+          <span class="popup-number"></span>
+        </p>
+        <p class="popup-description"></p>
+        <button class="popup-close-btn">&times;</button>
+      </div>
+      <a href="../../index.html" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Kembali
+      </a>
+    </div>
+
+    <script src="../js/tabel-periodik.js"></script>
+  </body>
+</html>

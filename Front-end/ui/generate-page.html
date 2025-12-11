@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHEMISTRY GENERATE</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/generate-page.css" />
+  </head>
+
+  <body>
+    <div class="app-wrapper">
+      <header class="main-header-bar">
+        <h1 class="header-title-mobile">CHEMISTRY GENERATE</h1>
+        <button class="btn-history-toggle">
+          <i class="fas fa-history"></i> Riwayat
+        </button>
+      </header>
+      <div class="sidebar-container">
+        <div class="history-search-wrapper">
+            <input type="text" class="history-search" placeholder="Cari riwayat... (nama, rumus, deskripsi)" />
+            <button class="btn-clear-search" title="Bersihkan">✖</button>
+        </div>
+        
+        <div class="history-section"><ul class="chat-history-list"></ul>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <h1 class="form-title">Chemistry Generate</h1>
+
+        <form class="form-layout">
+          <div class="form-section-title">Kebutuhan Dasar Produk</div>
+          <div class="input-row main-header">
+            <input
+              type="text"
+              class="input-field primary-field"
+              placeholder="Jenis produk (Pelarut, Surfaktan, Kosmetik, dll.)"
+              required
+            />
+            <input
+              type="text"
+              class="input-field primary-field"
+              placeholder="Tujuan / Fungsi Produk (Tahan panas, Tidak beracun, dll.)"
+              required
+            />
+          </div>
+
+          <div class="form-section-title">Target Parameter Teknis</div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Titik Didih"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Satuan (e.g., 180°C)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Viskositas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Satuan (e.g., 50 cP)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="pH"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai Target (1–14)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Densitas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Satuan (e.g., 0.9 g/cm³)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Polaritas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Nilai / Tipe (Polar, Non-polar, atau Dinyatakan)"
+            />
+          </div>
+
+          <div class="input-row property-group">
+            <input
+              type="text"
+              class="input-field property-field-label"
+              value="Biodegradabilitas"
+              readonly
+            />
+            <input
+              type="text"
+              class="input-field property-field-value"
+              placeholder="Target (cepat/lambat/%)"
+            />
+          </div>
+
+          <div class="form-section-title">
+            Keterbatasan & Preferensi Logistik
+          </div>
+
+          <div class="input-row property-group wide-input">
+            <input
+              type="text"
+              class="input-field wide-field"
+              placeholder="Bahan baku yang tersedia di pabrik (untuk efisiensi biaya)"
+            />
+          </div>
+
+          <div class="input-row property-group wide-input">
+            <input
+              type="text"
+              class="input-field wide-field"
+              placeholder="Regulasi atau batasan keamanan (e.g., Tidak boleh mengandung Xylene, Sesuai BPOM)"
+            />
+          </div>
+
+          <div class="input-row property-group wide-input">
+            <input
+              type="text"
+              class="input-field wide-field"
+              placeholder="Preferensi Industri (e.g., Berbasis bio / Berbasis minyak bumi)"
+            />
+          </div>
+
+          <div class="bottom-input-area">
+            <textarea
+              class="textarea-placeholder"
+              placeholder="Tambahkan deskripsi, instruksi khusus, atau kriteria lainnya..."
+            ></textarea>
+          </div>
+
+          <div class="generate-button-wrapper">
+            <a href="../../index.html" class="btn-back">
+              <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            <button type="submit" class="btn-generate">GENERATE</button>
+          </div>
+        </form>
+
+        <div id="resultPopup" class="popup-overlay">
+          <div class="popup-box">
+            <button id="closeResultPopup" class="popup-close">
+              <i class="fas fa-times"></i>
+            </button>
+            <h2 class="popup-title">Hasil Generate</h2>
+            <div id="resultContent" class="popup-content"></div>
+          </div>
+        </div>
+      </div>
+      <div id="historyModal" class="popup-overlay history-modal">
+          <div class="popup-box history-popup-box">
+              <button id="closeHistoryModal" class="popup-close">
+                  <i class="fas fa-times"></i>
+              </button>
+              <h2 class="popup-title">Riwayat Generate Senyawa</h2>
+
+              <div class="history-search-wrapper modal-search">
+                  <input type="text" id="modalHistorySearch" class="history-search" placeholder="Cari riwayat... (nama, rumus, deskripsi)" />
+                  <button class="btn-clear-search" id="modalClearSearch" title="Bersihkan">✖</button>
+              </div>
+
+              <ul class="chat-history-list modal-history-list"></ul>
+          </div>
+      </div>
+      </div>
+
+    <script src="../js/generate-page.js"></script>
+  </body>
+</html>
