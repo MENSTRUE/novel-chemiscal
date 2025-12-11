@@ -48445,5 +48445,41 @@
     "skor_kecocokan": 100,
     "justifikasi_ringkas": "Hidrogen Sianida adalah racun mematikan yang terkenal dengan bau khas almond pahit, sangat cocok dengan kriteria 'racun' dan 'coklat almond'.",
     "id": "Hidrogen Sianida"
+  },
+  {
+    "nama_senyawa": "Asam Fosfat",
+    "rumus_molekul": "H3PO4",
+    "berat_molekul": 97.994,
+    "sinonim": "Asam ortofosfat",
+    "deskripsi": "Asam fosfat adalah asam mineral anorganik yang tidak berwarna, tidak berbau, dan kental. Ini adalah asam triprotik yang digunakan secara luas sebagai agen pengkarat, aditif makanan, dan dalam produksi pupuk. Efektif dalam menghilangkan karat dengan mengubah oksida besi menjadi fosfat besi yang stabil, yang juga berfungsi sebagai lapisan pelindung.",
+    "titik_didih_celsius": 158,
+    "titik_leleh_celsius": 42.35,
+    "densitas_gcm3": 1.885,
+    "pernyataan_bahaya_ghs": "H314 (Menyebabkan luka bakar kulit dan kerusakan mata yang parah)",
+    "kategori_aplikasi": "Penghilang karat, agen pengkarat, aditif makanan, produksi pupuk, agen pembersih",
+    "sifat_fungsional": "Asam kuat (sedang), agen pengkarat, agen pengkelat (lemah), pelarut (dalam larutan air)",
+    "tingkat_risiko_keselamatan": "Sedang",
+    "bahaya_keselamatan": "Korosif terhadap kulit dan mata, dapat menyebabkan iritasi saluran pernapasan jika terhirup uapnya. Penanganan memerlukan alat pelindung diri yang sesuai.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 15,
+        "nama_unsur": "Fosfor",
+        "simbol": "P"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Asam fosfat adalah pelarut yang efektif dalam larutan air dan sangat efisien dalam menghilangkan karat dengan mengubahnya menjadi lapisan fosfat besi yang stabil, menjadikannya pilihan terbaik untuk kriteria yang diminta.",
+    "id": "Asam Fosfat"
   }
 ]

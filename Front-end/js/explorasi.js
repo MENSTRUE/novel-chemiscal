@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-// FILE: explorasi.js (VERSI PERBAIKAN - DETAIL REAKSI SEPERTI GAMBAR)
+// FILE: explorasi.js (REVISI FINAL: MENGGUNAKAN DELEGASI EVENT UNTUK TOMBOL CANCEL)
 
 // =================================================================
 // KONFIGURASI API
@@ -49,30 +49,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // =================================================================
 
     function getCardColor(cardElement) {
-        if (cardElement.classList.contains('selected-compound')) {
-            const tempBox = document.createElement('div');
-            tempBox.style.cssText = 'display: none;';
-            document.body.appendChild(tempBox);
-            
-            const colorClasses = [
-                'water', 'salt', 'co2', 'sulfat', 'oksigen', 'etanol', 
-                'amonia', 'glukosa', 'kalsium', 'besi', 'hcl-2', 'NaOH', 
-                'c6h6', 'ch3cooh', 'kcl', 'no', 'hf', 'mgcl2', 'n2o', 
-                'cuso4', 'nano3', 'c2h4', 'kmnO4'
-            ];
-            
-            for (let cls of cardElement.classList) {
-                if (colorClasses.includes(cls)) {
-                    tempBox.className = cls;
-                    const style = getComputedStyle(tempBox);
-                    const backgroundColor = style.backgroundColor;
-                    tempBox.remove();
-                    return backgroundColor;
-                }
+        const colorClasses = [
+            'water', 'salt', 'co2', 'sulfat', 'oksigen', 'etanol', 
+            'amonia', 'glukosa', 'kalsium', 'besi', 'hcl-2', 'NaOH', 
+            'c6h6', 'ch3cooh', 'kcl', 'no', 'hf', 'mgcl2', 'n2o', 
+            'cuso4', 'nano3', 'c2h4', 'kmnO4', 'metana'
+        ];
+        
+        let colorClass = null;
+        for (let cls of cardElement.classList) {
+            if (colorClasses.includes(cls)) {
+                colorClass = cls;
+                break;
             }
-            tempBox.remove();
         }
-        return "rgb(17, 17, 17)"; 
+
+        if (colorClass) {
+            const formulaCircle = cardElement.querySelector('.formula-circle');
+            if (formulaCircle) {
+                return getComputedStyle(formulaCircle).backgroundColor;
+            }
+        }
+        
+        return "rgb(0, 174, 239)"; 
     }
 
     function updateReactorBoxes() {
@@ -83,13 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const fillBox = (boxElement, compound) => {
             const cardElement = document.querySelector(`[data-compound-id="${compound.id}"]`);
-            const color = getCardColor(cardElement);
+            const color = cardElement ? getCardColor(cardElement) : "rgb(0, 174, 239)";
 
             boxElement.innerHTML = `
-                <div class="selected-compound-display">
-                    <div class="formula-circle" style="background-color: ${color};">${compound.rumus_molekul}</div>
-                    <h4>${compound.nama_senyawa}</h4>
+                <div class="selected-compound-display" data-compound-id="${compound.id}" data-formula="${compound.rumus_molekul}" style="background-color: ${color};">
+                    <h4 class="compound-name">${compound.nama_senyawa}</h4>
                     <p class="formula-text">${compound.rumus_molekul}</p>
+                    <button class="remove-compound-btn" data-compound-id="${compound.id}">
+                        &times;
+                    </button>
                 </div>
             `;
             boxElement.classList.add("selected", "active");
@@ -101,7 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedCompounds[1]) {
             fillBox(box2, selectedCompounds[1]);
         }
-
+        
+        // Cek kembali status tombol Gabung
         btnGabung.disabled = selectedCompounds.length !== 2;
         if (selectedCompounds.length === 2) {
             btnGabung.style.opacity = "1";
@@ -113,12 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function toggleCompoundSelection(cardElement, compoundData) {
-        const index = selectedCompounds.findIndex(c => c.id === compoundData.id);
+        const index = selectedCompounds.findIndex(c => String(c.id) === String(compoundData.id));
 
         if (index > -1) {
+            // Menghapus/Deselect
             selectedCompounds.splice(index, 1);
             cardElement.classList.remove('selected-compound');
         } else {
+            // Memilih/Select
             if (selectedCompounds.length < 2) {
                 selectedCompounds.push(compoundData);
                 cardElement.classList.add('selected-compound');
@@ -129,6 +133,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         updateReactorBoxes();
     }
+    
+    // --- FUNGSI DELEGASI CLICK UNTUK TOMBOL CANCEL ---
+    function handleCompoundRemoval(targetElement) {
+        let compoundId = null;
+        
+        // Kasus 1: Mengklik tombol 'x' atau ikon di dalamnya
+        if (targetElement.classList.contains('remove-compound-btn') || targetElement.closest('.remove-compound-btn')) {
+            const btn = targetElement.closest('.remove-compound-btn');
+            compoundId = btn.dataset.compoundId;
+        } 
+        // Kasus 2: Mengklik area card di dalam box reaktor
+        else if (targetElement.classList.contains('selected-compound-display') || targetElement.closest('.selected-compound-display')) {
+             const display = targetElement.closest('.selected-compound-display');
+             compoundId = display.dataset.compoundId;
+        }
+        
+        if (compoundId) {
+            const cardToDeselect = document.querySelector(`.compound-card[data-compound-id="${compoundId}"]`);
+            const compoundDataToRemove = allCompoundsData.find(c => String(c.id) === compoundId);
+            
+            if (cardToDeselect && compoundDataToRemove) {
+                // Hapus senyawa
+                toggleCompoundSelection(cardToDeselect, compoundDataToRemove);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     function setupReactorListeners() {
         btnGabung.addEventListener('click', () => {
@@ -150,6 +183,30 @@ document.addEventListener("DOMContentLoaded", () => {
             currentReactionResult = null; 
             console.log("Reaktor Direset.");
         });
+        
+        // ==========================================================
+        // DELEGASI EVENT UNTUK TOMBOL CANCEL (Paling Stabil)
+        // ==========================================================
+        
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+            
+            // Cek apakah klik terjadi di dalam box reaktor
+            if (target.closest('.reactor-boxes')) {
+                // Cek apakah target atau parent-nya adalah compound-box yang sudah terisi
+                const clickedBox = target.closest('.compound-box.selected');
+                
+                if (clickedBox) {
+                    // Coba hapus senyawa berdasarkan target klik
+                    const wasCompoundRemoved = handleCompoundRemoval(target);
+                    
+                    if (wasCompoundRemoved) {
+                        event.stopPropagation();
+                        // Karena handleCompoundRemoval memanggil updateReactorBoxes(), DOM akan berubah
+                    }
+                }
+            }
+        });
     }
     
     function showTemporaryMessage(title, message, color) {
@@ -163,8 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
         popupContent.innerHTML = `<p style="text-align: center; color: #ccc;">${message}</p>`;
         
         popupActions.innerHTML = `<button class="popup-btn popup-btn-close" id="tempCloseBtn" style="background: #444; color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9rem; margin-left: auto;">
-                                    Tutup
-                                </button>`;
+                                     Tutup
+                                 </button>`;
         
         const tempCloseBtn = popupActions.querySelector('#tempCloseBtn');
         if (tempCloseBtn) {
@@ -190,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (isLoading && popupElement) {
             const popupContent = popupElement.querySelector('.popup-content');
-            const popupTitle = popupElement.querySelector('.popup-title');
+            const popupTitle = popupElement.querySelector('#popupTitle'); 
             
             if (popupTitle) popupTitle.textContent = "⚙️ Memproses Reaksi...";
             
@@ -206,25 +263,29 @@ document.addEventListener("DOMContentLoaded", () => {
                             ).join('')}
                         </ul>
                     </div>
-                    <div class="loading-bar" style="width: 100%; height: 4px; background: linear-gradient(90deg, #00aeef 0%, #00aeef 50%, transparent 50%); background-size: 200% 100%; animation: loading 2s linear infinite;"></div>
+                    <div class="loading-bar"></div>
                 `;
                 
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes loading {
-                        0% { background-position: 100% 0; }
-                        100% { background-position: -100% 0; }
-                    }
-                    .ai-steps li.active {
-                        border-left-color: #00aeef !important;
-                        background: rgba(0, 174, 239, 0.1) !important;
-                        color: #00aeef !important;
-                    }
-                    .ai-steps li.active span {
-                        color: #00aeef !important;
-                    }
-                `;
-                document.head.appendChild(style);
+                const styleId = 'loading-animation-style';
+                if (!document.getElementById(styleId)) {
+                    const style = document.createElement('style');
+                    style.id = styleId;
+                    style.textContent = `
+                        @keyframes loading {
+                            0% { background-position: 100% 0; }
+                            100% { background-position: -100% 0; }
+                        }
+                        .ai-steps li.active {
+                            border-left-color: #00aeef !important;
+                            background: rgba(0, 174, 239, 0.1) !important;
+                            color: #00aeef !important;
+                        }
+                        .ai-steps li.active span {
+                            color: #00aeef !important;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
                 
                 simulateReactionProgress();
             }
@@ -240,6 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
             li.style.borderLeftColor = '#444';
             li.style.background = 'rgba(0,0,0,0.3)';
             li.style.color = '#aaa';
+            li.classList.remove('active');
         });
 
         if (progressInterval) clearInterval(progressInterval);
@@ -293,14 +355,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const name = compound.nama_senyawa || 'Senyawa Tak Dikenal';
             const formula = compound.rumus_molekul || 'N/A';
             const description = compound.deskripsi || 'Belum ada deskripsi detail.';
-            const id = compound.id || index; 
+            const id = String(compound.id || index); 
 
             const card = document.createElement('div');
             card.className = 'compound-card';
             card.dataset.compoundName = name;
             card.dataset.compoundId = id;
             
-            const colorClasses = ['water', 'salt', 'co2', 'sulfat', 'oksigen', 'etanol', 'amonia', 'glukosa', 'kalsium', 'besi'];
+            const colorClasses = ['water', 'salt', 'co2', 'sulfat', 'oksigen', 'etanol', 'amonia', 'glukosa', 'kalsium', 'besi', 'hcl-2', 'NaOH', 'c6h6', 'ch3cooh', 'kcl', 'no', 'hf', 'mgcl2', 'n2o', 'cuso4', 'nano3', 'c2h4', 'kmnO4', 'metana'];
             const colorClass = colorClasses[index % colorClasses.length]; 
             card.classList.add(colorClass); 
 
@@ -310,6 +372,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p class="formula-text">${formula}</p>
                 <p class="description">${description.length > 100 ? description.substring(0, 100) + '...' : description}</p>
             `;
+
+            if (selectedCompounds.some(c => String(c.id) === id)) {
+                card.classList.add('selected-compound');
+            }
 
             const compoundDataForHandler = {
                 id: id,
@@ -321,6 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.addEventListener('click', () => toggleCompoundSelection(card, compoundDataForHandler));
             compoundGrid.appendChild(card);
         });
+        updateReactorBoxes();
     }
 
     // =================================================================
@@ -425,8 +492,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (popupActions) {
                 popupActions.innerHTML = `<button class="popup-btn popup-btn-close" id="errorCloseBtn" style="background: #e74c3c; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; margin-left: auto;">
-                                            <i class="fas fa-times"></i> Tutup
-                                        </button>`;
+                                             <i class="fas fa-times"></i> Tutup
+                                         </button>`;
                 
                 const errorCloseBtn = popupActions.querySelector('#errorCloseBtn');
                 if (errorCloseBtn) {
@@ -441,7 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =================================================================
-    // FUNGSI UTAMA SHOW REACTION POPUP - DIPERBAIKI
+    // FUNGSI UTAMA SHOW REACTION POPUP
     // =================================================================
     function showReactionPopup(compoundA, compoundB, apiResult = null) {
         console.log("Showing reaction popup...");
@@ -461,8 +528,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const compBName = compoundB.nama_senyawa;
         const compAFormula = compoundA.rumus_molekul;
         const compBFormula = compoundB.rumus_molekul;
-        const compAColor = getCardColor(document.querySelector(`[data-compound-id="${compoundA.id}"]`));
-        const compBColor = getCardColor(document.querySelector(`[data-compound-id="${compoundB.id}"]`));
+        
+        const cardA = document.querySelector(`[data-compound-id="${compoundA.id}"]`);
+        const cardB = document.querySelector(`[data-compound-id="${compoundB.id}"]`);
+        const compAColor = cardA ? getCardColor(cardA) : "#00aeef";
+        const compBColor = cardB ? getCardColor(cardB) : "#ff00aa";
 
         let result;
 
@@ -490,7 +560,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (popupTitle) popupTitle.textContent = "⚠️ Hasil Reaksi (Fallback)";
         }
 
-        // BAGIAN 1: TAMPILAN AWAL - REAKSI DISPLAY (SEPERTI GAMBAR)
         const initialDisplayHTML = `
             <div class="reaction-display" style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
                 <div class="compound-display" style="text-align: center; min-width: 100px;">
@@ -521,25 +590,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
             
-            <!-- DETAIL SECTION - DISEMBUNYIKAN AWALNYA -->
             <div id="detailSection" style="display: none;">
-                <!-- Container untuk CID dan produk seperti gambar -->
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="flex: 1; min-width: 200px;">
                         <div style="background: rgba(0,174,239,0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #00aeef;">
-                            <h4 style="color: #00aeef; font-size: 0.9rem; margin-bottom: 0.5rem;">CID-6324</h4>
-                            <p style="color: #fff; font-size: 1.1rem; font-weight: bold; margin: 0;">C₂H₆</p>
+                            <h4 style="color: #00aeef; font-size: 0.9rem; margin-bottom: 0.5rem;">Reaktan 1 (${compoundA.nama_senyawa})</h4>
+                            <p style="color: #fff; font-size: 1.1rem; font-weight: bold; margin: 0;">${compoundA.rumus_molekul}</p>
                         </div>
                     </div>
                     <div style="flex: 1; min-width: 200px;">
                         <div style="background: rgba(255,0,170,0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #ff00aa;">
-                            <h4 style="color: #ff00aa; font-size: 0.9rem; margin-bottom: 0.5rem;">CID-6334</h4>
-                            <p style="color: #fff; font-size: 1.1rem; font-weight: bold; margin: 0;">C₃H₈</p>
+                            <h4 style="color: #ff00aa; font-size: 0.9rem; margin-bottom: 0.5rem;">Reaktan 2 (${compoundB.nama_senyawa})</h4>
+                            <p style="color: #fff; font-size: 1.1rem; font-weight: bold; margin: 0;">${compoundB.rumus_molekul}</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Produk Reaksi -->
                 <div style="background: rgba(0,255,136,0.1); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #00ff88;">
                     <h4 style="color: #00ff88; font-size: 1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
                         <i class="fas fa-flask"></i> Hasil Reaksi
@@ -549,27 +615,25 @@ document.addEventListener("DOMContentLoaded", () => {
                             ${result.name}
                         </div>
                         <div style="color: #fff; font-size: 0.9rem;">
-                            dan Air
+                            ${result.formula.includes('+') ? 'Produk sampingan lainnya...' : ''}
                         </div>
                     </div>
+                    <p style="color: #ccc; font-size: 0.9rem; margin-top: 10px;">Persamaan: ${result.formula}</p>
                 </div>
                 
-                <!-- Detail Reaksi - SEPERTI GAMBAR YANG DIKIRIM -->
                 <div style="background: rgba(30, 30, 63, 0.8); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid rgba(0,174,239,0.3);">
                     <h4 style="color: #00aeef; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
                         <i class="fas fa-info-circle"></i> Detail Reaksi
                     </h4>
                     
-                    <!-- Tabel Detail seperti gambar -->
                     <div style="display: grid; grid-template-columns: auto 1fr; gap: 0.8rem; margin-bottom: 1rem;">
                         <div style="color: #aaa; font-size: 0.9rem;">Jenis Reaksi:</div>
                         <div style="color: #fff; font-weight: bold;">${result.reactionType}</div>
                         
                         <div style="color: #aaa; font-size: 0.9rem;">Risiko:</div>
-                        <div style="color: #ff4444; font-weight: bold;">${result.risk}</div>
+                        <div style="color: ${result.risk.includes('Tinggi') ? '#ff4444' : result.risk.includes('Sedang') ? '#ffaa00' : '#00ff88'}; font-weight: bold;">${result.risk}</div>
                     </div>
                     
-                    <!-- Deskripsi Risiko (seperti gambar WhatsApp) -->
                     <div style="background: rgba(255, 68, 68, 0.1); padding: 1rem; border-radius: 6px; border-left: 3px solid #ff4444; margin-top: 1rem;">
                         <h5 style="color: #ffaa00; font-size: 0.9rem; margin-bottom: 0.5rem;">⚠️ Catatan Keselamatan:</h5>
                         <p style="color: #ccc; font-size: 0.85rem; line-height: 1.5; margin: 0;">
@@ -578,12 +642,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 
-                <!-- Simpan ke Database Button -->
                 <button id="saveDetailBtn" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #00cc66, #00994d); border: none; color: white; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
                     <i class="fas fa-save"></i> Simpan ke Database
                 </button>
                 
-                <!-- Tombol Kembali -->
                 <button id="backToMainBtn" style="width: 100%; margin-top: 1rem; padding: 0.8rem; background: #444; border: none; color: white; border-radius: 8px; font-size: 0.9rem; cursor: pointer;">
                     ← Kembali ke Hasil Reaksi
                 </button>
@@ -611,15 +673,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const detailReactionBtn = popupActions.querySelector('#detailReactionBtn');
         if (detailReactionBtn) {
             detailReactionBtn.addEventListener('click', () => {
-                console.log("Tombol Detail Reaksi diklik");
-                // Sembunyikan tombol aksi utama
                 popupActions.style.display = 'none';
-                // Tampilkan detail section
+                popupContent.querySelector('.reaction-display').style.display = 'none';
                 const detailSection = popupContent.querySelector('#detailSection');
                 if (detailSection) {
                     detailSection.style.display = 'block';
                     
-                    // Tambahkan event listener untuk tombol Simpan di detail
                     const saveDetailBtn = detailSection.querySelector('#saveDetailBtn');
                     if (saveDetailBtn && apiResult) {
                         saveDetailBtn.addEventListener('click', () => {
@@ -634,13 +693,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const backToMainBtn = popupContent.querySelector('#backToMainBtn');
         if (backToMainBtn) {
             backToMainBtn.addEventListener('click', () => {
-                console.log("Tombol Kembali diklik");
-                // Sembunyikan detail section
                 const detailSection = popupContent.querySelector('#detailSection');
                 if (detailSection) {
                     detailSection.style.display = 'none';
                 }
-                // Tampilkan kembali tombol aksi utama
+                popupContent.querySelector('.reaction-display').style.display = 'flex';
                 popupActions.style.display = 'flex';
             });
         }
@@ -656,7 +713,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         popupOverlay.style.display = 'flex';
-        console.log("Popup displayed successfully!");
     }
 
     // =================================================================
