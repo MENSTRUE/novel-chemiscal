@@ -48363,5 +48363,87 @@
     "skor_kecocokan": 90,
     "justifikasi_ringkas": "Fenol adalah pelarut yang efektif dan agen biosida kuat yang bekerja dengan mendenaturasi protein dan merusak membran sel, secara langsung menghambat fungsi seluler dan kemampuan 'lifesteal' organisme, serta mencegah regenerasi jaringan.",
     "id": "Fenol"
+  },
+  {
+    "nama_senyawa": "Kalsium Sulfonat",
+    "rumus_molekul": "Campuran kompleks alkylarylsulfonat kalsium teroverbasi",
+    "berat_molekul": 0,
+    "sinonim": "Overbased Calcium Sulfonate; Kalsium Alkylarylsulfonat",
+    "deskripsi": "Kalsium Sulfonat adalah aditif pelumas yang sangat efektif, dikenal karena sifat deterjen, dispersan, dan anti-korosinya. Senyawa ini membentuk lapisan pelindung pada permukaan logam, mencegah kontak dengan agen korosif seperti air dan asam. Meskipun umumnya aman dalam formulasi akhir, konsentratnya dapat menyebabkan iritasi kulit dan mata. Ketersediaannya luas dan merupakan pilihan yang sangat baik untuk aplikasi oli anti-karat.",
+    "titik_didih_celsius": 0,
+    "titik_leleh_celsius": 0,
+    "densitas_gcm3": 1.1,
+    "pernyataan_bahaya_ghs": "H315 - Menyebabkan iritasi kulit; H319 - Menyebabkan iritasi mata serius; H412 - Berbahaya bagi kehidupan akuatik dengan efek jangka panjang.",
+    "kategori_aplikasi": "Aditif Pelumas; Agen Anti-Karat; Deterjen; Dispersan",
+    "sifat_fungsional": "Anti-korosi; Deterjen; Dispersan; Pembentuk film pelindung",
+    "tingkat_risiko_keselamatan": "Sedang",
+    "bahaya_keselamatan": "Iritasi kulit dan mata; Berpotensi berbahaya jika tertelan dalam jumlah besar; Berbahaya bagi lingkungan akuatik.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 20,
+        "nama_unsur": "Kalsium",
+        "simbol": "Ca"
+      },
+      {
+        "nomor_atom": 16,
+        "nama_unsur": "Belerang",
+        "simbol": "S"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      },
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Kalsium Sulfonat adalah aditif yang sangat efektif dalam oli untuk mencegah karat dan korosi, membentuk lapisan pelindung pada permukaan logam serta berfungsi sebagai deterjen.",
+    "id": "Kalsium Sulfonat"
+  },
+  {
+    "nama_senyawa": "Hidrogen Sianida",
+    "rumus_molekul": "HCN",
+    "berat_molekul": 27.026,
+    "sinonim": "Asam Prussik, Asam Hidrosianat, Formonitril",
+    "deskripsi": "Hidrogen Sianida adalah cairan tidak berwarna yang sangat mudah menguap pada suhu kamar, atau gas di atas 25.7 °C. Ia memiliki bau khas seperti almond pahit, meskipun tidak semua orang dapat menciumnya. Senyawa ini sangat beracun, mengganggu respirasi seluler dan dan dapat menyebabkan kematian dengan cepat.",
+    "titik_didih_celsius": 25.7,
+    "titik_leleh_celsius": -13.4,
+    "densitas_gcm3": 0.687,
+    "pernyataan_bahaya_ghs": "H224 (Cairan dan uap sangat mudah terbakar), H300 (Fatal jika tertelan), H310 (Fatal jika kontak dengan kulit), H330 (Fatal jika terhirup), H400 (Sangat beracun bagi kehidupan akuatik).",
+    "kategori_aplikasi": "Sintesis organik (misalnya, akrilonitril), fumigan (historis), bahan kimia industri.",
+    "sifat_fungsional": "Racun pernapasan, agen pereduksi, prekursor dalam sintesis organik.",
+    "tingkat_risiko_keselamatan": "Tinggi",
+    "bahaya_keselamatan": "Sangat beracun melalui inhalasi, kontak kulit, dan ingesti. Sangat mudah terbakar. Dapat membentuk campuran eksplosif dengan udara.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 7,
+        "nama_unsur": "Nitrogen",
+        "simbol": "N"
+      }
+    ],
+    "skor_kecocokan": 100,
+    "justifikasi_ringkas": "Hidrogen Sianida adalah racun mematikan yang terkenal dengan bau khas almond pahit, sangat cocok dengan kriteria 'racun' dan 'coklat almond'.",
+    "id": "Hidrogen Sianida"
   }
 ]

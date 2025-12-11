@@ -266,6 +266,14 @@ body {
   gap: 15px;
 }
 
+.explore-buttons {
+
+    margin-top: 30px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+}
+
 .section {
   padding: 80px 0;
 }

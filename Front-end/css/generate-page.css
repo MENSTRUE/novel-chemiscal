@@ -33,6 +33,7 @@
     font-family: "Roboto", Arial, sans-serif;
 }
 
+
 body {
     background-color: var(--color-darker-bg);
     color: var(--color-text-light);
@@ -44,9 +45,68 @@ body {
     height: 100vh;
 }
 
-/* ===== SIDEBAR (Standard Styling) ===== */
+/* 🔵 Styling Tombol "Lihat" (View) - Warna BIRU */
+.btn-history-view {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Pastikan teks tombol tidak pecah */
+    /* Biru Utama */
+    background-color: #007bff; 
+    color: white; /* Teks putih */
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3); /* Shadow biru */
+}
+
+.btn-history-view:hover {
+    /* Biru Lebih Gelap */
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-history-view:active {
+    background-color: #003d80;
+    transform: translateY(0);
+}
+
+/* 🔴 Styling Tombol "Hapus" (Delete) - Warna MERAH */
+.btn-history-delete {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Pastikan teks tombol tidak pecah */
+    /* Merah Utama */
+    background-color: #dc3545; 
+    color: white; /* Teks putih */
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3); /* Shadow merah */
+}
+
+.btn-history-delete:hover {
+    /* Merah Lebih Gelap */
+    background-color: #c82333;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-history-delete:active {
+    background-color: #a71d2a;
+    transform: translateY(0);
+}
+
+/* ========================================================================== */
+/* ████   SIDEBAR (UPDATED WITH BEAUTIFUL HISTORY UI)   ████ */
+/* ========================================================================== */
+
 .sidebar-container {
-    width: 260px;
+    width: 300px;
     background-color: var(--color-sidebar-bg);
     border-right: 1px solid var(--color-border-dark);
     padding: 20px;
@@ -54,6 +114,7 @@ body {
     flex-direction: column;
 }
 
+/* New Chat Button */
 .new-chat-section {
     margin-bottom: 20px;
 }
@@ -78,6 +139,7 @@ body {
     color: var(--color-text-light);
 }
 
+/* Search */
 .search-section {
     margin-bottom: 20px;
 }
@@ -104,46 +166,158 @@ body {
     color: var(--color-text-secondary);
 }
 
+/* ===============================
+   Search bar
+================================ */
+.history-search-wrapper {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.history-search {
+  flex: 1;
+  padding: 10px 14px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: var(--color-text-light);
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.history-search:focus {
+  border-color: var(--color-accent-blue-neon);
+  box-shadow: 0 0 6px var(--color-accent-blue-neon);
+  outline: none;
+}
+
+.btn-clear-search {
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 16px;
+  color: #bbb;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-clear-search:hover {
+  background: #333;
+  color: #fff;
+}
+
+
+
+/* ========================================================================== */
+/* ████   HISTORY LIST — MODERN & NEON STYLE   ████ */
+/* ========================================================================== */
+
 .history-section {
+    overflow-y: auto;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
+.history-item-card {
+  background: linear-gradient(145deg, #0c0c0c, #101010);
+  border: 1px solid #1f1f1f;
+  border-radius: 16px;
+  padding: 14px 16px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 0 0 transparent;
+}
+
+.history-item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px var(--color-accent-blue-neon);
+  border-color: var(--color-accent-blue-neon);
+}
+
+
 .history-title {
     font-size: 14px;
     margin-bottom: 10px;
-    color: var(--color-text-secondary);
+    color: var(--color-accent-blue-mid);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Custom scrollbar */
+.chat-history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-history-list::-webkit-scrollbar-thumb {
+    background: var(--color-accent-blue-mid);
+    border-radius: 8px;
+}
+.chat-history-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* NEW: Card-style chat item */
 .chat-history-list {
     list-style: none;
     overflow-y: auto;
     flex: 1;
     margin-bottom: 15px;
+    padding-right: 5px;
 }
 
 .chat-item {
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
     color: var(--color-text-secondary);
-    transition: background-color 0.2s, color 0.2s;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border-dark);
+    transition: 0.25s;
+    position: relative;
+    animation: fadeInUp 0.3s ease;
 }
 
+/* Timestamp kecil (opsional) */
+.chat-item .item-date {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+/* Hover efek neon */
 .chat-item:hover {
-    background-color: var(--color-hover-bg);
-    color: var(--color-text-light);
+    background-color: rgba(0, 191, 255, 0.15);
+    border-color: var(--color-accent-blue-mid);
+    color: var(--color-accent-blue-neon);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.25);
 }
 
+/* Active item */
 .chat-item.active {
-    background-color: var(--color-accent-blue-mid);
+    background-color: rgba(0, 191, 255, 0.25);
+    border: 1px solid var(--color-accent-blue-neon);
     color: var(--color-text-light);
     font-weight: bold;
+    box-shadow: 0 0 12px rgba(0, 191, 255, 0.35);
 }
 
+/* Clean animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Clear History Button */
 .btn-clear-history {
     background: transparent;
     border: none;
@@ -154,11 +328,18 @@ body {
     cursor: pointer;
     font-size: 14px;
     margin-top: 10px;
+    transition: 0.3s;
 }
+
+.btn-clear-history:hover {
+    color: #ff6b6b;
+}
+
+
 
 /* ===== MAIN CONTENT (Standard Styling) ===== */
 .main-content {
-    flex: 1;
+    flex: 2;
     padding: 32px 48px;
     overflow-y: auto;
 }

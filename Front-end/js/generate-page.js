@@ -1,467 +1,622 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-irregular-whitespace */
-// File: generate-page.js (VERSI FINAL BERSIH DAN BENAR)
+// File: generate-page.js (VERSI FINAL BERSIH & TERSTRUKTUR)
 
-// =================================================================
+// ======================================================================
 // KONFIGURASI API
-// =================================================================
+// ======================================================================
 const API_BASE_URL = "http://127.0.0.1:8000";
-const ENDPOINT_GENERATE = "/generate"; // Endpoint awal
-const ENDPOINT_REFINE = "/refine";     // 🔥 ENDPOINT BARU: Untuk iterasi feedback
-const ENDPOINT_SAVE = "/save_compound"; // 🔥 ENDPOINT BARU: Untuk menyimpan hasil akhir
+const ENDPOINT_GENERATE = "/generate";
+const ENDPOINT_REFINE = "/refine";
+const ENDPOINT_SAVE = "/save_compound";
 
-// === STATE MANAGEMENT GLOBAL ===
-let currentCompoundData = null; // Menyimpan input kriteria pengguna (jenisProduk, tujuan, dll)
-let currentRecommendation = null; // Menyimpan hasil JSON rekomendasi terakhir
+// ======================================================================
+// STATE GLOBAL
+// ======================================================================
+let currentCompoundData = null;
+let currentRecommendation = null;
 let progressInterval;
+
 const AI_STEPS = [
     "Menentukan kriteria dan preferensi produk...",
     "Mengorkestrasi (Directing) ke Gemini Pro untuk penalaran...",
-    "Menjalankan analisis & pencocokan basis data (RAG)..",
+    "Menjalankan analisis & pencocokan basis data (RAG)...",
     "Membuat Justifikasi & Menghitung Skor Kecocokan...",
     "Memformat output menjadi JSON KETAT...",
     "Selesai! Memuat hasil."
 ];
-// ===============================
 
+// Local storage key untuk riwayat
+const HISTORY_KEY = "chemistry_history_v1";
+
+// ======================================================================
+// UTILITY: Generate ID
+// ======================================================================
+function generateId() {
+    return 'h_' + Date.now() + '_' + Math.random().toString(36).slice(2, 9);
+}
+
+// ======================================================================
+// MAIN EXECUTION
+// ======================================================================
 document.addEventListener("DOMContentLoaded", function () {
     console.log("generate-page.js loaded");
 
-    // =================================
-    // 1. AMBIL ELEMEN UTAMA & POPUP
-    // =================================
+    // ==========================
+    // ELEMENT UTAMA
+    // ==========================
     const form = document.querySelector(".form-layout");
     const btnGenerate = document.querySelector(".btn-generate");
     const btnBack = document.querySelector(".btn-back");
+
     const popup = document.getElementById("resultPopup");
     const popupContent = document.getElementById("resultContent");
     const closePopup = document.getElementById("closeResultPopup");
 
-    if (popup) {
-        popup.style.display = "none";
+    const historyListEl = document.querySelector(".chat-history-list");
+
+    if (popup) popup.style.display = "none";
+
+    // Jika tidak ada elem search di HTML, buatkan secara dinamis
+    let historySearchInput = document.querySelector('.history-search');
+    if (!historySearchInput && historyListEl) {
+        const container = document.createElement('div');
+        container.className = 'history-search-wrapper';
+        container.innerHTML = `
+            <input type="text" class="history-search" placeholder="Cari riwayat... (nama, rumus, deskripsi)" />
+            <button class="btn-clear-search" title="Bersihkan">✖</button>
+        `;
+        historyListEl.parentNode.insertBefore(container, historyListEl);
+        historySearchInput = container.querySelector('.history-search');
+        const clearBtn = container.querySelector('.btn-clear-search');
+        clearBtn.addEventListener('click', () => { historySearchInput.value = ''; renderHistoryList(); });
+
+        historySearchInput.addEventListener('input', () => renderHistoryList(historySearchInput.value.trim()));
     }
 
-    // =================================
-    // 2. HELPER: LOADING, MODAL, RIWAYAT (FUNGSI UTAMA BARU)
-    // =================================
+    // ==================================================================
+    // FUNGSI: LOADING & PROGRESS AI
+    // ==================================================================
     function setLoadingState(isLoading, message = "GENERATE") {
         if (btnGenerate) {
             btnGenerate.textContent = isLoading ? "Processing..." : message;
             btnGenerate.disabled = isLoading;
-            btnGenerate.classList.toggle('loading', isLoading);
+            btnGenerate.classList.toggle("loading", isLoading);
         }
 
         if (isLoading && popup && popupContent) {
             popup.style.display = "flex";
-            const popupTitle = popup.querySelector('.popup-title');
+
+            const popupTitle = popup.querySelector(".popup-title");
             if (popupTitle) popupTitle.textContent = "⚙️ Memproses Senyawa Baru...";
 
-            // Tampilkan progress bar
             popupContent.innerHTML = `
-                <div id="ai-progress-display">
-                    <p>Memulai Analisis. Ini mungkin memakan waktu beberapa detik...</p>
-                    <ul id="stepList" class="ai-steps">
-                        ${AI_STEPS.map((step, index) => `<li id="step-${index}"><span>${step}</span></li>`).join('')}
-                    </ul>
-                </div>
-                <div class="loading-bar"></div>
-            `;
+                <div id="ai-progress-display">
+                    <p>Memulai Analisis. Ini mungkin memakan waktu beberapa detik...</p>
+                    <ul id="stepList" class="ai-steps">
+                        ${AI_STEPS.map((s, i) => `<li id="step-${i}"><span>${s}</span></li>`).join("")}
+                    </ul>
+                </div>
+                <div class="loading-bar"></div>
+            `;
+
             simulateProgress();
         }
     }
 
     function simulateProgress() {
         let currentStep = 0;
-        const stepList = document.getElementById('stepList');
+        const stepList = document.getElementById("stepList");
         if (!stepList) return;
 
-        Array.from(stepList.children).forEach(li => li.className = '');
+        Array.from(stepList.children).forEach((li) => (li.className = ""));
 
-        // Hentikan interval lama jika ada
         if (progressInterval) clearInterval(progressInterval);
 
         progressInterval = setInterval(() => {
             if (currentStep < AI_STEPS.length) {
-                const currentLi = document.getElementById(`step-${currentStep}`);
-                if (currentLi) {
-                    currentLi.classList.add('active');
-                }
+                const li = document.getElementById(`step-${currentStep}`);
+                if (li) li.classList.add("active");
                 currentStep++;
-            } else {
-                // Biarkan interval berjalan hingga data API diterima
-                // Interval akan di-clear di showResultPopup/catch error
             }
         }, 1000);
     }
 
-    // 🔥 FUNGSI BARU: Menampilkan pop-up kustom (menggantikan alert)
-    function showCustomModal(title, message, status) { // status: true (sukses), false (loading), 'error'
+    
+    // ==================================================================
+    // FUNGSI: MODAL KUSTOM GENERIK
+    // ==================================================================
+    function showCustomModal(title, message, status) {
         if (!popup || !popupContent) return;
 
         clearInterval(progressInterval);
 
-        let icon = '❌';
-        let color = 'var(--color-error)';
-        let spinner = '';
+        let icon = "❌";
+        let color = "var(--color-error)";
+        let spinner = "";
 
-        if (status === true) { // Success
-            icon = '✅';
-            color = 'var(--color-success)';
-        } else if (status === false) { // Loading
-            icon = '🔄';
-            color = 'var(--color-accent-blue-neon)';
-            spinner = '<div class="loading-spinner"></div>';
-        } else if (status === 'error') { // Error
-            color = 'var(--color-error)';
+        if (status === true) {
+            icon = "✅";
+            color = "var(--color-success)";
+        } else if (status === false) {
+            icon = "🔄";
+            color = "var(--color-accent-blue-neon)";
+            spinner = `<div class="loading-spinner"></div>`;
         }
 
-        const btnText = (status === true) ? 'Selesai' : 'OK';
+        const btnText = status === true ? "Selesai" : "OK";
+        const titleEl = popup.querySelector(".popup-title");
 
-        const popupTitle = popup.querySelector('.popup-title');
-        if (popupTitle) popupTitle.textContent = `${icon} ${title}`;
+        if (titleEl) titleEl.textContent = `${icon} ${title}`;
 
-        // Konten modal kustom (MENGGUNAKAN CLASS TOMBOL UNIK: btn-modal-action)
         popupContent.innerHTML = `
-            <div class="custom-modal-content">
-                <h3 style="color: ${color};">${message}</h3>
-                ${spinner}
-            </div>
-            <div class="result-actions" style="justify-content: center; margin-top: 20px;">
-                                <button id="closeModalBtn" class="btn-modal-action btn-save">${btnText}</button>
-            </div>
-        `;
+            <div class="custom-modal-content">
+                <h3 style="color:${color};">${message}</h3>
+                ${spinner}
+            </div>
 
-        // Sembunyikan tombol OK/Selesai saat status loading
+            <div class="result-actions" style="justify-content:center; margin-top:20px;">
+                <button id="closeModalBtn" class="btn-modal-action btn-save">${btnText}</button>
+            </div>
+        `;
+
         if (status === false) {
-            const closeBtn = document.getElementById('closeModalBtn');
-            if (closeBtn) closeBtn.style.display = 'none';
+            const closeBtn = document.getElementById("closeModalBtn");
+            if (closeBtn) closeBtn.style.display = "none";
         }
 
         popup.style.display = "flex";
     }
 
-    // 🔥 FUNGSI BARU: Tambahkan ke riwayat di sidebar
-    function addToHistory(compoundName) {
-        const historyList = document.querySelector('.chat-history-list');
-        if (historyList) {
-            const newItem = document.createElement('li');
-            newItem.className = 'chat-item';
-            newItem.textContent = `🧪 ${compoundName}`;
-            historyList.prepend(newItem);
-        } else {
-            console.warn("Element riwayat (chat-history-list) tidak ditemukan.");
+    // ==================================================================
+    // FUNGSI: RIWAYAT (localStorage)
+    // ==================================================================
+    function loadHistory() {
+        try {
+            const raw = localStorage.getItem(HISTORY_KEY);
+            if (!raw) return [];
+            const arr = JSON.parse(raw);
+            if (!Array.isArray(arr)) return [];
+            return arr;
+        } catch (e) {
+            console.warn('Gagal parse history', e);
+            return [];
         }
     }
 
-    // =================================
-    // 3. EVENT LISTENER
-    // =================================
+    function saveHistory(arr) {
+        try {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(arr));
+        } catch (e) {
+            console.warn('Gagal menyimpan history', e);
+        }
+    }
 
-    // Submit Form (Hanya untuk inisiasi pertama)
+    function addToHistory(name, answerObj) {
+        // Simpan ke UI dan localStorage
+        const history = loadHistory();
+        const item = {
+            id: generateId(),
+            nama: name || (answerObj?.nama_senyawa) || 'Senyawa Baru',
+            timestamp: Date.now(),
+            answer: answerObj || null
+        };
+
+        // tambahkan ke awal
+        history.unshift(item);
+        saveHistory(history);
+        renderHistoryList();
+    }
+
+    function deleteHistoryItem(id) {
+        let history = loadHistory();
+        const beforeCount = history.length;
+        history = history.filter(h => h.id !== id);
+        saveHistory(history);
+        renderHistoryList();
+    }
+
+    // 🌟 FUNGSI INI YANG DIMODIFIKASI UNTUK TAMPILAN LEBIH MENARIK 🌟
+    function renderHistoryList(filter = '') {
+        const list = document.querySelector('.chat-history-list');
+        if (!list) return;
+
+        const history = loadHistory();
+        list.innerHTML = '';
+
+        const query = filter.toLowerCase();
+        let historyCount = 0;
+
+        history.forEach(h => {
+            const nameLower = (h.nama || '').toLowerCase();
+            const desc = (h.answer?.deskripsi || '') + ' ' + (h.answer?.justifikasi_ringkas || '') + ' ' + (h.answer?.rumus_molekul || '');
+            const descLower = desc.toLowerCase();
+
+            if (query && !(nameLower.includes(query) || descLower.includes(query))) return; // skip
+
+            historyCount++;
+            const li = document.createElement('li');
+            li.className = 'history-item-card'; // Kelas baru untuk styling card
+            li.dataset.id = h.id;
+
+            const date = new Date(h.timestamp);
+            const prettyDate = date.toLocaleString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+            const compoundName = escapeHtml(h.nama || 'Senyawa Tanpa Nama');
+            const formula = escapeHtml(h.answer?.rumus_molekul || '—');
+            const score = h.answer?.skor_kecocokan || 0;
+            const risk = escapeHtml(h.answer?.tingkat_risiko_keselamatan || 'N/A');
+
+            li.innerHTML = `
+                <div class="history-content-main">
+                    <div class="history-icon-box">🧪</div>
+                    <div class="history-text-details">
+                        <div class="history-title-name">${compoundName}</div>
+                        <div class="history-meta-data">
+                            <span>Formula: <strong>${formula}</strong></span>
+                            <span class="score-badge">Match: ${score}%</span>
+                            <span class="risk-badge risk-${risk.toLowerCase()}">${risk}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-actions-group">
+                    <div class="history-date">${prettyDate}</div>
+                    <button class="btn-history-view" title="Lihat Detail">Lihat</button>
+                    <button class="btn-history-delete" title="Hapus Permanen">Hapus</button>
+                </div>
+            `;
+
+            // click pada seluruh li (kecuali area tombol) -> lihat
+            li.addEventListener('click', (e) => {
+                // Pastikan klik tidak berasal dari tombol aksi
+                if (e.target.closest('.btn-history-view') || e.target.closest('.btn-history-delete')) {
+                    return;
+                }
+                viewHistoryItem(h.id);
+            });
+
+
+            li.querySelector('.btn-history-view').addEventListener('click', (e) => {
+                e.stopPropagation();
+                viewHistoryItem(h.id);
+            });
+
+            li.querySelector('.btn-history-delete').addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (confirm(`Hapus riwayat "${h.nama}"?`)) deleteHistoryItem(h.id);
+            });
+
+            list.appendChild(li);
+        });
+
+        if (historyCount === 0) {
+            list.innerHTML = `<p class="empty-history-message">Tidak ada riwayat yang ditemukan.${query ? ' Bersihkan filter untuk melihat semua.' : ''}</p>`;
+        }
+    }
+
+    
+    // 🌟 AKHIR MODIFIKASI FUNGSI RIWAYAT 🌟
+
+    function viewHistoryItem(id) {
+        const history = loadHistory();
+        const h = history.find(x => x.id === id);
+        if (!h) return showCustomModal('Tidak ditemukan', 'Data riwayat tidak ada.', 'error');
+
+        // tampilkan menggunakan showResultPopup
+        const apiResult = { answer: h.answer };
+        currentRecommendation = h.answer;
+        popup.querySelector('.popup-title').textContent = `🕘 Riwayat: ${h.nama}`;
+        showResultPopup(apiResult, false);
+    }
+
+    // ==================================================================
+    // EVENT LISTENER UTAMA
+    // ==================================================================
     if (form) {
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
-            // Panggilan awal selalu menggunakan data dari form
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
             collectAndProcessData(ENDPOINT_GENERATE, collectData());
         });
     }
 
-    // Tombol Kembali
     if (btnBack) {
-        btnBack.addEventListener("click", function (event) {
-            event.preventDefault();
+        btnBack.addEventListener("click", (e) => {
+            e.preventDefault();
             window.location.href = "../../index.html";
         });
     }
 
-    // Tutup Popup & Klik Aksi (diperbaiki agar lebih fleksibel)
     if (closePopup) {
-        closePopup.addEventListener("click", () => {
-            popup.style.display = "none";
-        });
+        closePopup.addEventListener("click", () => (popup.style.display = "none"));
     }
-    if (popup) {
-        popup.addEventListener("click", (e) => {
-            // Aksi Refine
-            if (e.target.id === 'refineResultBtn') {
-                const feedbackInput = document.getElementById('feedbackInput');
-                if (feedbackInput && currentCompoundData && currentRecommendation) {
-                    const newFeedback = feedbackInput.value.trim();
-                    if (newFeedback) {
-                        // Gabungkan input awal + rekomendasi + feedback baru
-                        const refineData = {
-                            ...currentCompoundData,
-                            currentRecommendation: currentRecommendation, // Kirim hasil saat ini
-                            feedback: newFeedback
-                        };
-                        // Panggil endpoint /refine
-                        collectAndProcessData(ENDPOINT_REFINE, refineData);
-                    } else {
-                        // MENGGANTIKAN ALERT BAWAAN
-                        showCustomModal("Input Kurang", "Harap masukkan perintah perbaikan (feedback) Anda.", 'error');
-                    }
-                }
-            }
-            // Aksi Simpan
-            if (e.target.id === 'saveResultBtn') {
-                if (currentRecommendation) {
-                    handleSaveResult(currentRecommendation);
-                } else {
-                    // MENGGANTIKAN ALERT BAWAAN
-                    showCustomModal("Penyimpanan Gagal", "Tidak ada rekomendasi untuk disimpan.", 'error');
-                }
-            }
-            // Aksi Mulai Baru (Reset Form)
-            if (e.target.id === 'newChatBtn') {
-                if (form) form.reset();
-                currentCompoundData = null;
-                currentRecommendation = null;
-                // MENGGANTIKAN ALERT BAWAAN
-                console.log('Memulai Sesi Generate Baru. Semua input direset.');
-                popup.style.display = 'none';
-            }
 
-            // 🔥 Aksi Tutup Modal Kustom (Ditambahkan untuk menangani tombol "Selesai"/"OK" dari showCustomModal)
-            if (e.target.id === 'closeModalBtn') {
-                popup.style.display = 'none';
-                // Kasus Sukses (Tombol "Selesai")
-                if (e.target.textContent === 'Selesai') {
-                    if (form) form.reset();
-                    currentCompoundData = null;
-                    currentRecommendation = null;
-                }
-                // Kasus Error (Tombol "OK")
-                else if (e.target.textContent === 'OK') {
-                    // Kembalikan tampilan ke hasil generate terakhir
-                    if (currentRecommendation) {
-                        showResultPopup({ answer: currentRecommendation }, true);
-                    }
-                }
-            }
-        });
-    }
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && popup) popup.style.display = "none";
     });
 
-    // =================================
-    // 4. LOGIKA PENGUMPULAN DATA & API CALL
-    // =================================
+    // ==================================================================
+    // EVENT LISTENER: POPUP ACTION
+    // ==================================================================
+    if (popup) {
+        popup.addEventListener("click", (e) => {
+            const id = e.target.id;
 
-    // Fungsi collectData TIDAK BERUBAH karena hanya bertugas mengumpulkan dari FORM
-    function collectData() {
-        const compoundData = {};
+            // REFINE
+            if (id === "refineResultBtn") {
+                const inp = document.getElementById("feedbackInput");
+                if (!inp || !currentCompoundData || !currentRecommendation)
+                    return showCustomModal("Input Kurang", "Harap masukkan feedback.", "error");
 
-        // 1. Input utama (jenisProduk, tujuan)
-        const primaryInputs = document.querySelectorAll(
-            ".input-row.main-header .input-field"
-        );
-        compoundData.jenisProduk = primaryInputs[0]?.value.trim() || "";
-        compoundData.tujuan = primaryInputs[1]?.value.trim() || "";
+                const text = inp.value.trim();
+                if (!text)
+                    return showCustomModal("Input Kosong", "Masukkan perintah perbaikan!", "error");
 
-        // 2. Properti Kimia (propertiTarget)
-        compoundData.propertiTarget = {};
-        const propertyGroups = document.querySelectorAll(
-            ".input-row.property-group"
-        );
-        propertyGroups.forEach((group) => {
-            const labelInput = group.querySelector(".property-field-label");
-            const valueInput = group.querySelector(".property-field-value");
-            const rawLabel = labelInput?.value.trim() || "";
-            const value = valueInput?.value.trim() || "";
+                const refineData = {
+                    ...currentCompoundData,
+                    currentRecommendation,
+                    feedback: text,
+                };
 
-            if (!rawLabel || !value) return;
-
-            const key = rawLabel.toLowerCase().replace(/[^a-z0-9]/g, "");
-            compoundData.propertiTarget[key] = value;
-        });
-
-        // 3. Deskripsi Kriteria Tambahan (deskripsiKriteria) & Logistik
-        const textArea = document.querySelector(".textarea-placeholder");
-        compoundData.deskripsiKriteria = textArea ? textArea.value.trim() : "";
-
-        const wideInputs = document.querySelectorAll(".input-row.wide-input .input-field");
-        if (wideInputs.length > 0) {
-            let logistikNotes = "Keterbatasan & Preferensi Logistik:\n";
-            let addedLogistics = false;
-            wideInputs.forEach(input => {
-                if (input.value.trim()) {
-                    logistikNotes += `- ${input.placeholder}: ${input.value.trim()}\n`;
-                    addedLogistics = true;
-                }
-            });
-            if (addedLogistics) {
-                compoundData.deskripsiKriteria += (compoundData.deskripsiKriteria ? "\n\n" : "") + logistikNotes;
+                collectAndProcessData(ENDPOINT_REFINE, refineData);
             }
-        }
 
-        return compoundData;
+            // SAVE
+            if (id === "saveResultBtn") {
+                if (!currentRecommendation)
+                    return showCustomModal("Gagal", "Tidak ada rekomendasi.", "error");
+                handleSaveResult(currentRecommendation);
+            }
+
+            // NEW SESSION
+            if (id === "newChatBtn") {
+                if (form) form.reset();
+                currentCompoundData = null;
+                currentRecommendation = null;
+                popup.style.display = "none";
+            }
+
+            // CLOSE MODAL
+            if (id === "closeModalBtn") {
+                popup.style.display = "none";
+
+                if (e.target.textContent === "Selesai") {
+                    if (form) form.reset();
+                    currentCompoundData = null;
+                    currentRecommendation = null;
+                } else if (e.target.textContent === "OK") {
+                    if (currentRecommendation)
+                        showResultPopup({ answer: currentRecommendation }, true);
+                }
+            }
+        });
     }
 
-    /**
-     * Menampilkan hasil generate dari API di popup.
-     */
+    // ==================================================================
+    // FUNGSI: COLLECT DATA FORM
+    // ==================================================================
+    function collectData() {
+        const data = {};
+
+        const primaryInputs = document.querySelectorAll(".input-row.main-header .input-field");
+        data.jenisProduk = primaryInputs[0]?.value.trim() || "";
+        data.tujuan = primaryInputs[1]?.value.trim() || "";
+
+        data.propertiTarget = {};
+        document.querySelectorAll(".input-row.property-group").forEach((g) => {
+            const key = g.querySelector(".property-field-label")?.value.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+            const val = g.querySelector(".property-field-value")?.value.trim();
+
+            if (key && val) data.propertiTarget[key] = val;
+        });
+
+        const textArea = document.querySelector(".textarea-placeholder");
+        data.deskripsiKriteria = textArea ? textArea.value.trim() : "";
+
+        const wideInputs = document.querySelectorAll(".input-row.wide-input .input-field");
+        let logistik = "Keterbatasan & Preferensi Logistik:\n";
+        let used = false;
+
+        wideInputs.forEach((el) => {
+            if (el.value.trim()) {
+                logistik += `- ${el.placeholder}: ${el.value.trim()}\n`;
+                used = true;
+            }
+        });
+
+        if (used)
+            data.deskripsiKriteria += (data.deskripsiKriteria ? "\n\n" : "") + logistik;
+
+        return data;
+    }
+
+    // ==================================================================
+    // FUNGSI: TAMPILKAN HASIL
+    // ==================================================================
     function showResultPopup(apiResult, isRefinement = false) {
         if (!popup || !popupContent) return;
 
         clearInterval(progressInterval);
 
-        const compound = apiResult.answer;
-        const compoundName = compound.nama_senyawa || 'Senyawa Baru';
+        const c = apiResult.answer;
+        currentRecommendation = c;
 
-        // === SIMPAN STATE REKOMENDASI TERAKHIR ===
-        currentRecommendation = compound;
+        const name = c?.nama_senyawa || "Senyawa Baru";
 
-        // --- Konten Utama HTML ---
-        let htmlContent = `
-    <div class="result-header">
-        <h3>🧪 Senyawa Rekomendasi ${isRefinement ? "Baru" : "Awal"}: <strong>${compoundName}</strong></h3>
-        <p class="match-score">Skor Kecocokan: <span class="score">${compound.skor_kecocokan || 0}%</span></p>
-        <p class="molecule-detail">
-            <span class="detail-item">Rumus: <strong>${compound.rumus_molekul || 'N/A'}</strong></span> 
-            | 
-            <span class="detail-item">Berat: ${compound.berat_molekul || 'N/A'} g/mol</span>
-        </p>
-    </div>
-    
-    <div class="result-section">
-        <h4>📝 Justifikasi & Deskripsi</h4>
-        <p><strong>Justifikasi:</strong> ${compound.justifikasi_ringkas || 'N/A'}</p>
-        <p><strong>Deskripsi Detail:</strong> ${compound.deskripsi || 'N/A'}</p>
-    </div>
-    
-    <details class="property-details">
-        <summary>🔬 Lihat Properti Kimia Detail</summary>
-        <div class="property-grid">
-            <div><strong>Titik Didih:</strong> ${compound.titik_didih_celsius || 'N/A'} °C</div>
-            <div><strong>Densitas:</strong> ${compound.densitas_gcm3 || 'N/A'} g/cm³</div>
-            <div><strong>Sifat Fungsional:</strong> ${compound.sifat_fungsional || 'N/A'}</div>
-            <div><strong>Risiko Keselamatan:</strong> <span class="risk-level risk-${(compound.tingkat_risiko_keselamatan || 'N/A').toLowerCase()}">${compound.tingkat_risiko_keselamatan || 'N/A'}</span></div>
-        </div>
-    </details>
-    
-    <div class="feedback-section">
-        <h4>Perlu Perbaikan?</h4>
-        <p>Masukkan instruksi perbaikan, misalnya: "Cari yang Titik Didihnya lebih rendah dari 100C" atau "Tekankan sifat fungsional sebagai anti-oksidan."</p>
-        <input type="text" id="feedbackInput" placeholder="Masukkan perintah perbaikan (feedback)..." class="feedback-input">
-    </div>
-    
-    <div class="result-actions">
-        <button id="newChatBtn" class="btn-action btn-new btn-reset-form">
-             <i class="fas fa-plus"></i> Mulai Sesi Baru (Reset Form)
-        </button>
+        popup.querySelector(".popup-title").textContent = "✅ Hasil Generate Ditemukan!";
 
-        <div class="action-group-right"> 
-            <button id="refineResultBtn" class="btn-action btn-refine">
-                <i class="fas fa-sync-alt"></i> Generate Rekomendasi Ulang
-            </button>
-            <button id="saveResultBtn" class="btn-action btn-save">
-                <i class="fas fa-check"></i> Save & Selesai
-            </button>
-        </div>
-    </div>
-`;
+        popupContent.innerHTML = `
+            <div class="result-header">
+                <h3>🧪 Senyawa Rekomendasi ${isRefinement ? "Baru" : "Awal"}:
+                    <strong>${escapeHtml(name)}</strong>
+                </h3>
 
-        const popupTitle = popup.querySelector('.popup-title');
-        if (popupTitle) popupTitle.textContent = "✅ Hasil Generate Ditemukan!";
+                <p class="match-score">Skor Kecocokan:
+                    <span class="score">${c?.skor_kecocokan || 0}%</span>
+                </p>
 
-        popupContent.innerHTML = htmlContent;
+                <p class="molecule-detail">
+                    <span class="detail-item">Rumus: <strong>${escapeHtml(c?.rumus_molekul || "N/A")}</strong></span> |
+                    <span class="detail-item">Berat: ${escapeHtml(c?.berat_molekul || "N/A")} g/mol</span>
+                </p>
+            </div>
+
+            <div class="result-section">
+                <h4>📝 Justifikasi & Deskripsi</h4>
+                <p><strong>Justifikasi:</strong> ${escapeHtml(c?.justifikasi_ringkas || "N/A")}</p>
+                <p><strong>Deskripsi Detail:</strong> ${escapeHtml(c?.deskripsi || "N/A")}</p>
+            </div>
+
+            <details class="property-details">
+                <summary>🔬 Lihat Properti Kimia Detail</summary>
+                <div class="property-grid">
+                    <div><strong>Titik Didih:</strong> ${escapeHtml(c?.titik_didih_celsius || "N/A")} °C</div>
+                    <div><strong>Densitas:</strong> ${escapeHtml(c?.densitas_gcm3 || "N/A")} g/cm³</div>
+                    <div><strong>Sifat Fungsional:</strong> ${escapeHtml(c?.sifat_fungsional || "N/A")}</div>
+                    <div><strong>Risiko Keselamatan:</strong>
+                        <span class="risk-level risk-${(String(c?.tingkat_risiko_keselamatan || "N/A")).toLowerCase()}">
+                            ${escapeHtml(c?.tingkat_risiko_keselamatan || "N/A")}
+                        </span>
+                    </div>
+                </div>
+            </details>
+
+            <div class="feedback-section">
+                <h4>Perlu Perbaikan?</h4>
+                <p>Masukkan instruksi perbaikan, misalnya:
+                "Cari yang titik didihnya lebih rendah" atau "Tekankan sifat anti-oksidan".</p>
+
+                <input type="text" id="feedbackInput" class="feedback-input"
+                    placeholder="Masukkan perintah perbaikan (feedback)...">
+            </div>
+
+            <div class="result-actions">
+                <button id="newChatBtn" class="btn-action btn-new btn-reset-form">
+                    <i class="fas fa-plus"></i> Mulai Sesi Baru
+                </button>
+
+                <div class="action-group-right">
+                    <button id="refineResultBtn" class="btn-action btn-refine">
+                        <i class="fas fa-sync-alt"></i> Generate Ulang
+                    </button>
+
+                    <button id="saveResultBtn" class="btn-action btn-save">
+                        <i class="fas fa-check"></i> Save & Selesai
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Jika hasil berasal dari API generate (bukan hanya melihat riwayat), tambahkan ke riwayat
+        // Kita anggap currentCompoundData ada saat generate
+        if (currentRecommendation && currentCompoundData) {
+            try {
+                addToHistory(name, currentRecommendation);
+                // reset currentCompoundData agar tidak menyimpan duplikat saat refine
+                currentCompoundData = null;
+            } catch (e) {
+                console.warn('Gagal menambahkan ke riwayat:', e);
+            }
+        }
+
+        popup.style.display = "flex";
     }
 
-    /**
-     * Fungsi utama untuk memanggil API Generate atau Refine.
-     */
+    // ==================================================================
+    // FUNGSI: CALL API GENERATE / REFINE
+    // ==================================================================
     async function collectAndProcessData(endpoint, dataToSend) {
-
-        // Jika ini adalah panggilan generate awal, simpan input form ke state
         if (endpoint === ENDPOINT_GENERATE) {
             currentCompoundData = dataToSend;
-            if (!currentCompoundData.jenisProduk || !currentCompoundData.tujuan) {
-                showCustomModal("Input Kurang", "Harap isi Jenis Produk dan Tujuan Produk (Field utama).", 'error');
-                return;
-            }
+            if (!dataToSend.jenisProduk || !dataToSend.tujuan)
+                return showCustomModal("Input Kurang", "Field utama wajib diisi.", "error");
         }
 
         setLoadingState(true);
 
-        // --- Panggilan API ---
         try {
-            console.log(`Mengirim data ke API ${endpoint}:`, dataToSend);
-            const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+            const res = await fetch(`${API_BASE_URL}${endpoint}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dataToSend),
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`HTTP Error ${response.status}: ${errorData.detail || response.statusText}`);
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.detail || res.statusText);
             }
 
-            const result = await response.json();
+            const result = await res.json();
+            if (!result.success || !result.answer)
+                throw new Error("Respons API tidak valid");
 
-            if (result.success && result.answer) {
-                // Tampilkan hasil, tandai jika ini iterasi
-                showResultPopup(result, endpoint === ENDPOINT_REFINE);
-            } else {
-                throw new Error("Respons API tidak valid: Tidak ada 'success: true' atau 'answer'.");
-            }
+            showResultPopup(result, endpoint === ENDPOINT_REFINE);
 
-        } catch (error) {
-            console.error("Kesalahan saat menghasilkan/memperbaiki senyawa:", error);
-            clearInterval(progressInterval); // Hentikan progress
-            if (popupContent) {
-                let errorMessage = String(error.message).replace(/['"]+/g, '');
-                popupContent.innerHTML = `<h3>❌ Gagal Generate Senyawa</h3><p>${errorMessage || 'Terjadi kesalahan jaringan atau server.'}</p>`;
-                const popupTitle = popup.querySelector('.popup-title');
-                if (popupTitle) popupTitle.textContent = "Error";
-                popup.style.display = "flex";
-            }
+        } catch (err) {
+            popupContent.innerHTML = `
+                <h3>❌ Gagal Generate Senyawa</h3>
+                <p>${escapeHtml(err.message)}</p>
+            `;
+
+            popup.querySelector(".popup-title").textContent = "Error";
+            popup.style.display = "flex";
+
         } finally {
             setLoadingState(false, endpoint === ENDPOINT_REFINE ? "RE-GENERATE" : "GENERATE");
         }
     }
 
-    // =================================
-    // 5. LOGIKA AKSI LANJUTAN (Simpan & Chat Baru)
-    // =================================
+    // ==================================================================
+    // FUNGSI: SIMPAN DATA
+    // ==================================================================
+    async function handleSaveResult(data) {
+        if (!data)
+            return showCustomModal("Gagal", "Tidak ada data untuk disimpan.", "error");
 
-    // 🔥 Fungsi Simpan: Menggunakan modal kustom (VERSI FINAL BERSIH)
-    async function handleSaveResult(finalCompoundData) {
-
-        // 1. Cek Data Kosong (Menggantikan alert() lama)
-        if (!finalCompoundData) {
-            showCustomModal("Penyimpanan Gagal", "Tidak ada data final untuk disimpan.", 'error');
-            return;
-        }
-
-        // 2. Tampilkan modal loading (Menggantikan alert() lama "Mengirim senyawa...")
-        showCustomModal("Proses Menyimpan", `Menyimpan senyawa "${finalCompoundData.nama_senyawa}" ke database...`, false);
+        showCustomModal(
+            "Proses Menyimpan",
+            `Menyimpan senyawa "${data.nama_senyawa}" ke database...`,
+            false
+        );
 
         try {
-            const response = await fetch(`${API_BASE_URL}${ENDPOINT_SAVE}`, {
+            const res = await fetch(`${API_BASE_URL}${ENDPOINT_SAVE}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(finalCompoundData),
+                body: JSON.stringify(data),
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Gagal menyimpan: ${errorData.detail || response.statusText}`);
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.detail || res.statusText);
             }
 
-            const result = await response.json();
+            const result = await res.json();
+            addToHistory(data.nama_senyawa, data);
 
-            // 3. TAMBAHKAN KE RIWAYAT
-            addToHistory(finalCompoundData.nama_senyawa);
-
-            // 4. Tampilkan modal sukses (Menggantikan alert() lama "Penyimpanan Berhasil!")
             showCustomModal("Penyimpanan Berhasil!", result.message, true);
 
-        } catch (error) {
-            console.error("Kesalahan saat menyimpan hasil:", error);
-
-            // 5. Tampilkan modal error (Menggantikan alert() lama "Error Penyimpanan")
-            showCustomModal("Error Penyimpanan", `Terjadi kesalahan: ${error.message}`, 'error');
+        } catch (err) {
+            showCustomModal("Error Penyimpanan", err.message, "error");
         }
     }
+
+    
+    // ==================================================================
+    // INISIALISASI: render riwayat saat load
+    // ==================================================================
+    renderHistoryList();
+
+    // ==================================================================
+    // HELPERS
+    // ==================================================================
+    function escapeHtml(unsafe) {
+        if (unsafe === null || unsafe === undefined) return '';
+        return String(unsafe)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
 });

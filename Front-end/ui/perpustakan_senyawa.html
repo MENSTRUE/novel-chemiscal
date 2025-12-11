@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="../css/perpustakaan_senyawa.css"> 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script defer src="../js/perpustakaan_senyawa.js"></script> 
 </head>
-<body>
+<body class="no-scroll">
 
     <header class="header">
         <a href="../../index.html" class="btn-back">
@@ -27,26 +28,56 @@
         </div>
     </section>
 
-    <section class="section search-section">
-        <div class="search-container">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, rumus, atau deskripsi..." aria-label="Cari Senyawa">
-            </div>
-            <p id="compoundCount" class="count-text">Memuat...</p>
-        </div>
-    </section>
+<section class="section toggle-section">
+    <div class="toggle-container">
+        <button id="toggleStatsBtn" class="btn-toggle-view active">
+            Lihat Statistik
+        </button>
+        
+        <a href="add_compound.html" id="addCompoundLink" class="btn-add-new">
+            <i class="fas fa-plus-circle"></i> Tambah Senyawa
+        </a>
+    </div>
+</section>
 
-    <section class="section compound-list-section">
-        <div class="list-container">
-            <div class="compound-grid" id="compoundGrid">
-                <p class="loading-message">Memuat data dari database...</p>
+    <section class="section stats-section" id="compoundStatsSection" style="display: none;">
+        <div class="stats-container">
+            
+            <h2 class="stats-title">Distribusi Berdasarkan Kategori Aplikasi (Top 5)</h2>
+            <div class="chart-wrapper">
+                <canvas id="categoryChart"></canvas> 
+            </div>
+            
+            <h2 class="stats-title" style="margin-top: 40px;">Distribusi Tingkat Risiko Keselamatan</h2>
+            <div class="chart-wrapper">
+                <canvas id="riskChart"></canvas>
+            </div>
+            
+        </div>
+    </section> 
+
+    <div id="compoundListAndSearchContainer"> 
+        
+        <section class="section search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, rumus, atau deskripsi..." aria-label="Cari Senyawa">
                 </div>
-        </div>
-    </section>
+                <p id="compoundCount" class="count-text">Memuat...</p>
+            </div>
+        </section>
+
+        <section class="section compound-list-section">
+            <div class="list-container">
+                <div class="compound-grid" id="compoundGrid">
+                    <p class="loading-message">Memuat data dari database...</p>
+                </div>
+            </div>
+        </section>
+    </div>
     
-    <div id="compoundDetailPopup" class="popup-overlay" style="display: none;">
-        </div>
+    <div id="compoundDetailPopup" class="popup-overlay" style="display: none;"></div>
 
     <footer class="footer">
         <p>

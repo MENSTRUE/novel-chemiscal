@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Senyawa Baru</title>
+    
+    <link rel="stylesheet" href="../css/perpustakaan_senyawa.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* CSS Khusus Halaman Tambah */
+        .form-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: var(--color-card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--color-border-dark);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--color-accent-blue-neon);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--color-border-dark);
+            border-radius: 6px;
+            background: var(--color-input-bg);
+            color: var(--color-text-light);
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="perpustakan_senyawa.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali ke Perpustakaan
+        </a>
+        <div class="logo">Tambah Senyawa</div>
+    </header>
+
+    <div class="form-container">
+        <h1>Input Data Senyawa Baru</h1>
+        <p style="color: var(--color-text-secondary); margin-bottom: 25px;">Masukkan data kimia murni untuk senyawa baru.</p>
+        
+        <form id="addCompoundForm">
+            <div class="form-group">
+                <label for="nama_senyawa">Nama Senyawa *</label>
+                <input type="text" id="nama_senyawa" required>
+            </div>
+            <div class="form-group">
+                <label for="rumus_molekul">Rumus Molekul *</label>
+                <input type="text" id="rumus_molekul" placeholder="Contoh: C4H10O2" required>
+            </div>
+            <div class="form-group">
+                <label for="berat_molekul">Berat Molekul (g/mol)</label>
+                <input type="number" id="berat_molekul" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi Singkat</label>
+                <textarea id="deskripsi" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="kategori_aplikasi">Kategori Aplikasi</label>
+                <input type="text" id="kategori_aplikasi" placeholder="Contoh: Pelarut, Bahan Bakar">
+            </div>
+
+            <div class="form-group">
+                <label for="titik_didih_celsius">Titik Didih (°C)</label>
+                <input type="number" id="titik_didih_celsius" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="densitas_gcm3">Densitas (g/cm³)</label>
+                <input type="number" id="densitas_gcm3" step="0.001">
+            </div>
+            
+            <div class="form-group">
+                <label for="tingkat_risiko_keselamatan">Tingkat Risiko Keselamatan</label>
+                <select id="tingkat_risiko_keselamatan">
+                    <option value="Rendah">Rendah</option>
+                    <option value="Sedang">Sedang</option>
+                    <option value="Tinggi">Tinggi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bahaya_keselamatan">Bahaya Keselamatan Detail</label>
+                <textarea id="bahaya_keselamatan" rows="2" placeholder="Contoh: Mudah terbakar, korosif, iritan."></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-back">Reset Form</button>
+                <button type="submit" class="btn-add-new" id="submitCompoundBtn">
+                    <i class="fas fa-save"></i> Simpan Senyawa
+                </button>
+            </div>
+        </form>
+        
+        <p id="messageArea" style="margin-top: 20px; text-align: center; color: var(--color-success);"></p>
+    </div>
+
+    <footer class="footer">
+        <p>
+            Perpustakaan Senyawa Kimia - Input Data Baru.
+        </p>
+    </footer>
+    
+    <script src="../js/add_compound_logic.js"></script>
+
+</body>
+</html>
