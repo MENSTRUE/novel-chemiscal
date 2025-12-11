@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const popupContent = popupElement.querySelector('.popup-content');
             const popupTitle = popupElement.querySelector('#popupTitle'); 
             
-            if (popupTitle) popupTitle.textContent = "⚙️ Memproses Reaksi...";
+            if (popupTitle) popupTitle.textContent = "Memproses Reaksi...";
             
             if (popupContent) {
                 popupContent.innerHTML = `
@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (result.success && result.result) {
                 currentReactionResult = result.result;
-                console.log("✅ API Response Success:", result);
+                console.log("API Response Success:", result);
                 showReactionPopup(compoundA, compoundB, result.result);
             } else {
                 throw new Error("Respons API tidak valid: Tidak ada 'success: true' atau 'result'.");
@@ -479,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const popupActions = popupOverlay.querySelector('#popupActions');
             const popupTitle = popupOverlay.querySelector('#popupTitle');
 
-            if (popupTitle) popupTitle.textContent = "❌ Gagal Reaksi";
+            if (popupTitle) popupTitle.textContent = "Gagal Reaksi";
             if (popupContent) {
                 let errorMessage = String(error.message).replace(/['"]+/g, ''); 
                 popupContent.innerHTML = `
@@ -547,7 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 reaktanB: apiResult.reaktan_b || compBName,
                 color: "#2ecc71"
             };
-            if (popupTitle) popupTitle.textContent = "✅ Reaksi Kimia Berhasil!";
+            if (popupTitle) popupTitle.textContent = "Reaksi Kimia Berhasil!";
         } else {
             result = {
                 name: "Hasil Campuran",
@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 risk: "Unknown",
                 color: "#9b59b6"
             };
-            if (popupTitle) popupTitle.textContent = "⚠️ Hasil Reaksi (Fallback)";
+            if (popupTitle) popupTitle.textContent = "Hasil Reaksi (Fallback)";
         }
 
         const initialDisplayHTML = `
@@ -635,7 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     
                     <div style="background: rgba(255, 68, 68, 0.1); padding: 1rem; border-radius: 6px; border-left: 3px solid #ff4444; margin-top: 1rem;">
-                        <h5 style="color: #ffaa00; font-size: 0.9rem; margin-bottom: 0.5rem;">⚠️ Catatan Keselamatan:</h5>
+                        <h5 style="color: #ffaa00; font-size: 0.9rem; margin-bottom: 0.5rem;">Catatan Keselamatan:</h5>
                         <p style="color: #ccc; font-size: 0.85rem; line-height: 1.5; margin: 0;">
                             ${generateSafetyDescription(result.reactionType, result.risk, compAName, compBName)}
                         </p>

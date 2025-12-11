@@ -48481,5 +48481,46 @@
     "skor_kecocokan": 95,
     "justifikasi_ringkas": "Asam fosfat adalah pelarut yang efektif dalam larutan air dan sangat efisien dalam menghilangkan karat dengan mengubahnya menjadi lapisan fosfat besi yang stabil, menjadikannya pilihan terbaik untuk kriteria yang diminta.",
     "id": "Asam Fosfat"
+  },
+  {
+    "nama_senyawa": "Polydimethylsiloxane",
+    "rumus_molekul": "(C2H6OSi)n",
+    "berat_molekul": 0,
+    "sinonim": "Dimethicone, Silicone oil, PDMS",
+    "deskripsi": "Polydimethylsiloxane adalah polimer sintetis yang dikenal karena stabilitas termal yang sangat baik, toksisitas rendah, dan sifat inert. Senyawa ini banyak digunakan dalam kosmetik untuk sifat emoliennya, peningkatan rasa pada kulit, dan kemampuannya membentuk lapisan pelindung. Umumnya dianggap non-komedogenik dan hipoalergenik.",
+    "titik_didih_celsius": 0,
+    "titik_leleh_celsius": 0,
+    "densitas_gcm3": 0.96,
+    "pernyataan_bahaya_ghs": "Tidak diklasifikasikan sebagai bahan berbahaya menurut GHS.",
+    "kategori_aplikasi": "Kosmetik (perawatan kulit, perawatan rambut, makeup), farmasi, pelumas, sealant",
+    "sifat_fungsional": "Emolien, pelindung kulit, agen pembentuk film, penambah tekstur, penolak air, penstabil panas",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Umumnya dianggap aman. Tidak ada bahaya signifikan yang diketahui dalam penggunaan kosmetik.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      },
+      {
+        "nomor_atom": 14,
+        "nama_unsur": "Silikon",
+        "simbol": "Si"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Polydimethylsiloxane sangat cocok untuk kosmetik karena sifatnya yang inert, aman untuk kulit, dan stabilitas termal yang sangat baik, menjadikannya ideal untuk produk tahan panas.",
+    "id": "Polydimethylsiloxane"
   }
 ]
