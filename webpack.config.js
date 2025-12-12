@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
 
     output: {
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/',
+      publicPath: '/', // ✅ FIX #1: Aset akan dimuat dari root URL
       filename: isProd ? 'js/[name].[contenthash:8].js' : 'js/bundle.js',
       clean: true,
       assetModuleFilename: 'assets/[hash][ext][query]'
@@ -60,17 +60,14 @@ module.exports = (env, argv) => {
           : false
       }),
 
+      // ✅ FIX #2: CopyPlugin tunggal yang menyalin SEMUA aset manual
       new CopyPlugin({
         patterns: [
-          {
-            from: path.resolve(__dirname, 'Front-end/assets'),
-            to: 'assets'
-          },
-          // >>> REVISI KRITIS: Tambahkan aturan untuk menyalin file _redirects <<<
-          {
-            from: path.resolve(__dirname, 'Front-end/_redirects'),
-            to: '_redirects'
-          }
+          { from: path.resolve(__dirname, 'Front-end/assets'), to: 'assets' },
+          { from: path.resolve(__dirname, 'Front-end/ui'), to: 'ui' }, // Untuk halaman HTML dalam
+          { from: path.resolve(__dirname, 'Front-end/css'), to: 'css' }, // Untuk style.css manual
+          { from: path.resolve(__dirname, 'Front-end/js'), to: 'js' }, // Untuk file JS manual
+          { from: path.resolve(__dirname, 'Front-end/_redirects'), to: '_redirects' } // Untuk SPA 404 Fix
         ]
       })
     ].filter(Boolean),
