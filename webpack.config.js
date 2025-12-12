@@ -64,6 +64,11 @@ module.exports = (env, argv) => {
           {
             from: path.resolve(__dirname, 'Front-end/assets'),
             to: 'assets'
+          },
+          // >>> REVISI KRITIS: Tambahkan aturan untuk menyalin file _redirects <<<
+          {
+            from: path.resolve(__dirname, 'Front-end/_redirects'),
+            to: '_redirects'
           }
         ]
       })
