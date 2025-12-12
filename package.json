@@ -5,7 +5,8 @@
   "description": "ChemisTry - bundled with webpack",
   "scripts": {
     "start-dev": "webpack serve --config webpack.config.js --mode development",
-    "build": "webpack --config webpack.config.js --mode production"
+    "build": "webpack --config webpack.config.js --mode production",
+    "serve": "http-server disk"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -14,11 +15,12 @@
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.9.4",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "webpack": "^5.88.2",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^5.2.2"
   }
 }

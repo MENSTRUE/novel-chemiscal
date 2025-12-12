@@ -1,22 +1,26 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
-  const isProd = argv && argv.mode === 'production';
+  const isProd = argv?.mode === 'production';
 
   return {
-    entry: path.resolve(__dirname, 'reaction.ts'),
+    entry: path.resolve(__dirname, 'Front-end/reaction.ts'),
     devtool: isProd ? false : 'inline-source-map',
+
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: isProd ? 'js/[name].[contenthash:8].js' : 'js/bundle.js',
       clean: true,
       assetModuleFilename: 'assets/[hash][ext][query]'
     },
+
     resolve: {
-      extensions: ['.ts', '.js', '.json']
+      extensions: ['.ts', '.js']
     },
+
     module: {
       rules: [
         {
@@ -25,8 +29,11 @@ module.exports = (env, argv) => {
           exclude: /node_modules/
         },
         {
-          test: /\.css$/i,
-          use: ['style-loader', 'css-loader']
+          test: /\.css$/,
+          use: [
+            isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+            'css-loader'
+          ]
         },
         {
           test: /\.(png|jpe?g|gif|svg|webp)$/i,
@@ -34,28 +41,37 @@ module.exports = (env, argv) => {
         }
       ]
     },
+
     plugins: [
+      isProd &&
+        new MiniCssExtractPlugin({
+          filename: 'css/[name].[contenthash:8].css'
+        }),
+
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'index.html'),
+        template: path.resolve(__dirname, 'Front-end/index.html'),
         inject: 'body',
         minify: isProd
           ? {
               collapseWhitespace: true,
-              removeComments: true,
-              removeRedundantAttributes: true
+              removeComments: true
             }
           : false
       }),
+
       new CopyPlugin({
         patterns: [
-          { from: path.resolve(__dirname, 'landing.page'), to: 'landing.page' },
-          { from: path.resolve(__dirname, 'kimia1.png'), to: 'kimia1.png', noErrorOnMissing: true }
+          {
+            from: path.resolve(__dirname, 'Front-end/assets'),
+            to: 'assets'
+          }
         ]
       })
-    ],
+    ].filter(Boolean),
+
     devServer: {
       static: {
-        directory: path.join(__dirname)
+        directory: path.resolve(__dirname, 'dist')
       },
       compress: true,
       port: 3000,
