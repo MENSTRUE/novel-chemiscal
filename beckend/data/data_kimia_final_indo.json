@@ -48522,5 +48522,129 @@
     "skor_kecocokan": 95,
     "justifikasi_ringkas": "Polydimethylsiloxane sangat cocok untuk kosmetik karena sifatnya yang inert, aman untuk kulit, dan stabilitas termal yang sangat baik, menjadikannya ideal untuk produk tahan panas.",
     "id": "Polydimethylsiloxane"
+  },
+  {
+    "nama_senyawa": "Diphenyl Ether",
+    "rumus_molekul": "C12H10O",
+    "berat_molekul": 170.21,
+    "sinonim": "Phenoxybenzene, Diphenyl oxide, DPE",
+    "deskripsi": "Diphenyl Ether adalah senyawa organik aromatik dengan rumus molekul C12H10O. Dikenal sebagai pelarut dengan titik didih tinggi dan stabilitas termal yang sangat baik, membuatnya cocok untuk aplikasi yang membutuhkan ketahanan panas. Senyawa ini memiliki bau seperti geranium dan digunakan dalam parfum, serta sebagai media transfer panas dan pelarut dalam sintesis organik. Risiko utamanya terkait dengan iritasi dan potensi bahaya lingkungan jika dibuang secara tidak benar.",
+    "titik_didih_celsius": 259,
+    "titik_leleh_celsius": 26.8,
+    "densitas_gcm3": 1.072,
+    "pernyataan_bahaya_ghs": "H411: Toxic to aquatic life with long lasting effects.",
+    "kategori_aplikasi": "Pelarut suhu tinggi, media transfer panas, bahan baku parfum, sintesis organik.",
+    "sifat_fungsional": "Pelarut, tahan panas, stabil secara termal, aromatik.",
+    "tingkat_risiko_keselamatan": "Sedang",
+    "bahaya_keselamatan": "Dapat menyebabkan iritasi pada mata dan kulit. Berbahaya bagi kehidupan akuatik dengan efek jangka panjang. Hindari pelepasan ke lingkungan.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 90,
+    "justifikasi_ringkas": "Diphenyl Ether dipilih karena titik didihnya yang sangat tinggi dan stabilitas termal yang luar biasa, menjadikannya pelarut yang sangat tahan panas dan efektif untuk berbagai aplikasi suhu tinggi.",
+    "id": "Diphenyl Ether"
+  },
+  {
+    "nama_senyawa": "Zinc Oxide",
+    "rumus_molekul": "ZnO",
+    "berat_molekul": 81.38,
+    "sinonim": "Chinese white, Flowers of zinc, Zinc white",
+    "deskripsi": "Zinc Oxide adalah senyawa anorganik yang banyak digunakan sebagai agen tabir surya fisik. Senyawa ini memberikan perlindungan UV spektrum luas dengan memantulkan dan menyebarkan sinar UVA dan UVB. Dikenal karena stabilitasnya, sifat non-iritasi, dan ketahanan panas yang baik, menjadikannya sangat cocok untuk tabir surya yang perlu berfungsi dalam berbagai kondisi lingkungan. Juga digunakan dalam kosmetik, farmasi, dan industri lainnya.",
+    "titik_didih_celsius": 2360,
+    "titik_leleh_celsius": 1975,
+    "densitas_gcm3": 5.61,
+    "pernyataan_bahaya_ghs": "H400 (Sangat beracun bagi kehidupan akuatik), H410 (Sangat beracun bagi kehidupan akuatik dengan efek jangka panjang).",
+    "kategori_aplikasi": "Tabir surya, kosmetik, farmasi, karet, keramik, cat",
+    "sifat_fungsional": "Filter UV (spektrum luas), anti-inflamasi, astringen, antibakteri",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Umumnya aman untuk penggunaan topikal pada manusia. Inhalasi debu dapat menyebabkan demam asap logam. Berbahaya bagi lingkungan akuatik.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 30,
+        "nama_unsur": "Seng",
+        "simbol": "Zn"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Zinc Oxide adalah filter UV fisik yang sangat stabil, memberikan perlindungan spektrum luas terhadap UVA dan UVB, dan dikenal karena ketahanan panasnya, menjadikannya pilihan ideal untuk sunscreen.",
+    "id": "Zinc Oxide"
+  },
+  {
+    "nama_senyawa": "Aeternum Vitae",
+    "rumus_molekul": "C100H150O50N10S2P2Au",
+    "berat_molekul": 2615.35,
+    "sinonim": "Elixir Kehidupan Abadi, Penangkal Kematian Utama, Ramuan Keabadian, Panacea Universal",
+    "deskripsi": "Aeternum Vitae adalah senyawa hipotetis yang secara mitologis dikenal sebagai 'Elixir Kehidupan Abadi' atau 'Penangkal Kematian'. Dalam konteks kimia, senyawa ini dibayangkan sebagai molekul organik kompleks yang mengandung elemen-elemen vital dan langka, dirancang untuk meregenerasi sel, memperbaiki DNA, dan memulihkan vitalitas pada tingkat fundamental. Meskipun tidak ada bukti ilmiah keberadaannya, konsepnya telah menjadi tujuan utama dalam alkimia dan pencarian manusia akan keabadian. Senyawa ini diasumsikan memiliki kemampuan penyembuhan universal dan anti-penuaan yang tak tertandingi, tanpa efek samping yang merugikan.",
+    "titik_didih_celsius": 0,
+    "titik_leleh_celsius": 0,
+    "densitas_gcm3": 0,
+    "pernyataan_bahaya_ghs": "Tidak ada bahaya yang diketahui; dianggap sangat aman dan bermanfaat.",
+    "kategori_aplikasi": "Alkimia, Medis (hipotetis), Regenerasi Sel, Anti-penuaan",
+    "sifat_fungsional": "Regeneratif seluler, Imunomodulator, Antioksidan super, Perbaikan DNA, Peningkatan vitalitas, Penyembuhan universal",
+    "tingkat_risiko_keselamatan": "Rendah",
+    "bahaya_keselamatan": "Tidak ada bahaya yang diketahui; dianggap sebagai zat paling aman dan bermanfaat.",
+    "ketersediaan_bahan_baku": "Sangat Langka/Tidak Diketahui (hanya ada dalam mitos dan legenda)",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      },
+      {
+        "nomor_atom": 7,
+        "nama_unsur": "Nitrogen",
+        "simbol": "N"
+      },
+      {
+        "nomor_atom": 16,
+        "nama_unsur": "Belerang",
+        "simbol": "S"
+      },
+      {
+        "nomor_atom": 15,
+        "nama_unsur": "Fosfor",
+        "simbol": "P"
+      },
+      {
+        "nomor_atom": 79,
+        "nama_unsur": "Emas",
+        "simbol": "Au"
+      }
+    ],
+    "skor_kecocokan": 100,
+    "justifikasi_ringkas": "Aeternum Vitae adalah representasi hipotetis dari 'Elixir Kehidupan Abadi' yang secara sempurna memenuhi kriteria 'ramuan', 'penangkal kematian', dan 'yang dicari selama ini' dalam konteks mitologi dan alkimia.",
+    "isSaved": false,
+    "id": "Aeternum Vitae"
   }
 ]
