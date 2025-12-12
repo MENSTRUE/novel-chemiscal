@@ -6,3 +6,9 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+  [[redirects]]
+  from = "/api/*"
+  # Ganti dengan URL API backend eksternal tempat kode AI Anda berjalan
+  to = "https://URL-BACKEND-ANDA-EKSTERNAL.com/:splat" 
+  status = 200
