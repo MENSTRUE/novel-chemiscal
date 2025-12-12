@@ -1,8 +1,8 @@
 [build]
-  publish = "dist" # Folder output dari Webpack
-  command = "npm run build" # Perintah build Anda
+  publish = "dist" 
+  command = "npm run build"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200 # Penting untuk SPA routing
+  status = 200
