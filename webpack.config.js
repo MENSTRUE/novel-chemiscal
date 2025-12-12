@@ -63,7 +63,7 @@ module.exports = (env, argv) => {
       // ✅ FIX #2: CopyPlugin tunggal yang menyalin SEMUA aset manual
       new CopyPlugin({
         patterns: [
-          { from: path.resolve(__dirname, 'Front-end/assets'), to: 'assets' },
+          { from: path.resolve(__dirname, 'Front-end/asset'), to: 'asset' },
           { from: path.resolve(__dirname, 'Front-end/ui'), to: 'ui' }, // Untuk halaman HTML dalam
           { from: path.resolve(__dirname, 'Front-end/css'), to: 'css' }, // Untuk style.css manual
           { from: path.resolve(__dirname, 'Front-end/js'), to: 'js' }, // Untuk file JS manual
