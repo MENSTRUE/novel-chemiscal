@@ -1,14 +1,26 @@
 [build]
   publish = "dist" 
   command = "npm run build"
+  # Set variable environment untuk Python Runtime
+  # Ganti dengan versi Python yang kompatibel jika diperlukan
+  environment = { AWS_LAMBDA_PYTHON_RUNTIME = "python3.8" } 
 
+# --- KONFIGURASI FUNCTIONS ---
+[functions]
+  # Memberi tahu Netlify bahwa functions berada di folder 'backend'
+  directory = "backend" 
+
+# --- KONFIGURASI FRONT-END (SPA Redirect & API Proxy) ---
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-  [[redirects]]
-  from = "/api/*"
-  # Ganti dengan URL API backend eksternal tempat kode AI Anda berjalan
-  to = "https://URL-BACKEND-ANDA-EKSTERNAL.com/:splat" 
+# Proxy untuk memanggil function Python (diakses melalui /api/generate)
+[[redirects]]
+  # Jika Front-end memanggil /api/generate
+  from = "/api/generate"
+  # Arahkan ke file Python Anda (misal: main.py) di functions/
+  # Path fungsi di Netlify: /.netlify/functions/nama_file
+  to = "/.netlify/functions/main" 
   status = 200
