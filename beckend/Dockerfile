@@ -1,25 +1,37 @@
-# Gunakan image Python yang ringan
-# Kita menggunakan 3.11 karena itu yang dideteksi oleh build log sebelumnya.
-FROM python:3.11-slim
+# ==================================
+# STAGE 1: Build & Install Dependencies
+# ==================================
+FROM python:3.11-slim AS builder
 
-# Instal tools kompilasi yang dibutuhkan oleh package seperti chromadb, numpy, dll.
-# Railway logs menunjukkan build-essential berhasil diinstal, tetapi kita buat eksplisit di sini.
+# Atur WORKDIR
+WORKDIR /install
+
+# Instal system dependencies yang diperlukan untuk kompilasi (HANYA di stage ini)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Tetapkan direktori kerja
+# Salin requirements.txt dan instal packages
+COPY requirements.txt .
+# Instal dependencies ke direktori /usr/local/lib/python...
+RUN pip install --prefix=/usr/local --no-cache-dir -r requirements.txt
+
+
+# ==================================
+# STAGE 2: Final Image (Production)
+# ==================================
+# Gunakan base image yang sangat bersih (tidak ada build tools)
+FROM python:3.11-slim
+
+# Tetapkan direktori kerja aplikasi
 WORKDIR /app
 
-# Salin requirements.txt dan instal dependencies
-COPY requirements.txt .
-# Melakukan instalasi
-RUN pip install --no-cache-dir -r requirements.txt
+# Salin packages yang sudah terinstal dari 'builder' stage
+# Ini adalah langkah KRITIS yang membuang build-essential dan cache
+COPY --from=builder /usr/local /usr/local
 
-# Salin sisa kode aplikasi (main.py, dll.)
+# Salin kode aplikasi Anda
 COPY . .
 
-# Perintah untuk menjalankan server (menggunakan Uvicorn/Gunicorn untuk FastAPI/ASG)
-# Kami menggunakan Mangum yang Anda sebutkan di requirements.txt, tetapi Uvicorn langsung lebih sederhana untuk Railway.
-# ASUMSI: instance FastAPI/Flask Anda bernama 'app' di main.py
+# Perintah untuk menjalankan server (Pastikan entry point Anda 'main:app')
 CMD ["/usr/local/bin/python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT", "--workers", "4"]
