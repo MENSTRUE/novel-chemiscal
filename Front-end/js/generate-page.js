@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-irregular-whitespace */
-// File: generate-page.js (FINAL FIX: Sembunyikan Tombol Aksi & Duplikasi History)
+// File: generate-page.js (REVISI FINAL: Save ke History hanya setelah Save API)
 
 // ======================================================================
 // KONFIGURASI API
@@ -60,6 +60,7 @@ function saveHistory(arr) {
     }
 }
 
+// *** PERUBAHAN KRITIS: Fungsi ini sekarang hanya dipanggil setelah SAVE API berhasil ***
 function addToHistory(name, answerObj) {
     // Simpan ke UI dan localStorage
     const history = loadHistory();
@@ -73,14 +74,14 @@ function addToHistory(name, answerObj) {
     // tambahkan ke awal
     history.unshift(item);
     saveHistory(history);
-    // Kita panggil renderHistoryList di akhir showResultPopup untuk update UI
+    // Kita panggil renderHistoryList setelah save API berhasil (di handleSaveResult)
 }
 
 function deleteHistoryItem(id) {
     let history = loadHistory();
     history = history.filter(h => h.id !== id);
     saveHistory(history);
-    renderHistoryList();
+    // renderHistoryList() akan dipanggil setelah ini di showDeleteConfirmModal
 }
 
 
@@ -176,9 +177,9 @@ document.addEventListener("DOMContentLoaded", function () {
             simulateProgress();
         } else if (!isLoading && closePopup) {
              // Tampilkan kembali tombol tutup setelah selesai (kecuali jika ada modal kustom yang meng-handle)
-            if (!document.getElementById("confirmDeleteBtn") && !document.getElementById("closeModalBtn")) {
+             if (!document.getElementById("confirmDeleteBtn") && !document.getElementById("closeModalBtn")) {
                  closePopup.style.display = "flex";
-            }
+             }
         }
     }
 
@@ -247,51 +248,62 @@ document.addEventListener("DOMContentLoaded", function () {
         popup.style.display = "flex";
     }
 
-    // ==================================================================
-    // FUNGSI: MODAL KONFIRMASI HAPUS KUSTOM (BARU)
-    // ==================================================================
-    function showDeleteConfirmModal(id, name) {
-        if (!popup || !popupContent) return;
+// ==================================================================
+// FUNGSI: MODAL KONFIRMASI HAPUS KUSTOM (BARU)
+// ==================================================================
+function showDeleteConfirmModal(id, name) {
+    if (!popup || !popupContent) return;
 
-        clearInterval(progressInterval);
-        if (closePopup) closePopup.style.display = "none"; // Sembunyikan tombol 'X'
+    clearInterval(progressInterval);
+    if (closePopup) closePopup.style.display = "none"; // Sembunyikan tombol 'X'
 
-        // Setel judul popup menjadi konfirmasi
-        popup.querySelector(".popup-title").textContent = `⚠️ Konfirmasi Penghapusan`;
+    // Setel judul popup menjadi konfirmasi
+    popup.querySelector(".popup-title").textContent = `⚠️ Konfirmasi Penghapusan`;
 
-        popupContent.innerHTML = `
-            <div class="custom-modal-content">
-                <h3 style="color:var(--color-reset);">Yakin Hapus Riwayat Ini?</h3>
-                <div class="delete-confirm-content">
-                    <p><strong>Nama Senyawa:</strong> ${escapeHtml(name)}</p>
-                    <p>Data ini akan hilang permanen dari riwayat lokal.</p>
-                </div>
+    popupContent.innerHTML = `
+        <div class="custom-modal-content">
+            <h3 style="color:var(--color-reset);">Yakin Hapus Riwayat Ini?</h3>
+            <div class="delete-confirm-content">
+                <p><strong>Nama Senyawa:</strong> ${escapeHtml(name)}</p>
+                <p>Data ini akan hilang permanen dari riwayat lokal.</p>
             </div>
+        </div>
 
-            <div class="result-actions" style="justify-content:center; margin-top:30px;">
-                <button id="cancelDeleteBtn" class="btn-modal-action" style="background-color:var(--color-card-bg); color:var(--color-text-light);">Batal</button>
-                <button id="confirmDeleteBtn" class="btn-modal-action btn-delete">Hapus Permanen</button>
-            </div>
-        `;
+        <div class="result-actions" style="justify-content:center; margin-top:30px;">
+            <button id="cancelDeleteBtn" class="btn-modal-action" style="background-color:var(--color-card-bg); color:var(--color-text-light);">Batal</button>
+            <button id="confirmDeleteBtn" class="btn-modal-action btn-delete">Hapus Permanen</button>
+        </div>
+    `;
 
-        popup.style.display = "flex";
+    popup.style.display = "flex";
 
-        // Tambahkan event listener untuk tombol di modal
-        document.getElementById("cancelDeleteBtn").addEventListener('click', () => {
-            popup.style.display = "none";
-            if (closePopup) closePopup.style.display = "flex"; // Tampilkan kembali tombol tutup
-        });
+    // Tambahkan event listener untuk tombol di modal
+    document.getElementById("cancelDeleteBtn").addEventListener('click', () => {
+        popup.style.display = "none";
+        if (closePopup) closePopup.style.display = "flex"; // Tampilkan kembali tombol tutup
+    });
+    
+    document.getElementById("confirmDeleteBtn").addEventListener('click', () => {
+        // 1. Hapus data dari local storage
+        deleteHistoryItem(id); 
         
-        document.getElementById("confirmDeleteBtn").addEventListener('click', () => {
-            // Lakukan penghapusan dan tutup modal
-            deleteHistoryItem(id);
-            popup.style.display = "none";
-            if (closePopup) closePopup.style.display = "flex"; // Tampilkan kembali tombol tutup
-            
-            // Opsional: Tampilkan modal sukses sesaat jika diperlukan
-            // showCustomModal('Berhasil Dihapus', `Riwayat "${name}" telah dihapus.`, true);
-        });
-    }
+        // 2. Tutup modal konfirmasi (popup utama)
+        popup.style.display = "none";
+        if (closePopup) closePopup.style.display = "flex"; // Tampilkan kembali tombol tutup 'X'
+        
+        // 3. Tambahan: Tutup juga modal history mobile jika sedang terbuka
+        const historyModal = document.getElementById("historyModal");
+        if (historyModal && historyModal.style.display === "flex") {
+            historyModal.style.display = "none";
+        }
+
+        // 4. Update daftar riwayat di semua tempat (desktop dan mobile)
+        renderHistoryList(); 
+        
+        // Opsional: Tampilkan modal sukses sesaat (jika Anda ingin umpan balik cepat)
+        // showCustomModal('Berhasil Dihapus', `Riwayat "${name}" telah dihapus.`, true);
+    });
+}
 
 
     // ==================================================================
@@ -411,7 +423,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         popup.querySelector('.popup-title').textContent = `🕘 Riwayat: ${h.nama}`;
         // Flag isHistory di set true agar tidak tersimpan lagi ke riwayat
-        showResultPopup({ answer: h.answer }, false, true); 
+        // Flag isSaved di set true agar tombol save tersembunyi
+        showResultPopup({ answer: h.answer }, false, true, true); 
     }
 
     // ==================================================================
@@ -503,6 +516,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (id === "saveResultBtn") {
                 if (!currentRecommendation)
                     return showCustomModal("Gagal", "Tidak ada rekomendasi.", "error");
+                
+                // Pastikan tombol SAVE hanya muncul jika belum pernah disimpan ke Local History
+                if (currentRecommendation.isSaved) {
+                    return showCustomModal("Sudah Tersimpan", "Senyawa ini sudah disimpan ke riwayat dan database (jika API berhasil).", "error");
+                }
+                
                 handleSaveResult(currentRecommendation);
             }
 
@@ -521,14 +540,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (closePopup) closePopup.style.display = "flex"; // Tampilkan kembali tombol tutup
 
                 if (e.target.textContent === "Selesai") {
-                    // Aksi setelah Save Berhasil
+                    // Aksi setelah Save Berhasil: Reset form
                     if (form) form.reset();
                     currentCompoundData = null;
                     currentRecommendation = null;
                 } else if (e.target.textContent === "OK") {
                     // Aksi setelah Error / Close
-                    if (currentRecommendation) {
+                    if (currentRecommendation && !currentRecommendation.isSaved) {
                         // Tampilkan ulang hasil generate terakhir jika bukan Save Selesai
+                        // Jika ada currentRecommendation dan belum disave, tampilkan ulang.
                         showResultPopup({ answer: currentRecommendation }, true);
                     }
                 }
@@ -577,7 +597,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==================================================================
     // FUNGSI: TAMPILKAN HASIL
     // ==================================================================
-    function showResultPopup(apiResult, isRefinement = false, isHistory = false) {
+    // Tambahkan parameter isSaved untuk history item
+    function showResultPopup(apiResult, isRefinement = false, isHistory = false, isSaved = false) {
         if (!popup || !popupContent) return;
 
         clearInterval(progressInterval);
@@ -585,13 +606,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const c = apiResult.answer;
         
-        // Cek apakah ini duplikasi (digunakan untuk mencegah double save saat pop up dipanggil ulang)
-        const isDuplicateSaveAttempt = currentRecommendation && 
-                                           currentRecommendation.nama_senyawa === c?.nama_senyawa &&
-                                           currentRecommendation.skor_kecocokan === c?.skor_kecocokan &&
-                                           !isRefinement && !isHistory;
-        
+        // Simpan rekomendasi saat ini dan flag status save
         currentRecommendation = c;
+        if (currentRecommendation) {
+            currentRecommendation.isSaved = isSaved;
+        }
 
         const name = c?.nama_senyawa || "Senyawa Baru";
 
@@ -608,6 +627,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const riskValue = String(c?.tingkat_risiko_keselamatan || "N/A");
         const riskClass = `risk-${riskValue.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
 
+        // Tentukan apakah tombol Save akan ditampilkan
+        const saveBtnDisplay = currentRecommendation?.isSaved ? 'display: none;' : '';
+        const saveBtnText = currentRecommendation?.isSaved ? 'Disimpan' : 'Save & Selesai';
 
         // HTML Content for the popup
         popupContent.innerHTML = `
@@ -650,7 +672,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </details>
 
-            <div class="feedback-section">
+            <div class="feedback-section" style="${isSaved ? 'display: none;' : ''}">
                 <h4>Perlu Perbaikan?</h4>
                 <p>Masukkan instruksi perbaikan, misalnya:
                 "Cari yang titik didihnya lebih rendah" atau "Tekankan sifat anti-oksidan".</p>
@@ -665,26 +687,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 </button>
 
                 <div class="action-group-right">
-                    <button id="refineResultBtn" class="btn-action btn-refine">
+                    <button id="refineResultBtn" class="btn-action btn-refine" style="${isSaved ? 'display: none;' : ''}">
                         <i class="fas fa-sync-alt"></i> Generate Ulang
                     </button>
 
-                    <button id="saveResultBtn" class="btn-action btn-save">
-                        <i class="fas fa-check"></i> Save & Selesai
+                    <button id="saveResultBtn" class="btn-action btn-save" style="${saveBtnDisplay}">
+                        <i class="fas fa-check"></i> ${saveBtnText}
                     </button>
                 </div>
             </div>
         `;
 
-        // LOGIC KRITIS: Hanya tambahkan ke riwayat jika ini hasil generate/refine baru
-        if (!isHistory && !isDuplicateSaveAttempt) {
-            try {
-                addToHistory(name, currentRecommendation);
-                renderHistoryList(); // Update tampilan sidebar/modal history
-            } catch (e) {
-                console.warn('Gagal menambahkan ke riwayat:', e);
-            }
-        }
+        // *** LOGIC KRITIS: Penambahan ke riwayat LOKAL DIHAPUS DARI SINI.
+        // Ini akan dilakukan hanya setelah tombol SAVE ditekan dan API SAVE berhasil. ***
 
         popup.style.display = "flex";
     }
@@ -722,9 +737,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 currentCompoundData = collectData(); 
             }
 
-            showResultPopup(result, endpoint === ENDPOINT_REFINE);
+            // Hasil Generate/Refine (isSaved = false secara default)
+            showResultPopup(result, endpoint === ENDPOINT_REFINE, false, false);
 
         } catch (err) {
+            // Handle error, tampilkan pop up error
             popupContent.innerHTML = `
                 <h3>❌ Gagal Generate Senyawa</h3>
                 <p>${escapeHtml(err.message)}</p>
@@ -769,6 +786,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const result = await res.json();
             
+            // *** LOGIKA KRITIS: Tambahkan ke riwayat lokal hanya jika API Save berhasil ***
+            addToHistory(data.nama_senyawa, data);
+            renderHistoryList(); // Update tampilan sidebar/modal history
+            
+            // Update status save di currentRecommendation
+            if (currentRecommendation) {
+                currentRecommendation.isSaved = true;
+            }
+
             showCustomModal("Penyimpanan Berhasil!", result.message, true);
 
         } catch (err) {
