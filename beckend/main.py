@@ -1,3 +1,5 @@
+# FILE: main.py (KODE LENGKAP DIPERBAIKI DENGAN SEMUA MODEL DI BAGIAN ATAS)
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
@@ -321,13 +323,3 @@ def get_all_compounds():
         raise HTTPException(status_code=404, detail="Database senyawa tidak ditemukan.")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Gagal memuat data: {str(e)}")
-    
-try:
-    from mangum import Mangum
-    
-    handler = Mangum(app) 
-    print("✅ Mangum handler created for Netlify Functions.")
-    
-except ImportError:
-    print("Mangum not found. Assuming local development environment.")
-    pass
