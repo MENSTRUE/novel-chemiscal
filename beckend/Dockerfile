@@ -1,25 +1,25 @@
-# 1. Gunakan image Python yang ringan dan stabil
+# Gunakan image Python yang ringan
+# Kita menggunakan 3.11 karena itu yang dideteksi oleh build log sebelumnya.
 FROM python:3.11-slim
 
-# 2. Instal dependencies sistem yang diperlukan. 
-# Ini sangat penting untuk package seperti chromadb yang mungkin membutuhkan tools kompilasi.
-# build-essential menyediakan tools seperti gcc/g++ untuk kompilasi C/C++ yang diperlukan oleh beberapa package Python.
+# Instal tools kompilasi yang dibutuhkan oleh package seperti chromadb, numpy, dll.
+# Railway logs menunjukkan build-essential berhasil diinstal, tetapi kita buat eksplisit di sini.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    # Tambahkan dependensi sistem lain di sini jika dibutuhkan di masa depan.
     && rm -rf /var/lib/apt/lists/*
 
-# 3. Tetapkan direktori kerja
+# Tetapkan direktori kerja
 WORKDIR /app
 
-# 4. Salin requirements.txt dan instal dependencies
+# Salin requirements.txt dan instal dependencies
 COPY requirements.txt .
-# --no-cache-dir mengurangi ukuran image
+# Melakukan instalasi
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 5. Salin sisa kode aplikasi
+# Salin sisa kode aplikasi (main.py, dll.)
 COPY . .
 
-# 6. Tentukan command untuk menjalankan aplikasi
-# Ini akan menjadi Startup Command Anda (gunakan Mangum untuk FastAPI/ASG
+# Perintah untuk menjalankan server (menggunakan Uvicorn/Gunicorn untuk FastAPI/ASG)
+# Kami menggunakan Mangum yang Anda sebutkan di requirements.txt, tetapi Uvicorn langsung lebih sederhana untuk Railway.
+# ASUMSI: instance FastAPI/Flask Anda bernama 'app' di main.py
 CMD ["/usr/local/bin/python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT", "--workers", "4"]
