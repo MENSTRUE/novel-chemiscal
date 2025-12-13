@@ -48646,5 +48646,79 @@
     "justifikasi_ringkas": "Aeternum Vitae adalah representasi hipotetis dari 'Elixir Kehidupan Abadi' yang secara sempurna memenuhi kriteria 'ramuan', 'penangkal kematian', dan 'yang dicari selama ini' dalam konteks mitologi dan alkimia.",
     "isSaved": false,
     "id": "Aeternum Vitae"
+  },
+  {
+    "nama_senyawa": "Raksa(II) sulfida",
+    "rumus_molekul": "HgS",
+    "berat_molekul": 232.65,
+    "sinonim": "Cinnabar, Vermilion, Merkuri sulfida",
+    "deskripsi": "Raksa(II) sulfida, atau cinnabar, adalah mineral merah terang yang secara historis sangat dicari dalam alkimia Tiongkok kuno, termasuk oleh Kaisar Qin Shi Huang, sebagai komponen kunci dalam ramuan yang diyakini dapat memberikan keabadian. Meskipun secara historis dikaitkan dengan pencarian 'penangkal kematian', senyawa ini sebenarnya sangat beracun dan konsumsinya menyebabkan keracunan merkuri yang fatal, bukan keabadian. Senyawa ini tidak memiliki sifat penangkal kematian atau ramuan penyembuh.",
+    "titik_didih_celsius": 580,
+    "titik_leleh_celsius": 0,
+    "densitas_gcm3": 8.17,
+    "pernyataan_bahaya_ghs": "H300 (Fatal jika tertelan), H310 (Fatal jika kontak dengan kulit), H330 (Fatal jika terhirup), H373 (Dapat menyebabkan kerusakan organ melalui paparan berkepanjangan atau berulang), H410 (Sangat beracun bagi kehidupan akuatik dengan efek jangka panjang).",
+    "kategori_aplikasi": "Pigmen (historis), Alkimia (historis, berbahaya), Pengobatan tradisional (historis, sangat berbahaya)",
+    "sifat_fungsional": "Pigmen merah, Sumber merkuri (historis), Bahan alkimia (historis)",
+    "tingkat_risiko_keselamatan": "Tinggi",
+    "bahaya_keselamatan": "Sangat beracun jika tertelan, terhirup, atau kontak kulit. Dapat menyebabkan kerusakan organ, sistem saraf pusat, dan ginjal. Berbahaya bagi lingkungan.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 80,
+        "nama_unsur": "Merkuri",
+        "simbol": "Hg"
+      },
+      {
+        "nomor_atom": 16,
+        "nama_unsur": "Belerang",
+        "simbol": "S"
+      }
+    ],
+    "skor_kecocokan": 95,
+    "justifikasi_ringkas": "Senyawa ini paling cocok dengan kriteria karena secara historis merupakan bahan utama dalam ramuan alkimia yang dicari oleh Qin Shi Huang sebagai 'penangkal kematian', meskipun ironisnya sangat beracun dan menyebabkan kematian.",
+    "isSaved": false,
+    "id": "Raksa(II) sulfida"
+  },
+  {
+    "nama_senyawa": "Triethanolamine",
+    "rumus_molekul": "C6H15NO3",
+    "berat_molekul": 149.19,
+    "sinonim": "TEA; 2,2',2''-Nitrilotriethanol; Trolamine",
+    "deskripsi": "Triethanolamine (TEA) adalah senyawa organik yang termasuk dalam golongan amino alkohol. Senyawa ini bersifat basa lemah, higroskopis, dan memiliki bau amonia yang ringan. TEA banyak digunakan sebagai pelarut untuk berbagai senyawa organik dan anorganik. Dalam konteks anti-karat, TEA berfungsi sebagai inhibitor korosi yang efektif, terutama untuk logam besi dalam sistem berbasis air, dengan membentuk lapisan pelindung pada permukaan logam dan menstabilkan pH. Selain itu, TEA juga berfungsi sebagai pengemulsi, surfaktan, dan agen pengikat dalam berbagai aplikasi industri dan produk konsumen. Meskipun umumnya dianggap aman dalam konsentrasi rendah, paparan tinggi dapat menyebabkan iritasi kulit dan mata.",
+    "titik_didih_celsius": 335.4,
+    "titik_leleh_celsius": 21.6,
+    "densitas_gcm3": 1.124,
+    "pernyataan_bahaya_ghs": "H319: Menyebabkan iritasi mata serius.",
+    "kategori_aplikasi": "Pelarut, Inhibitor Korosi, Pengemulsi, Penyangga pH, Surfaktan",
+    "sifat_fungsional": "Pelarut (polar), Inhibitor Korosi (untuk logam besi), Pengemulsi, Penyangga pH, Humektan",
+    "tingkat_risiko_keselamatan": "Sedang",
+    "bahaya_keselamatan": "Iritasi mata dan kulit. Potensi sensitisasi kulit.",
+    "ketersediaan_bahan_baku": "Tersedia",
+    "data_unsur_penyusun": [
+      {
+        "nomor_atom": 6,
+        "nama_unsur": "Karbon",
+        "simbol": "C"
+      },
+      {
+        "nomor_atom": 1,
+        "nama_unsur": "Hidrogen",
+        "simbol": "H"
+      },
+      {
+        "nomor_atom": 7,
+        "nama_unsur": "Nitrogen",
+        "simbol": "N"
+      },
+      {
+        "nomor_atom": 8,
+        "nama_unsur": "Oksigen",
+        "simbol": "O"
+      }
+    ],
+    "skor_kecocokan": 90,
+    "justifikasi_ringkas": "Triethanolamine adalah senyawa amino alkohol serbaguna yang berfungsi sebagai pelarut efektif dan inhibitor korosi yang baik untuk logam besi dalam sistem berbasis air, menjadikannya pilihan optimal untuk kriteria yang diminta.",
+    "isSaved": false,
+    "id": "Triethanolamine"
   }
 ]

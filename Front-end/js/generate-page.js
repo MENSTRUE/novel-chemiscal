@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-irregular-whitespace */
 // File: generate-page.js (REVISI FINAL: Save ke History hanya setelah Save API)
@@ -82,6 +83,59 @@ function deleteHistoryItem(id) {
     history = history.filter(h => h.id !== id);
     saveHistory(history);
     // renderHistoryList() akan dipanggil setelah ini di showDeleteConfirmModal
+}
+
+
+// ==================================================================
+// FUNGSI BARU: RENDER STRUKTUR SENYAWA (Perlu disesuaikan dengan Library Anda)
+// ==================================================================
+
+/**
+ * Merender struktur senyawa 2D menggunakan kode SMILES ke dalam elemen canvas.
+ * CATATAN PENTING: Anda HARUS mengimpor library cheminformatics (misalnya Kekule.js)
+ * di file HTML Anda agar fungsi ini dapat bekerja.
+ * @param {string} smilesCode Kode SMILES senyawa.
+ * @param {string} targetElementId ID dari elemen HTML (misalnya div/canvas) tempat struktur akan digambar.
+ */
+function renderCompoundStructure(smilesCode, targetElementId) {
+    const targetEl = document.getElementById(targetElementId);
+    if (!targetEl) return;
+    
+    // ----------------------------------------------------------------------
+    // !!! GANTI KODE INI DENGAN KODE LIBRARY ANDA !!!
+    // ----------------------------------------------------------------------
+    
+    // ** IMPLEMENTASI KEKULE.JS (Contoh, perlu memastikan Kekule sudah terload global) **
+    if (typeof Kekule !== 'undefined' && Kekule.IO && Kekule.Widget) {
+        try {
+            // Bersihkan wadah sebelum merender yang baru
+            targetEl.innerHTML = ''; 
+            
+            // Konversi SMILES ke Objek Kimia
+            const mol = Kekule.IO.loadFormatData(smilesCode, 'smi');
+            
+            // Buat instance Viewer Kekule
+            const viewer = new Kekule.Widget.Viewer(targetEl);
+            viewer.setRenderType(Kekule.Render.RenderType.R2D); // Tampilkan 2D
+            viewer.setChemObj(mol);
+            viewer.setEnableDirectInteraction(true); // Opsional: Memungkinkan interaksi pengguna
+            
+        } catch(e) {
+            console.error("Gagal merender struktur dengan Kekule.js:", e);
+            targetEl.innerHTML = `<p style="padding: 10px; text-align: center; color: var(--color-error);">
+                Error Rendering Struktur (SMILES: ${escapeHtml(smilesCode)}).
+            </p>`;
+        }
+
+    } else {
+        // Placeholder jika library tidak ditemukan
+        targetEl.innerHTML = `<p style="padding: 10px; text-align: center; color: var(--color-text-secondary);">
+            SMILES: <strong>${escapeHtml(smilesCode)}</strong>. 
+            <br>
+            Library rendering struktur (misalnya Kekule.js) tidak ditemukan.
+        </p>`;
+    }
+    // ----------------------------------------------------------------------
 }
 
 
@@ -595,7 +649,7 @@ function showDeleteConfirmModal(id, name) {
     }
 
     // ==================================================================
-    // FUNGSI: TAMPILKAN HASIL
+    // FUNGSI: TAMPILKAN HASIL (MODIFIKASI UNTUK STRUKTUR)
     // ==================================================================
     // Tambahkan parameter isSaved untuk history item
     function showResultPopup(apiResult, isRefinement = false, isHistory = false, isSaved = false) {
@@ -647,7 +701,12 @@ function showDeleteConfirmModal(id, name) {
                     <span class="detail-item">Berat: ${escapeHtml(c?.berat_molekul || "N/A")} g/mol</span>
                 </p>
             </div>
-
+            
+            <div class="result-structure-section">
+                <h4>Struktur Senyawa (SMILES: ${escapeHtml(c?.rumus_struktur_smiles || "N/A")})</h4>
+                <div id="compoundStructureCanvas" style="width: 100%; height: 250px; background-color: var(--color-background); border-radius: 8px; margin-top: 10px; border: 1px solid var(--color-card-bg);">
+                    </div>
+            </div>
             <div class="result-section">
                 <h4>Justifikasi & Deskripsi</h4>
                 <p><strong>Justifikasi:</strong> ${escapeHtml(c?.justifikasi_ringkas || "N/A")}</p>
@@ -698,8 +757,10 @@ function showDeleteConfirmModal(id, name) {
             </div>
         `;
 
-        // *** LOGIC KRITIS: Penambahan ke riwayat LOKAL DIHAPUS DARI SINI.
-        // Ini akan dilakukan hanya setelah tombol SAVE ditekan dan API SAVE berhasil. ***
+        // *** LOGIKA PENTING: Panggil fungsi render struktur setelah HTML dimuat ***
+        if (c?.rumus_struktur_smiles) {
+            renderCompoundStructure(c.rumus_struktur_smiles, 'compoundStructureCanvas');
+        }
 
         popup.style.display = "flex";
     }

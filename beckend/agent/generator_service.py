@@ -53,6 +53,7 @@ def generate_detailed_json_answer(user_query: str, compound_name: str, all_raw_d
         ],
         "skor_kecocokan": 95,
         "justifikasi_ringkas": "Senyawa ini dipilih karena Titik Didih yang sangat tinggi (>150C) dan Tingkat Risiko Rendah."
+        "rumus_struktur_smiles": "OCC(O)CO"
     }}
     """
     
